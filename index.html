@@ -2,201 +2,81 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Nirmaan Store | Nirmaan Flea Market (Groups 1–7)</title>
-
-  <!-- PWA Manifest & Theme Color -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nirmaan Store | Groups 1–7</title>
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#08361c" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-  <!-- Tailwind CSS -->
+  <link rel="apple-touch-icon" href="icon-192.png" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          },
           colors: {
             nirmaan: {
               green: '#08361c',
-              greenLight: '#0f4d2a',
-              greenHover: '#0c4525',
+              dark: '#052412',
+              light: '#11542e',
               cream: '#fdfbf5',
-              creamDark: '#f3efe2',
-              creamBorder: '#e5dec9',
-              gold: '#eab308',
-              amber: '#f59e0b'
+              sand: '#f4efe2',
+              gold: '#d4a338'
             }
           }
         }
       }
     };
   </script>
-
   <style>
-    body {
-      background-color: #fdfbf5;
-      color: #08361c;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    @keyframes slideUpFade {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .animate-in {
-      animation: slideUpFade 0.25s ease-out forwards;
-    }
-
-    @media print {
-      body * {
-        visibility: hidden;
-      }
-      #printable-ebill, #printable-ebill * {
-        visibility: visible;
-      }
-      #printable-ebill {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        box-shadow: none !important;
-        border: 1px solid #ccc !important;
-      }
-    }
+    body { background-color: #fdfbf5; color: #14281d; font-family: system-ui, -apple-system, sans-serif; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="min-h-screen flex flex-col pb-20 md:pb-8 selection:bg-nirmaan-green selection:text-nirmaan-cream">
+<body class="min-h-screen flex flex-col">
 
-  <!-- Toast Notification Container -->
-  <div id="toast-container" class="fixed top-20 right-4 z-[100] flex flex-col gap-2 pointer-events-none max-w-xs w-full"></div>
+  <!-- TOAST -->
+  <div id="toast" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden bg-nirmaan-green text-nirmaan-cream px-5 py-2.5 rounded-full shadow-xl text-sm font-medium border border-nirmaan-gold/40"></div>
 
-  <!-- ===================================================================== -->
-  <!-- 1. GREETING & ONBOARDING SCREEN (#onboarding-screen)                  -->
-  <!-- ===================================================================== -->
-  <div id="onboarding-screen" class="fixed inset-0 z-50 bg-nirmaan-green flex items-center justify-center p-4 overflow-y-auto">
-    <div class="w-full max-w-md bg-nirmaan-cream text-nirmaan-green rounded-3xl p-6 sm:p-8 shadow-2xl border border-nirmaan-creamBorder animate-in my-auto">
+  <!-- 1. GREETING & LOGIN SCREEN -->
+  <div id="login-screen" class="min-h-screen bg-nirmaan-green flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-nirmaan-cream rounded-3xl shadow-2xl p-7 border border-nirmaan-gold/30">
       <div class="flex flex-col items-center text-center mb-6">
-        <div class="w-20 h-20 rounded-3xl bg-nirmaan-green flex items-center justify-center shadow-lg mb-3">
-          <svg viewBox="0 0 100 100" class="w-12 h-12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M23 78C19 58 19 32 29 24C37 18 44 29 50 44C56 59 64 74 73 68C81 62 79 36 73 22H55C60 33 63 48 58 51C53 54 47 41 42 29C36 16 25 14 18 23C10 34 11 61 15 78H23Z" fill="#fdfbf5"/>
+        <div class="w-16 h-16 rounded-2xl bg-nirmaan-green flex items-center justify-center shadow-lg mb-3">
+          <svg viewBox="0 0 100 100" class="w-10 h-10 fill-nirmaan-cream">
+            <path d="M24 78 C20 55, 24 22, 42 22 C54 22, 62 56, 70 56 C76 56, 74 34, 62 22 L78 22 C86 38, 86 78, 68 78 C55 78, 46 44, 39 44 C33 44, 36 66, 44 78 Z"/>
           </svg>
         </div>
-        <span class="px-3 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[10px] font-extrabold uppercase tracking-wider mb-1">
-          Nirmaan Flea Market
-        </span>
-        <h1 class="text-2xl font-extrabold tracking-tight text-nirmaan-green">Welcome to Nirmaan Store</h1>
-        <p class="text-xs sm:text-sm text-nirmaan-green/75 mt-1">
-          Enter your name, Gmail address, and phone number to shop Groups 1–7 and receive your digital E-Bill.
-        </p>
+        <span class="text-[11px] font-bold tracking-widest uppercase bg-nirmaan-sand text-nirmaan-green px-3 py-1 rounded-full mb-2">Nirmaan Flea Market</span>
+        <h1 class="text-2xl font-extrabold text-nirmaan-green">Welcome to Nirmaan Store</h1>
+        <p class="text-xs text-gray-600 mt-1">Enter your details to shop Groups 1–7 and get your Gmail E-Bill.</p>
       </div>
 
-      <!-- Using DIV instead of FORM to prevent browser '?' query reload -->
-      <div id="onboarding-box" class="space-y-4">
+      <div class="space-y-4">
         <div>
-          <label for="cust-name" class="block text-xs font-bold uppercase tracking-wider text-nirmaan-green/80 mb-1">
-            Full Name
-          </label>
-          <div class="relative">
-            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-nirmaan-green/50">
-              <i class="fa-regular fa-user"></i>
-            </span>
-            <input
-              type="text"
-              id="cust-name"
-              placeholder="e.g. Ananya Verma"
-              onkeydown="if(event.key==='Enter'){event.preventDefault(); enterStore();}"
-              class="w-full pl-10 pr-4 py-3 bg-white border border-nirmaan-creamBorder rounded-2xl text-sm font-medium text-nirmaan-green placeholder-nirmaan-green/40 focus:outline-none focus:border-nirmaan-green focus:ring-2 focus:ring-nirmaan-green/15"
-            />
-          </div>
-          <p id="err-name" class="hidden text-xs text-rose-600 font-semibold mt-1">Please enter your name.</p>
+          <label class="block text-xs font-bold text-nirmaan-green uppercase mb-1">Full Name *</label>
+          <input id="cust-name" type="text" placeholder="e.g. Avyukt Rawat" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-sm focus:outline-none focus:border-nirmaan-green" />
         </div>
-
         <div>
-          <label for="cust-email" class="block text-xs font-bold uppercase tracking-wider text-nirmaan-green/80 mb-1">
-            Gmail Address
-          </label>
-          <div class="relative">
-            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-nirmaan-green/50">
-              <i class="fa-regular fa-envelope"></i>
-            </span>
-            <input
-              type="email"
-              id="cust-email"
-              placeholder="customer@gmail.com"
-              onkeydown="if(event.key==='Enter'){event.preventDefault(); enterStore();}"
-              class="w-full pl-10 pr-4 py-3 bg-white border border-nirmaan-creamBorder rounded-2xl text-sm font-medium text-nirmaan-green placeholder-nirmaan-green/40 focus:outline-none focus:border-nirmaan-green focus:ring-2 focus:ring-nirmaan-green/15"
-            />
-          </div>
-          <p id="err-email" class="hidden text-xs text-rose-600 font-semibold mt-1">Please enter a valid Gmail address.</p>
+          <label class="block text-xs font-bold text-nirmaan-green uppercase mb-1">Gmail Address *</label>
+          <input id="cust-email" type="email" placeholder="customer@gmail.com" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-sm focus:outline-none focus:border-nirmaan-green" />
         </div>
-
         <div>
-          <label for="cust-phone" class="block text-xs font-bold uppercase tracking-wider text-nirmaan-green/80 mb-1">
-            Phone Number (10-digit)
-          </label>
+          <label class="block text-xs font-bold text-nirmaan-green uppercase mb-1">Phone Number (10-Digit) *</label>
           <div class="flex">
-            <span class="inline-flex items-center px-3.5 rounded-l-2xl border border-r-0 border-nirmaan-creamBorder bg-nirmaan-creamDark text-nirmaan-green font-bold text-sm">
-              +91
-            </span>
-            <input
-              type="tel"
-              id="cust-phone"
-              maxlength="10"
-              placeholder="9876543210"
-              onkeydown="if(event.key==='Enter'){event.preventDefault(); enterStore();}"
-              class="w-full px-4 py-3 bg-white border border-nirmaan-creamBorder rounded-r-2xl text-sm font-mono font-semibold text-nirmaan-green placeholder-nirmaan-green/40 focus:outline-none focus:border-nirmaan-green focus:ring-2 focus:ring-nirmaan-green/15"
-            />
+            <span class="inline-flex items-center px-3.5 rounded-l-xl border border-r-0 border-gray-300 bg-nirmaan-sand text-nirmaan-green font-bold text-sm">+91</span>
+            <input id="cust-phone" type="tel" maxlength="10" placeholder="9876543210" class="w-full px-4 py-3 rounded-r-xl border border-gray-300 bg-white text-sm focus:outline-none focus:border-nirmaan-green" />
           </div>
-          <p id="err-phone" class="hidden text-xs text-rose-600 font-semibold mt-1">Enter a valid 10-digit mobile number.</p>
         </div>
 
-        <button
-          type="button"
-          onclick="enterStore()"
-          class="w-full py-3.5 px-6 rounded-2xl bg-nirmaan-green hover:bg-nirmaan-greenHover text-nirmaan-cream font-bold text-sm shadow-lg flex items-center justify-center gap-2 transition active:scale-[0.99] cursor-pointer"
-        >
-          <span>Enter Nirmaan Store</span>
-          <i class="fa-solid fa-arrow-right"></i>
+        <button type="button" onclick="enterStore()" class="w-full py-3.5 rounded-xl bg-nirmaan-green hover:bg-nirmaan-light text-nirmaan-cream font-bold text-sm shadow-lg transition cursor-pointer">
+          Enter Nirmaan Store →
         </button>
 
-        <div class="flex items-center gap-2 pt-1">
-          <button
-            type="button"
-            onclick="quickDemoFillAndEnter()"
-            class="flex-1 py-2.5 px-3 rounded-xl bg-amber-400/25 hover:bg-amber-400/40 border border-amber-500/30 text-nirmaan-green text-xs font-extrabold transition cursor-pointer"
-          >
-            <i class="fa-solid fa-bolt text-amber-600 mr-1"></i> Quick Demo Fill
+        <div class="grid grid-cols-2 gap-2.5 pt-1">
+          <button type="button" onclick="quickDemoLogin()" class="py-2.5 rounded-xl bg-nirmaan-sand hover:bg-amber-100 text-nirmaan-green font-semibold text-xs border border-nirmaan-green/15 cursor-pointer">
+            Quick Demo Fill
           </button>
-          <button
-            type="button"
-            onclick="browseAsGuest()"
-            class="flex-1 py-2.5 px-3 rounded-xl border border-nirmaan-creamBorder bg-white hover:bg-nirmaan-creamDark text-nirmaan-green text-xs font-bold transition cursor-pointer"
-          >
+          <button type="button" onclick="guestLogin()" class="py-2.5 rounded-xl bg-white hover:bg-gray-50 text-nirmaan-green font-semibold text-xs border border-gray-300 cursor-pointer">
             Browse as Guest
           </button>
         </div>
@@ -204,1300 +84,571 @@
     </div>
   </div>
 
-  <!-- ===================================================================== -->
-  <!-- 2. STICKY TOP APP BAR                                                 -->
-  <!-- ===================================================================== -->
-  <header class="sticky top-0 z-30 bg-nirmaan-green text-nirmaan-cream shadow-md">
-    <div class="max-w-6xl mx-auto px-4 pt-3 pb-3 space-y-2.5">
-      <div class="flex items-center justify-between gap-3">
-        <button type="button" onclick="navigateTo('store-screen'); selectGroup('All');" class="flex items-center gap-2.5 cursor-pointer text-left">
-          <div class="w-9 h-9 rounded-xl bg-nirmaan-cream flex items-center justify-center shadow-sm shrink-0">
-            <svg viewBox="0 0 100 100" class="w-6 h-6" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M23 78C19 58 19 32 29 24C37 18 44 29 50 44C56 59 64 74 73 68C81 62 79 36 73 22H55C60 33 63 48 58 51C53 54 47 41 42 29C36 16 25 14 18 23C10 34 11 61 15 78H23Z" fill="#08361c"/>
+ <!-- 2. MAIN STOREFRONT -->
+  <div id="store-screen" class="hidden flex-1 flex flex-col">
+    <!-- Top Bar -->
+    <header class="sticky top-0 z-30 bg-nirmaan-green text-nirmaan-cream shadow-md">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5 cursor-pointer" onclick="showSection('products-view')">
+          <div class="w-9 h-9 rounded-xl bg-nirmaan-cream flex items-center justify-center">
+            <svg viewBox="0 0 100 100" class="w-6 h-6 fill-nirmaan-green">
+              <path d="M24 78 C20 55, 24 22, 42 22 C54 22, 62 56, 70 56 C76 56, 74 34, 62 22 L78 22 C86 38, 86 78, 68 78 C55 78, 46 44, 39 44 C33 44, 36 66, 44 78 Z"/>
             </svg>
           </div>
           <div>
-            <span class="font-extrabold text-xl tracking-tight leading-none block text-nirmaan-cream">Nirmaan</span>
-            <span class="text-[10px] uppercase tracking-widest text-nirmaan-cream/75 font-semibold">Flea Market • Groups 1–7</span>
+            <div class="font-extrabold text-base leading-tight">Nirmaan Store</div>
+            <div id="header-user" class="text-[11px] text-nirmaan-gold">Welcome, Shopper</div>
           </div>
-        </button>
+        </div>
 
         <div class="flex items-center gap-2">
-          <button
-            type="button"
-            onclick="navigateTo('account-view')"
-            title="Account Profile & Login Details"
-            class="flex items-center gap-2 bg-nirmaan-greenLight/90 hover:bg-nirmaan-greenLight border border-nirmaan-cream/15 rounded-full px-3 py-1.5 transition cursor-pointer"
-          >
-            <i class="fa-regular fa-circle-user text-sm text-amber-300"></i>
-            <span id="header-user-name" class="text-xs font-semibold max-w-[95px] truncate">Guest</span>
+          <button type="button" onclick="logoutToLogin()" class="text-xs px-3 py-1.5 rounded-lg bg-nirmaan-light/70 hover:bg-nirmaan-light text-nirmaan-cream cursor-pointer">
+            Account
           </button>
-
-          <button
-            type="button"
-            onclick="toggleCartSidebar(true)"
-            class="relative flex items-center gap-2 bg-nirmaan-cream text-nirmaan-green hover:bg-nirmaan-creamDark font-extrabold px-3.5 py-2 rounded-full shadow-sm transition cursor-pointer"
-          >
-            <i class="fa-solid fa-cart-shopping text-sm"></i>
-            <span class="text-xs hidden sm:inline">Cart</span>
-            <span
-              id="cart-badge-count"
-              class="min-w-[20px] h-5 px-1.5 rounded-full bg-amber-400 text-nirmaan-green text-[11px] font-extrabold flex items-center justify-center"
-            >
-              0
-            </span>
+          <button type="button" onclick="toggleCart(true)" class="relative px-3.5 py-2 rounded-xl bg-nirmaan-cream text-nirmaan-green font-bold text-xs flex items-center gap-1.5 shadow cursor-pointer">
+            <span>🛒 Cart</span>
+            <span id="cart-badge" class="bg-nirmaan-green text-nirmaan-cream text-[11px] px-1.5 py-0.5 rounded-full">0</span>
           </button>
         </div>
       </div>
 
-      <!-- Live Search Bar -->
-      <div id="header-search-bar" class="relative">
-        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-nirmaan-green/50">
-          <i class="fa-solid fa-magnifying-glass text-sm"></i>
-        </span>
-        <input
-          type="text"
-          id="search-input"
-          oninput="handleSearch(this.value)"
-          placeholder="Search 47 products by name, #Serial, or Group 1–7..."
-          class="w-full pl-10 pr-9 py-2.5 bg-nirmaan-cream text-nirmaan-green placeholder-nirmaan-green/50 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-400"
-        />
-        <button
-          type="button"
-          id="clear-search-btn"
-          onclick="clearSearch()"
-          class="hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-nirmaan-green/50 hover:text-nirmaan-green cursor-pointer"
-        >
-          <i class="fa-solid fa-circle-xmark"></i>
-        </button>
+      <!-- Search + Group Tabs -->
+      <div class="max-w-6xl mx-auto px-4 pb-3 space-y-2.5">
+        <input id="search-input" type="text" oninput="renderProducts()" placeholder="Search 47 products across Group 1 to Group 7..." class="w-full px-4 py-2.5 rounded-xl bg-nirmaan-cream text-nirmaan-green placeholder-gray-500 text-sm focus:outline-none" />
+        <div id="group-tabs" class="flex gap-2 overflow-x-auto no-scrollbar pb-0.5"></div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- ===================================================================== -->
-  <!-- 3. MAIN APPLICATION VIEWS                                             -->
-  <!-- ===================================================================== -->
-  <main class="flex-1 max-w-6xl w-full mx-auto px-4 pt-4 pb-8">
-
-    <!-- VIEW A: STOREFRONT (#store-screen) -->
-    <section id="store-screen" class="space-y-4 animate-in">
-      <!-- Horizontal Scrollable Group Pills -->
-      <div class="sticky top-[106px] z-20 bg-nirmaan-cream/95 backdrop-blur-md py-2 -mx-4 px-4 border-b border-nirmaan-creamBorder">
-        <div id="group-pills-container" class="flex items-center gap-2 overflow-x-auto no-scrollbar"></div>
-      </div>
-
-      <!-- Active Stall Banner -->
-      <div class="bg-white border border-nirmaan-creamBorder rounded-2xl p-4 flex items-center justify-between gap-3 shadow-sm">
+    <!-- PRODUCTS VIEW -->
+    <main id="products-view" class="max-w-6xl w-full mx-auto px-4 py-5 flex-1">
+      <div id="stall-banner" class="mb-4 p-4 rounded-2xl bg-nirmaan-sand border border-nirmaan-green/15 flex flex-wrap items-center justify-between gap-2">
         <div>
-          <span id="banner-group-tag" class="inline-block text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-nirmaan-green text-nirmaan-cream mb-1">
-            ALL GROUPS COMBINED
-          </span>
-          <h2 id="banner-group-title" class="text-base sm:text-lg font-extrabold text-nirmaan-green">
-            All Nirmaan Flea Market Products (Groups 1–7)
-          </h2>
-          <p id="banner-group-subtitle" class="text-xs text-nirmaan-green/70">
-            Showing all 47 products across Stalls 1 to 7 together.
-          </p>
+          <h2 id="stall-title" class="font-extrabold text-nirmaan-green text-base">All Stalls (Groups 1–7)</h2>
+          <p id="stall-sub" class="text-xs text-gray-600">Showing all 47 master products from Nirmaan Flea Market</p>
         </div>
-        <div class="text-right shrink-0 bg-nirmaan-cream px-3 py-2 rounded-xl border border-nirmaan-creamBorder">
-          <span id="banner-product-count" class="text-lg font-extrabold text-nirmaan-green font-mono">47</span>
-          <span class="block text-[10px] uppercase tracking-wider text-nirmaan-green/65 font-bold">Items</span>
-        </div>
+        <span id="product-count" class="text-xs font-bold bg-nirmaan-green text-nirmaan-cream px-3 py-1 rounded-full">47 Items</span>
       </div>
 
-      <!-- Product Grid -->
-      <div id="products-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5"></div>
+      <div id="products-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5"></div>
+    </main>
 
-      <!-- Empty Search State -->
-      <div id="empty-search-state" class="hidden bg-white border border-nirmaan-creamBorder rounded-3xl p-10 text-center">
-        <i class="fa-solid fa-box-open text-4xl text-nirmaan-green/30 mb-3"></i>
-        <h3 class="text-base font-extrabold text-nirmaan-green">No matching products found</h3>
-        <p class="text-xs text-nirmaan-green/65 mt-1">Try another keyword or reset to All (47).</p>
-        <button type="button" onclick="resetStoreFilters()" class="mt-4 px-4 py-2 rounded-xl bg-nirmaan-green text-nirmaan-cream text-xs font-bold cursor-pointer">
-          Show All (47) Products
+    <!-- ADDRESS VIEW -->
+    <section id="address-view" class="hidden max-w-xl w-full mx-auto px-4 py-6 flex-1">
+      <button type="button" onclick="showSection('products-view')" class="text-xs font-bold text-nirmaan-green mb-3 cursor-pointer">← Back to Store</button>
+      <div class="bg-white rounded-3xl p-6 shadow-md border border-gray-200 space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-extrabold text-nirmaan-green">Delivery Address</h2>
+          <button type="button" onclick="fillSampleAddress()" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-nirmaan-sand text-nirmaan-green cursor-pointer">Auto-Fill Sample</button>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <input id="addr-name" type="text" placeholder="Receiver Full Name *" class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm" />
+          <input id="addr-phone" type="tel" maxlength="10" placeholder="10-Digit Phone *" class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm" />
+        </div>
+        <input id="addr-line1" type="text" placeholder="Flat / House No., Building Name *" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm" />
+        <input id="addr-line2" type="text" placeholder="Street, Area, Colony *" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm" />
+        <div class="grid grid-cols-2 gap-3">
+          <input id="addr-city" type="text" placeholder="City *" class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm" />
+          <input id="addr-pin" type="text" maxlength="6" placeholder="6-Digit Pincode *" class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm" />
+        </div>
+        <input id="addr-landmark" type="text" placeholder="Landmark (Optional)" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm" />
+        <button type="button" onclick="proceedToPayment()" class="w-full py-3.5 rounded-xl bg-nirmaan-green text-nirmaan-cream font-bold text-sm shadow-lg cursor-pointer">
+          Continue to Payment →
         </button>
       </div>
     </section>
 
-    <!-- VIEW B: ADDRESS PAGE (#address-view) -->
-    <section id="address-view" class="hidden animate-in max-w-3xl mx-auto space-y-5">
-      <div class="flex items-center justify-between">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-extrabold text-nirmaan-green">Delivery Address</h2>
-          <p class="text-xs sm:text-sm text-nirmaan-green/70">Step 1 of 2 • Confirm where your order should be delivered</p>
+    <!-- PAYMENT VIEW -->
+    <section id="payment-view" class="hidden max-w-xl w-full mx-auto px-4 py-6 flex-1">
+      <button type="button" onclick="showSection('address-view')" class="text-xs font-bold text-nirmaan-green mb-3 cursor-pointer">← Back to Address</button>
+      <div class="bg-white rounded-3xl p-6 shadow-md border border-gray-200 space-y-5">
+        <div class="flex items-center justify-between border-b pb-3">
+          <div>
+            <h2 class="text-lg font-extrabold text-nirmaan-green">Select Payment Method</h2>
+            <p class="text-xs text-gray-500">E-Bill will be sent to <span id="pay-email-preview" class="font-bold text-nirmaan-green"></span></p>
+          </div>
+          <div class="text-right">
+            <div class="text-[11px] text-gray-500">Total Payable</div>
+            <div id="pay-total" class="text-xl font-extrabold text-nirmaan-green">₹0</div>
+          </div>
         </div>
-        <button type="button" onclick="navigateTo('store-screen')" class="text-xs font-bold text-nirmaan-green hover:underline flex items-center gap-1 cursor-pointer">
-          <i class="fa-solid fa-arrow-left"></i> Back to Store
-        </button>
-      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="md:col-span-2 bg-white border border-nirmaan-creamBorder rounded-3xl p-5 sm:p-6 space-y-4 shadow-sm">
-          <div class="flex items-center justify-between bg-nirmaan-cream p-3 rounded-2xl border border-nirmaan-creamBorder">
-            <span class="text-xs font-bold text-nirmaan-green/80">Need a quick demo address?</span>
-            <button
-              type="button"
-              onclick="fillSampleAddress()"
-              class="px-3 py-1.5 rounded-xl bg-amber-400/30 hover:bg-amber-400/50 text-nirmaan-green text-xs font-extrabold transition cursor-pointer"
-            >
-              <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Quick Fill Sample Address
-            </button>
+        <div class="grid grid-cols-3 gap-2">
+          <button type="button" id="tab-qr" onclick="selectPayMode('qr')" class="py-3 px-2 rounded-xl border-2 border-nirmaan-green bg-nirmaan-green text-nirmaan-cream font-bold text-xs cursor-pointer">📱 Online QR</button>
+          <button type="button" id="tab-card" onclick="selectPayMode('card')" class="py-3 px-2 rounded-xl border-2 border-gray-200 bg-nirmaan-cream text-nirmaan-green font-bold text-xs cursor-pointer">💳 Card</button>
+          <button type="button" id="tab-cod" onclick="selectPayMode('cod')" class="py-3 px-2 rounded-xl border-2 border-gray-200 bg-nirmaan-cream text-nirmaan-green font-bold text-xs cursor-pointer">💵 Cash (COD)</button>
+        </div>
+
+        <!-- QR Panel -->
+        <div id="panel-qr" class="p-4 rounded-2xl bg-nirmaan-sand text-center space-y-3">
+          <p class="text-xs font-bold text-nirmaan-green">Scan Dynamic UPI QR to Pay</p>
+          <div id="qr-box" class="w-44 h-44 mx-auto bg-white p-3 rounded-2xl shadow flex items-center justify-center"></div>
+          <p id="qr-ref" class="text-[11px] font-mono text-gray-600"></p>
+          <div class="flex gap-2 justify-center">
+            <button type="button" onclick="generateQR()" class="px-3 py-2 rounded-xl bg-white border border-gray-300 text-xs font-bold text-nirmaan-green cursor-pointer">↻ New QR</button>
+            <button type="button" onclick="completeOrder('Online UPI QR')" class="px-5 py-2 rounded-xl bg-nirmaan-green text-nirmaan-cream text-xs font-bold shadow cursor-pointer">I Have Paid →</button>
           </div>
+        </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <div>
-              <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Full Name *</label>
-              <input type="text" id="addr-name" class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm font-medium focus:outline-none focus:border-nirmaan-green" />
-            </div>
-            <div>
-              <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Phone Number *</label>
-              <input type="tel" id="addr-phone" maxlength="10" class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm font-mono font-semibold focus:outline-none focus:border-nirmaan-green" />
-            </div>
+        <!-- Card Panel -->
+        <div id="panel-card" class="hidden space-y-3">
+          <select id="card-type" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm bg-white">
+            <option value="Visa">Visa Debit / Credit Card</option>
+            <option value="Mastercard">Mastercard</option>
+            <option value="RuPay">RuPay Card</option>
+            <option value="American Express">American Express</option>
+          </select>
+          <input id="card-num" type="text" maxlength="19" placeholder="Card Number (16 digits)" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm font-mono" />
+          <div class="grid grid-cols-2 gap-3">
+            <input id="card-exp" type="text" maxlength="5" placeholder="MM/YY" class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm font-mono" />
+            <input id="card-cvv" type="password" maxlength="4" placeholder="CVV" class="px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm font-mono" />
           </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <div>
-              <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Flat / House No. *</label>
-              <input type="text" id="addr-line1" placeholder="Flat 302, Greenview Apt" class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm focus:outline-none focus:border-nirmaan-green" />
-            </div>
-            <div>
-              <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Pincode (6-digit) *</label>
-              <input type="text" id="addr-pincode" maxlength="6" placeholder="e.g. 401107" class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm font-mono font-semibold focus:outline-none focus:border-nirmaan-green" />
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Building / Street / Area *</label>
-            <input type="text" id="addr-line2" placeholder="Mira Road East, Sector 5" class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm focus:outline-none focus:border-nirmaan-green" />
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <div>
-              <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Landmark (Optional)</label>
-              <input type="text" id="addr-landmark" placeholder="Near Main Auditorium" class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm focus:outline-none focus:border-nirmaan-green" />
-            </div>
-            <div>
-              <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">City *</label>
-              <input type="text" id="addr-city" placeholder="Mumbai" class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm focus:outline-none focus:border-nirmaan-green" />
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-bold text-nirmaan-green/80 mb-1.5">Delivery Type</label>
-            <div class="grid grid-cols-3 gap-2">
-              <button type="button" onclick="selectDeliveryType('Home')" id="dtype-Home" class="dtype-btn py-2.5 px-2 rounded-xl bg-nirmaan-green text-nirmaan-cream text-xs font-bold border border-nirmaan-green transition cursor-pointer">
-                <i class="fa-solid fa-house mr-1"></i> Home
-              </button>
-              <button type="button" onclick="selectDeliveryType('School Pickup')" id="dtype-School Pickup" class="dtype-btn py-2.5 px-2 rounded-xl bg-white text-nirmaan-green text-xs font-bold border border-nirmaan-creamBorder transition cursor-pointer">
-                <i class="fa-solid fa-school mr-1"></i> School Pickup
-              </button>
-              <button type="button" onclick="selectDeliveryType('Stall Delivery')" id="dtype-Stall Delivery" class="dtype-btn py-2.5 px-2 rounded-xl bg-white text-nirmaan-green text-xs font-bold border border-nirmaan-creamBorder transition cursor-pointer">
-                <i class="fa-solid fa-store mr-1"></i> Stall Delivery
-              </button>
-            </div>
-          </div>
-
-          <button
-            type="button"
-            onclick="submitAddressStep()"
-            class="w-full py-3.5 rounded-2xl bg-nirmaan-green hover:bg-nirmaan-greenHover text-nirmaan-cream font-extrabold text-sm shadow-md transition cursor-pointer"
-          >
-            Continue to Payment <i class="fa-solid fa-arrow-right ml-1"></i>
+          <button type="button" onclick="payWithCard()" class="w-full py-3.5 rounded-xl bg-nirmaan-green text-nirmaan-cream font-bold text-sm shadow cursor-pointer">
+            Pay & Place Order →
           </button>
         </div>
 
-        <div id="address-summary-box" class="bg-white border border-nirmaan-creamBorder rounded-3xl p-5 h-fit shadow-sm"></div>
-      </div>
-    </section>
-
-    <!-- VIEW C: PAYMENT PAGE (#payment-view) -->
-    <section id="payment-view" class="hidden animate-in max-w-3xl mx-auto space-y-5">
-      <div class="flex items-center justify-between">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-extrabold text-nirmaan-green">Payment Options</h2>
-          <p class="text-xs text-nirmaan-green/70">E-Bill will be generated for <strong id="pay-gmail-label"></strong></p>
-        </div>
-        <button type="button" onclick="navigateTo('address-view')" class="text-xs font-bold text-nirmaan-green hover:underline cursor-pointer">
-          <i class="fa-solid fa-arrow-left"></i> Edit Address
-        </button>
-      </div>
-
-      <!-- 3 Selectable Payment Modes -->
-      <div class="grid grid-cols-3 gap-2.5 sm:gap-4">
-        <button
-          type="button"
-          id="pay-tab-qr"
-          onclick="selectPaymentTab('qr')"
-          class="p-3.5 rounded-2xl border-2 border-nirmaan-green bg-nirmaan-green text-nirmaan-cream text-left transition cursor-pointer"
-        >
-          <i class="fa-solid fa-qrcode text-lg mb-1 block"></i>
-          <span class="font-extrabold text-xs sm:text-sm block">Online Payment</span>
-          <span class="text-[10px] opacity-80 block">Random UPI QR</span>
-        </button>
-
-        <button
-          type="button"
-          id="pay-tab-card"
-          onclick="selectPaymentTab('card')"
-          class="p-3.5 rounded-2xl border border-nirmaan-creamBorder bg-white text-nirmaan-green text-left transition cursor-pointer"
-        >
-          <i class="fa-regular fa-credit-card text-lg mb-1 block"></i>
-          <span class="font-extrabold text-xs sm:text-sm block">Card Payment</span>
-          <span class="text-[10px] opacity-70 block">Visa / RuPay / MC</span>
-        </button>
-
-        <button
-          type="button"
-          id="pay-tab-cod"
-          onclick="selectPaymentTab('cod')"
-          class="p-3.5 rounded-2xl border border-nirmaan-creamBorder bg-white text-nirmaan-green text-left transition cursor-pointer"
-        >
-          <i class="fa-solid fa-hand-holding-dollar text-lg mb-1 block"></i>
-          <span class="font-extrabold text-xs sm:text-sm block">Cash on Delivery</span>
-          <span class="text-[10px] opacity-70 block">One-Click COD</span>
-        </button>
-      </div>
-
-      <!-- Mode A: Online Payment (Random UPI QR) -->
-      <div id="pay-panel-qr" class="bg-white border border-nirmaan-creamBorder rounded-3xl p-6 shadow-sm flex flex-col sm:flex-row items-center gap-6">
-        <div class="bg-nirmaan-cream p-4 rounded-2xl border border-nirmaan-creamBorder text-center shrink-0">
-          <div id="qr-svg-box" class="w-44 h-44 mx-auto bg-white p-2 rounded-xl border border-nirmaan-creamBorder"></div>
-          <p id="qr-ref-code" class="font-mono text-[11px] font-bold text-nirmaan-green mt-2">REF: NRM000000</p>
-        </div>
-        <div class="flex-1 text-center sm:text-left space-y-3">
-          <span class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-[11px] font-extrabold">
-            Dynamic UPI QR Code
-          </span>
-          <h3 class="text-lg font-extrabold text-nirmaan-green">Pay <span id="qr-amount-text" class="font-mono">₹0</span> via UPI</h3>
-          <p class="text-xs text-nirmaan-green/75">
-            Scan the randomized QR code using any UPI app or tap Regenerate QR, then confirm below to generate your E-Bill.
-          </p>
-          <div class="flex items-center justify-between bg-nirmaan-cream px-3.5 py-2.5 rounded-xl border border-nirmaan-creamBorder text-xs font-mono">
-            <span>UPI ID: <strong>nirmaanstore@upi</strong></span>
-            <button type="button" onclick="generateRandomQR()" class="font-sans font-extrabold text-amber-700 hover:underline cursor-pointer">
-              <i class="fa-solid fa-rotate mr-1"></i> Regenerate QR
-            </button>
-          </div>
-          <button
-            type="button"
-            onclick="placeFinalOrder('Online Payment (UPI QR)')"
-            class="w-full py-3.5 rounded-2xl bg-nirmaan-green hover:bg-nirmaan-greenHover text-nirmaan-cream font-extrabold text-sm shadow-md transition cursor-pointer"
-          >
-            Confirm UPI Payment & Place Order
+        <!-- COD Panel -->
+        <div id="panel-cod" class="hidden p-4 rounded-2xl bg-nirmaan-sand text-center space-y-3">
+          <p class="text-sm font-bold text-nirmaan-green">Cash on Delivery Selected</p>
+          <p class="text-xs text-gray-600">Pay cash at the stall or upon doorstep delivery. Your Gmail E-Bill will be generated right away.</p>
+          <button type="button" onclick="completeOrder('Cash on Delivery (COD)')" class="w-full py-3.5 rounded-xl bg-nirmaan-green text-nirmaan-cream font-bold text-sm shadow cursor-pointer">
+            Confirm COD Order →
           </button>
         </div>
       </div>
-
-      <!-- Mode B: Card Payment -->
-      <div id="pay-panel-card" class="hidden bg-white border border-nirmaan-creamBorder rounded-3xl p-6 shadow-sm space-y-4">
-        <div class="bg-gradient-to-br from-nirmaan-green via-nirmaan-greenLight to-emerald-950 text-nirmaan-cream rounded-2xl p-4 shadow-md">
-          <div class="flex justify-between items-center text-xs">
-            <span class="uppercase tracking-widest text-nirmaan-cream/70 font-bold">Nirmaan Pay</span>
-            <span id="preview-card-type" class="px-2.5 py-0.5 rounded-full bg-amber-400 text-nirmaan-green font-extrabold text-[10px]">Visa</span>
-          </div>
-          <p id="preview-card-number" class="font-mono text-base sm:text-lg tracking-widest mt-5">•••• •••• •••• ••••</p>
-          <div class="flex justify-between items-end text-[11px] mt-4 text-nirmaan-cream/80 font-mono">
-            <span>EXP: <strong id="preview-card-expiry">MM/YY</strong></span>
-            <span>CVV: <strong id="preview-card-cvv">•••</strong></span>
-          </div>
-        </div>
-
-        <div class="space-y-4">
-          <div>
-            <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Card Type *</label>
-            <select
-              id="card-type"
-              onchange="updateCardPreview()"
-              class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm font-bold text-nirmaan-green focus:outline-none focus:border-nirmaan-green"
-            >
-              <option value="Visa">Visa</option>
-              <option value="Mastercard">Mastercard</option>
-              <option value="RuPay">RuPay</option>
-              <option value="American Express">American Express</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Card Number (16-digit) *</label>
-            <input
-              type="text"
-              id="card-number"
-              maxlength="19"
-              oninput="formatCardNumber(this); updateCardPreview();"
-              placeholder="4111 2222 3333 4444"
-              class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm font-mono font-bold focus:outline-none focus:border-nirmaan-green"
-            />
-          </div>
-
-          <div class="grid grid-cols-2 gap-3.5">
-            <div>
-              <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Expiry (MM/YY) *</label>
-              <input
-                type="text"
-                id="card-expiry"
-                maxlength="5"
-                oninput="formatCardExpiry(this); updateCardPreview();"
-                placeholder="09/29"
-                class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm font-mono font-bold focus:outline-none focus:border-nirmaan-green"
-              />
-            </div>
-            <div>
-              <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">CVV *</label>
-              <input
-                type="password"
-                id="card-cvv"
-                maxlength="4"
-                oninput="updateCardPreview()"
-                placeholder="123"
-                class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm font-mono font-bold focus:outline-none focus:border-nirmaan-green"
-              />
-            </div>
-          </div>
-
-          <button
-            type="button"
-            onclick="submitCardPayment()"
-            class="w-full py-3.5 rounded-2xl bg-nirmaan-green hover:bg-nirmaan-greenHover text-nirmaan-cream font-extrabold text-sm shadow-md transition cursor-pointer"
-          >
-            Pay <span id="card-pay-amount">₹0</span> & Place Order
-          </button>
-        </div>
-      </div>
-
-      <!-- Mode C: Cash on Delivery (COD) -->
-      <div id="pay-panel-cod" class="hidden bg-white border border-nirmaan-creamBorder rounded-3xl p-6 shadow-sm text-center sm:text-left">
-        <div class="flex flex-col sm:flex-row items-center gap-5">
-          <div class="w-16 h-16 rounded-2xl bg-nirmaan-creamDark flex items-center justify-center text-nirmaan-green text-2xl shrink-0">
-            <i class="fa-solid fa-money-bill-wave"></i>
-          </div>
-          <div class="flex-1">
-            <h3 class="text-lg font-extrabold text-nirmaan-green">Cash on Delivery (COD)</h3>
-            <p class="text-xs sm:text-sm text-nirmaan-green/75 mt-1">
-              Pay <strong id="cod-amount-text" class="font-mono">₹0</strong> in cash when you receive your order. Your Gmail E-Bill will be generated immediately.
-            </p>
-            <button
-              type="button"
-              onclick="placeFinalOrder('Cash on Delivery (COD)')"
-              class="mt-4 w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-nirmaan-green hover:bg-nirmaan-greenHover text-nirmaan-cream font-extrabold text-sm shadow-md transition cursor-pointer"
-            >
-              Place COD Order
-            </button>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- VIEW D: ORDER CONFIRMATION & GMAIL E-BILL (#confirmation-view) -->
-    <section id="confirmation-view" class="hidden animate-in max-w-3xl mx-auto space-y-5">
-      <div class="bg-nirmaan-green text-nirmaan-cream rounded-3xl p-6 text-center shadow-lg">
-        <div class="w-14 h-14 rounded-full bg-amber-400 text-nirmaan-green flex items-center justify-center text-2xl mx-auto mb-3 font-extrabold">
-          <i class="fa-solid fa-check"></i>
-        </div>
-        <h2 class="text-2xl font-extrabold">Order Confirmed!</h2>
-        <p class="text-xs sm:text-sm text-nirmaan-cream/85 mt-1">
-          E-Bill generated for <strong id="conf-gmail" class="underline"></strong>
-        </p>
-      </div>
-
-      <div id="printable-ebill" class="bg-white border border-nirmaan-creamBorder rounded-3xl overflow-hidden shadow-md">
-        <div class="bg-nirmaan-creamDark px-5 py-3 border-b border-nirmaan-creamBorder flex items-center justify-between text-xs">
-          <span class="font-extrabold text-nirmaan-green">
-            <i class="fa-solid fa-envelope-circle-check text-rose-600 mr-1.5"></i>NIRMAAN FLEA MARKET E-BILL
-          </span>
-          <span id="ebill-date" class="font-mono text-nirmaan-green/70"></span>
+    <!-- ORDER CONFIRMATION & GMAIL E-BILL -->
+    <section id="receipt-view" class="hidden max-w-xl w-full mx-auto px-4 py-6 flex-1">
+      <div class="bg-white rounded-3xl p-6 shadow-lg border border-nirmaan-green/20 space-y-4">
+        <div class="text-center border-b pb-4">
+          <div class="w-12 h-12 rounded-full bg-green-100 text-nirmaan-green flex items-center justify-center mx-auto text-2xl font-bold mb-2">✓</div>
+          <h2 class="text-xl font-extrabold text-nirmaan-green">Order Placed Successfully!</h2>
+          <p class="text-xs text-gray-600 mt-1">E-Bill dispatched to <span id="rcpt-email" class="font-bold text-nirmaan-green"></span></p>
         </div>
 
-        <div class="p-6 space-y-5">
-          <div class="flex flex-wrap items-start justify-between gap-4 border-b border-nirmaan-creamBorder pb-4">
-            <div>
-              <h3 class="text-lg font-extrabold text-nirmaan-green">NIRMAAN STORE</h3>
-              <p class="text-xs text-nirmaan-green/70">Order ID: <strong id="ebill-order-id" class="font-mono"></strong></p>
-              <p class="text-xs text-nirmaan-green/70">Payment Method: <strong id="ebill-pay-method"></strong></p>
-            </div>
-            <div class="text-left sm:text-right text-xs">
-              <p class="font-bold text-nirmaan-green" id="ebill-cust-name"></p>
-              <p class="text-nirmaan-green/80" id="ebill-cust-email"></p>
-              <p class="font-mono text-nirmaan-green/80" id="ebill-cust-phone"></p>
-            </div>
-          </div>
+        <div id="rcpt-details" class="text-xs space-y-1.5 bg-nirmaan-sand p-4 rounded-2xl"></div>
+        <div id="rcpt-items" class="divide-y text-xs"></div>
 
-          <div class="bg-nirmaan-cream p-3.5 rounded-2xl text-xs">
-            <span class="font-extrabold uppercase text-[10px] tracking-wider text-nirmaan-green/60 block mb-1">Delivery Address</span>
-            <p id="ebill-address" class="text-nirmaan-green leading-relaxed"></p>
-          </div>
-
-          <table class="w-full text-left text-xs border-collapse">
-            <thead>
-              <tr class="border-b border-nirmaan-creamBorder text-nirmaan-green/60 uppercase text-[10px]">
-                <th class="py-2">Product (#Serial & Group)</th>
-                <th class="py-2 text-center">Qty</th>
-                <th class="py-2 text-right">Amount</th>
-              </tr>
-            </thead>
-            <tbody id="ebill-items" class="divide-y divide-nirmaan-creamBorder/60"></tbody>
-          </table>
-
-          <div class="border-t border-nirmaan-creamBorder pt-3 flex justify-between items-center text-base font-extrabold text-nirmaan-green">
-            <span>Total Paid</span>
-            <span id="ebill-total" class="font-mono text-lg">₹0</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex flex-wrap gap-3 justify-center">
-        <button
-          type="button"
-          onclick="openGmailPreviewModal()"
-          class="px-5 py-3 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-sm cursor-pointer"
-        >
-          <i class="fa-regular fa-envelope"></i> Send E-Bill to Gmail
-        </button>
-        <button
-          type="button"
-          onclick="window.print()"
-          class="px-5 py-3 rounded-2xl bg-white border border-nirmaan-creamBorder text-nirmaan-green font-bold text-xs sm:text-sm flex items-center gap-2 cursor-pointer"
-        >
-          <i class="fa-solid fa-print"></i> Print / Save Receipt
-        </button>
-        <button
-          type="button"
-          onclick="navigateTo('store-screen'); selectGroup('All');"
-          class="px-5 py-3 rounded-2xl bg-nirmaan-green text-nirmaan-cream font-bold text-xs sm:text-sm flex items-center gap-2 cursor-pointer"
-        >
-          <i class="fa-solid fa-store"></i> Continue Shopping
-        </button>
-      </div>
-    </section>
-
-    <!-- VIEW E: PAST ORDERS HISTORY (#orders-view) -->
-    <section id="orders-view" class="hidden animate-in max-w-3xl mx-auto space-y-4">
-      <div class="flex items-center justify-between">
-        <h2 class="text-xl font-extrabold text-nirmaan-green">My Orders & E-Bills</h2>
-        <button type="button" onclick="navigateTo('store-screen')" class="text-xs font-bold text-nirmaan-green hover:underline cursor-pointer">
-          <i class="fa-solid fa-arrow-left"></i> Back to Store
-        </button>
-      </div>
-      <div id="orders-history-list" class="space-y-3"></div>
-    </section>
-
-    <!-- VIEW F: ACCOUNT PROFILE & LOGIN SWITCHER (#account-view) -->
-    <section id="account-view" class="hidden animate-in max-w-2xl mx-auto space-y-5">
-      <div class="flex items-center justify-between">
-        <h2 class="text-xl font-extrabold text-nirmaan-green">Customer Profile & Login</h2>
-        <button type="button" onclick="navigateTo('store-screen')" class="text-xs font-bold text-nirmaan-green hover:underline cursor-pointer">
-          <i class="fa-solid fa-arrow-left"></i> Back to Store
-        </button>
-      </div>
-
-      <div class="bg-white border border-nirmaan-creamBorder rounded-3xl p-6 shadow-sm space-y-5">
-        <div class="flex items-center gap-4">
-          <div class="w-14 h-14 rounded-2xl bg-nirmaan-green text-nirmaan-cream flex items-center justify-center text-xl font-extrabold" id="acc-initials">
-            G
-          </div>
-          <div>
-            <h3 class="text-lg font-extrabold text-nirmaan-green" id="acc-name">Guest Customer</h3>
-            <p class="text-xs text-nirmaan-green/75" id="acc-email">guest@gmail.com</p>
-            <p class="text-xs font-mono text-nirmaan-green/75" id="acc-phone">+91 9876543210</p>
-          </div>
-        </div>
-
-        <div class="space-y-3 pt-4 border-t border-nirmaan-creamBorder">
-          <p class="text-xs font-extrabold uppercase tracking-wider text-nirmaan-green/60">Edit Profile Details Directly</p>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <input type="text" id="edit-acc-name" placeholder="Full Name" class="px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-xs font-semibold" />
-            <input type="email" id="edit-acc-email" placeholder="Gmail Address" class="px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-xs font-semibold" />
-            <input type="tel" id="edit-acc-phone" maxlength="10" placeholder="10-digit Phone" class="px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-xs font-mono font-semibold" />
-          </div>
-          <div class="flex flex-wrap gap-2.5 pt-1">
-            <button type="button" onclick="saveProfileEdits()" class="px-4 py-2.5 rounded-xl bg-nirmaan-green text-nirmaan-cream text-xs font-bold cursor-pointer">
-              <i class="fa-solid fa-floppy-disk mr-1"></i> Save Changes
-            </button>
-            <button type="button" onclick="openLoginScreen()" class="px-4 py-2.5 rounded-xl bg-amber-400/30 text-nirmaan-green text-xs font-extrabold cursor-pointer">
-              <i class="fa-solid fa-right-to-bracket mr-1"></i> Open Welcome Screen
-            </button>
-            <button type="button" onclick="navigateTo('orders-view')" class="px-4 py-2.5 rounded-xl bg-nirmaan-creamDark text-nirmaan-green text-xs font-bold cursor-pointer">
-              <i class="fa-solid fa-receipt mr-1"></i> View Past E-Bills
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ===================================================================== -->
-  <!-- 4. MOBILE BOTTOM NAVIGATION                                           -->
-  <!-- ===================================================================== -->
-  <nav class="fixed bottom-0 inset-x-0 z-30 bg-nirmaan-green text-nirmaan-cream border-t border-nirmaan-cream/10 md:hidden">
-    <div class="grid grid-cols-4 h-16">
-      <button type="button" onclick="navigateTo('store-screen'); selectGroup('All');" class="flex flex-col items-center justify-center gap-1 text-nirmaan-cream cursor-pointer">
-        <i class="fa-solid fa-house text-base"></i>
-        <span class="text-[10px] font-bold">All (47)</span>
-      </button>
-      <button type="button" onclick="navigateTo('store-screen'); selectGroup('Group 1');" class="flex flex-col items-center justify-center gap-1 text-nirmaan-cream/75 hover:text-nirmaan-cream cursor-pointer">
-        <i class="fa-solid fa-layer-group text-base"></i>
-        <span class="text-[10px] font-bold">Groups 1–7</span>
-      </button>
-      <button type="button" onclick="navigateTo('orders-view')" class="flex flex-col items-center justify-center gap-1 text-nirmaan-cream/75 hover:text-nirmaan-cream cursor-pointer">
-        <i class="fa-solid fa-receipt text-base"></i>
-        <span class="text-[10px] font-bold">E-Bills</span>
-      </button>
-      <button type="button" onclick="navigateTo('account-view')" class="flex flex-col items-center justify-center gap-1 text-nirmaan-cream/75 hover:text-nirmaan-cream cursor-pointer">
-        <i class="fa-regular fa-user text-base"></i>
-        <span class="text-[10px] font-bold">Account</span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- ===================================================================== -->
-  <!-- 5. SLIDE-OUT CART SIDEBAR (#cart-sidebar)                             -->
-  <!-- ===================================================================== -->
-  <div id="cart-backdrop" onclick="toggleCartSidebar(false)" class="fixed inset-0 z-40 bg-black/50 hidden"></div>
-
-  <aside
-    id="cart-sidebar"
-    class="fixed top-0 right-0 z-50 h-full w-full max-w-md bg-nirmaan-cream text-nirmaan-green shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col"
-  >
-    <div class="px-5 py-4 bg-nirmaan-green text-nirmaan-cream flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <h3 class="font-extrabold text-base">Your Cart</h3>
-        <span id="sidebar-item-count" class="text-xs bg-amber-400 text-nirmaan-green font-extrabold px-2 py-0.5 rounded-full">0</span>
-      </div>
-      <button type="button" onclick="toggleCartSidebar(false)" class="w-8 h-8 rounded-full bg-nirmaan-greenLight flex items-center justify-center cursor-pointer">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-    </div>
-
-    <div id="cart-items-list" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
-
-    <div class="p-5 bg-white border-t border-nirmaan-creamBorder space-y-3">
-      <div class="flex justify-between text-sm font-extrabold text-nirmaan-green">
-        <span>Subtotal</span>
-        <span id="cart-subtotal-text" class="font-mono text-base">₹0</span>
-      </div>
-      <button
-        type="button"
-        id="cart-buy-btn"
-        onclick="proceedFromCartToCheckout()"
-        class="w-full py-3.5 rounded-2xl bg-nirmaan-green hover:bg-nirmaan-greenHover text-nirmaan-cream font-extrabold text-sm shadow-md flex items-center justify-center gap-2 transition cursor-pointer"
-      >
-        <span>Proceed to Buy</span>
-        <i class="fa-solid fa-arrow-right"></i>
-      </button>
-    </div>
-  </aside>
-
-  <!-- ===================================================================== -->
-  <!-- 6. IN-APP GMAIL E-BILL PREVIEW MODAL                                  -->
-  <!-- ===================================================================== -->
-  <div id="gmail-modal" class="fixed inset-0 z-[60] bg-black/60 hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-nirmaan-creamBorder animate-in">
-      <div class="bg-rose-600 text-white px-5 py-3.5 flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <i class="fa-regular fa-envelope"></i>
-          <span class="font-extrabold text-sm">Gmail E-Bill Dispatch</span>
-        </div>
-        <button type="button" onclick="closeGmailPreviewModal()" class="text-white/80 hover:text-white cursor-pointer">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-      <div class="p-5 space-y-3 text-xs">
-        <div class="bg-nirmaan-cream p-3 rounded-xl border border-nirmaan-creamBorder space-y-1">
-          <p><span class="text-nirmaan-green/60 font-bold">To:</span> <strong id="modal-gmail-to"></strong></p>
-          <p><span class="text-nirmaan-green/60 font-bold">Subject:</span> <strong id="modal-gmail-subject"></strong></p>
-        </div>
-        <pre id="modal-gmail-body" class="bg-nirmaan-cream/60 p-3.5 rounded-xl border border-nirmaan-creamBorder font-mono text-[11px] whitespace-pre-wrap max-h-60 overflow-y-auto text-nirmaan-green"></pre>
-        <div class="flex flex-wrap gap-2 pt-1">
-          <a
-            id="modal-mailto-anchor"
-            href="#"
-            class="flex-1 py-2.5 px-4 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-center"
-          >
-            <i class="fa-solid fa-paper-plane mr-1"></i> Open Mail App
+        <div class="flex flex-col sm:flex-row gap-2.5 pt-2">
+          <a id="gmail-compose-link" href="#" target="_blank" class="flex-1 text-center py-3 rounded-xl bg-nirmaan-green text-nirmaan-cream font-bold text-xs shadow">
+            ✉️ Open E-Bill in Gmail
           </a>
-          <button
-            type="button"
-            onclick="copyEBillText()"
-            class="py-2.5 px-4 rounded-xl bg-nirmaan-green text-nirmaan-cream font-bold cursor-pointer"
-          >
-            <i class="fa-regular fa-copy mr-1"></i> Copy E-Bill
+          <button type="button" onclick="startNewOrder()" class="flex-1 py-3 rounded-xl bg-nirmaan-sand text-nirmaan-green font-bold text-xs border border-nirmaan-green/20 cursor-pointer">
+            Shop Again
           </button>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 
-  <!-- ===================================================================== -->
-  <!-- 7. FLOATING NIRMAAN AI CUSTOMER ASSISTANT CHATBOT                     -->
-  <!-- ===================================================================== -->
-  <button
-    type="button"
-    onclick="toggleAIChat()"
-    aria-label="Open Nirmaan AI Assistant"
-    class="fixed bottom-20 md:bottom-6 right-4 z-40 w-14 h-14 rounded-full bg-nirmaan-green text-nirmaan-cream shadow-2xl border-2 border-amber-400 flex items-center justify-center hover:scale-105 transition cursor-pointer"
-  >
-    <svg viewBox="0 0 100 100" class="w-7 h-7" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M23 78C19 58 19 32 29 24C37 18 44 29 50 44C56 59 64 74 73 68C81 62 79 36 73 22H55C60 33 63 48 58 51C53 54 47 41 42 29C36 16 25 14 18 23C10 34 11 61 15 78H23Z" fill="#fdfbf5"/>
-    </svg>
-    <span class="absolute -top-1 -right-1 px-1.5 py-0.5 rounded-full bg-amber-400 text-nirmaan-green text-[9px] font-extrabold">AI</span>
+  <!-- SLIDE-OUT CART SIDEBAR -->
+  <div id="cart-drawer" class="fixed inset-0 z-40 hidden">
+    <div onclick="toggleCart(false)" class="absolute inset-0 bg-black/50"></div>
+    <aside class="absolute right-0 top-0 h-full w-full max-w-sm bg-nirmaan-cream shadow-2xl flex flex-col">
+      <div class="p-4 bg-nirmaan-green text-nirmaan-cream flex items-center justify-between">
+        <h3 class="font-extrabold text-base">Your Nirmaan Cart</h3>
+        <button type="button" onclick="toggleCart(false)" class="text-lg font-bold px-2 cursor-pointer">✕</button>
+      </div>
+      <div id="cart-items" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
+      <div class="p-4 border-t bg-white space-y-3">
+        <div class="flex justify-between font-extrabold text-nirmaan-green">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">₹0</span>
+        </div>
+        <button type="button" onclick="checkoutFromCart()" class="w-full py-3.5 rounded-xl bg-nirmaan-green text-nirmaan-cream font-bold text-sm shadow cursor-pointer">
+          Proceed to Buy →
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- AI ASSISTANT FLOATING BUTTON & CHAT -->
+  <button type="button" onclick="toggleAI()" class="fixed bottom-5 right-5 z-30 w-14 h-14 rounded-full bg-nirmaan-green text-nirmaan-cream shadow-2xl border-2 border-nirmaan-gold flex items-center justify-center font-extrabold text-xs cursor-pointer">
+    AI
   </button>
 
-  <div
-    id="ai-chat-window"
-    class="fixed bottom-36 md:bottom-24 right-4 z-50 w-[calc(100vw-2rem)] max-w-sm bg-white border border-nirmaan-creamBorder rounded-3xl shadow-2xl overflow-hidden hidden flex-col"
-    style="height: 450px;"
-  >
-    <div class="bg-nirmaan-green text-nirmaan-cream px-4 py-3.5 flex items-center justify-between">
-      <div class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-full bg-amber-400 text-nirmaan-green flex items-center justify-center font-extrabold text-sm">
-          N
-        </div>
-        <div>
-          <h4 class="text-sm font-extrabold leading-none">Nirmaan AI Assistant</h4>
-          <span class="text-[10px] text-emerald-300">● Login, Groups 1–7, Prices & Checkout</span>
-        </div>
+  <div id="ai-box" class="fixed bottom-22 right-5 z-40 hidden w-80 sm:w-96 bg-white rounded-3xl shadow-2xl border border-nirmaan-green/20 overflow-hidden flex flex-col">
+    <div class="p-3.5 bg-nirmaan-green text-nirmaan-cream flex items-center justify-between">
+      <div>
+        <div class="font-bold text-sm">Nirmaan AI Helper</div>
+        <div class="text-[10px] text-nirmaan-gold">Ask about Groups 1–7, prices, login or E-Bill</div>
       </div>
-      <button type="button" onclick="toggleAIChat()" class="text-nirmaan-cream/80 hover:text-white cursor-pointer">
-        <i class="fa-solid fa-xmark text-base"></i>
-      </button>
+      <button type="button" onclick="toggleAI()" class="font-bold px-2 cursor-pointer">✕</button>
     </div>
-
-    <div id="ai-chat-messages" class="flex-1 overflow-y-auto p-3.5 space-y-3 bg-nirmaan-cream/60 text-xs"></div>
-
-    <div class="px-3 py-2 bg-nirmaan-cream border-t border-nirmaan-creamBorder flex gap-1.5 overflow-x-auto no-scrollbar">
-      <button type="button" onclick="sendQuickAIPrompt('My Login Details')" class="px-2.5 py-1 rounded-full bg-white border border-nirmaan-creamBorder text-[11px] font-bold text-nirmaan-green whitespace-nowrap cursor-pointer">
-        My Login Details
-      </button>
-      <button type="button" onclick="sendQuickAIPrompt('Best Under ₹100')" class="px-2.5 py-1 rounded-full bg-white border border-nirmaan-creamBorder text-[11px] font-bold text-nirmaan-green whitespace-nowrap cursor-pointer">
-        Best Under ₹100
-      </button>
-      <button type="button" onclick="sendQuickAIPrompt('Perfumes & Attars')" class="px-2.5 py-1 rounded-full bg-white border border-nirmaan-creamBorder text-[11px] font-bold text-nirmaan-green whitespace-nowrap cursor-pointer">
-        Perfumes & Attars
-      </button>
-      <button type="button" onclick="sendQuickAIPrompt('Group 1–7 Stalls')" class="px-2.5 py-1 rounded-full bg-white border border-nirmaan-creamBorder text-[11px] font-bold text-nirmaan-green whitespace-nowrap cursor-pointer">
-        Group 1–7 Stalls
-      </button>
-      <button type="button" onclick="sendQuickAIPrompt('How to Checkout')" class="px-2.5 py-1 rounded-full bg-white border border-nirmaan-creamBorder text-[11px] font-bold text-nirmaan-green whitespace-nowrap cursor-pointer">
-        How to Checkout
-      </button>
+    <div id="ai-messages" class="h-64 overflow-y-auto p-3.5 space-y-2.5 bg-nirmaan-cream text-xs">
+      <div class="bg-white p-3 rounded-2xl border border-gray-200">
+        Hi! I can help you check your login details, find any item across <b>Groups 1–7</b>, or explain checkout & Gmail E-Bills.
+      </div>
     </div>
-
-    <div class="p-2.5 bg-white border-t border-nirmaan-creamBorder flex items-center gap-2">
-      <input
-        type="text"
-        id="ai-chat-input"
-        onkeydown="if(event.key==='Enter'){event.preventDefault(); sendAIChatMessage();}"
-        placeholder="Ask about your login, Group 1–7, #serial, or checkout..."
-        class="flex-1 px-3 py-2 bg-nirmaan-cream rounded-xl text-xs font-medium text-nirmaan-green focus:outline-none"
-        autocomplete="off"
-      />
-      <button type="button" onclick="sendAIChatMessage()" class="w-9 h-9 rounded-xl bg-nirmaan-green text-nirmaan-cream flex items-center justify-center cursor-pointer">
-        <i class="fa-solid fa-paper-plane text-xs"></i>
-      </button>
+    <div class="p-2.5 bg-white border-t flex gap-2">
+      <input id="ai-input" type="text" onkeydown="if(event.key==='Enter') sendAI()" placeholder="Ask e.g. 'my details' or 'perfume price'..." class="flex-1 px-3 py-2 rounded-xl border border-gray-300 text-xs focus:outline-none" />
+      <button type="button" onclick="sendAI()" class="px-3.5 py-2 rounded-xl bg-nirmaan-green text-nirmaan-cream font-bold text-xs cursor-pointer">Send</button>
     </div>
   </div>
 
-  <!-- ===================================================================== -->
-  <!-- 8. VANILLA JAVASCRIPT APPLICATION LOGIC                               -->
-  <!-- ===================================================================== -->
   <script>
-    // Complete 47 Master Products Across Groups 1–7
-    const MASTER_PRODUCTS = [
-      // Group 1 (Stall 1: Bakery & Treats)
-      { id: 101, group: "Group 1", stall: "Stall 1: Bakery & Treats", name: "Walnut Balls", price: 70, emoji: "🥜", bg: "#fef3c7" },
-      { id: 102, group: "Group 1", stall: "Stall 1: Bakery & Treats", name: "Oats Honey Almond Muffin", price: 90, emoji: "🧁", bg: "#fde68a" },
-      { id: 103, group: "Group 1", stall: "Stall 1: Bakery & Treats", name: "Ragi Walnut Brownie", price: 120, emoji: "🟫", bg: "#ffedd5" },
-      { id: 104, group: "Group 1", stall: "Stall 1: Bakery & Treats", name: "Almond Crumb", price: 100, emoji: "🥐", bg: "#fef9c3" },
-
-      // Group 2 (Stall 2: Chocolates & Perfumes)
-      { id: 201, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "6 Pieces Chocolate Box", price: 70, emoji: "🍫", bg: "#fce7f3" },
-      { id: 202, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "6 Pieces Chocolate Box Customisable", price: 80, emoji: "🎁", bg: "#fbcfe8" },
-      { id: 203, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "10 Pieces Chocolate Box", price: 110, emoji: "🍫", bg: "#fae8ff" },
-      { id: 204, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "10 Pieces Customisable Chocolate Box", price: 120, emoji: "🎀", bg: "#f3e8ff" },
-      { id: 205, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "12 Pieces Chocolate Box", price: 130, emoji: "🍫", bg: "#ffe4e6" },
-      { id: 206, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "12 Pieces Customisable Chocolate Box", price: 140, emoji: "💝", bg: "#fecdd3" },
-      { id: 207, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "Perfume 8ml", price: 80, emoji: "🧴", bg: "#e0f2fe" },
-      { id: 208, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "Perfume 8ml Combo", price: 150, emoji: "✨", bg: "#bae6fd" },
-      { id: 209, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "Perfume 40ml", price: 500, emoji: "🍾", bg: "#dbeafe" },
-      { id: 210, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "Perfume 75ml", price: 750, emoji: "💎", bg: "#e0e7ff" },
-
-      // Group 3 (Stall 3: Candles, Crafts & Accessories)
-      { id: 301, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Triangular Candles", price: 60, emoji: "🕯️", bg: "#fef3c7" },
-      { id: 302, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Pastry Candle", price: 60, emoji: "🍰", bg: "#ffedd5" },
-      { id: 303, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Chota Bheem Jar Candle", price: 85, emoji: "🫙", bg: "#fde68a" },
-      { id: 304, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Mini Diet Coke Candle", price: 60, emoji: "🥤", bg: "#fee2e2" },
-      { id: 305, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Urli Candles", price: 85, emoji: "🪔", bg: "#fef9c3" },
-      { id: 306, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Diet Coke Candle", price: 120, emoji: "🥫", bg: "#fecaca" },
-      { id: 307, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Monster Candle", price: 150, emoji: "🔥", bg: "#dcfce7" },
-      { id: 308, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Single Bloom Flower", price: 70, emoji: "🌸", bg: "#fce7f3" },
-      { id: 309, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Flower Pot Bloom", price: 110, emoji: "🪴", bg: "#d1fae5" },
-      { id: 310, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Flower Bouquet", price: 250, emoji: "💐", bg: "#fae8ff" },
-      { id: 311, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Cute Keychains", price: 40, emoji: "🔑", bg: "#e0f2fe" },
-      { id: 312, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Stone Art Kits", price: 110, emoji: "🪨", bg: "#f1f5f9" },
-      { id: 313, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Charmed Bracelet", price: 60, emoji: "📿", bg: "#f3e8ff" },
-      { id: 314, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Bracelet Set", price: 55, emoji: "💫", bg: "#ffe4e6" },
-      { id: 315, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Necklace", price: 55, emoji: "👒", bg: "#fef3c7" },
-      { id: 316, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Tote Bags", price: 110, emoji: "👜", bg: "#dcfce7" },
-
-      // Group 4 (Stall 4: Starter Catalog)
-      { id: 401, group: "Group 4", stall: "Stall 4: Starter Catalog", name: "Stall Item 1", price: 50, emoji: "📦", bg: "#f1f5f9" },
-      { id: 402, group: "Group 4", stall: "Stall 4: Starter Catalog", name: "Stall Item 2", price: 80, emoji: "📦", bg: "#e2e8f0" },
-      { id: 403, group: "Group 4", stall: "Stall 4: Starter Catalog", name: "Stall Item 3", price: 100, emoji: "📦", bg: "#fef3c7" },
-      { id: 404, group: "Group 4", stall: "Stall 4: Starter Catalog", name: "Stall Item 4", price: 150, emoji: "📦", bg: "#dbeafe" },
-
-      // Group 5 (Stall 5: Brew & Bite)
-      { id: 501, group: "Group 5", stall: "Stall 5: Brew & Bite", name: "Classic Brew", price: 50, emoji: "☕", bg: "#ffedd5" },
-      { id: 502, group: "Group 5", stall: "Stall 5: Brew & Bite", name: "Mocha Frappe", price: 70, emoji: "🧋", bg: "#fef3c7" },
-      { id: 503, group: "Group 5", stall: "Stall 5: Brew & Bite", name: "Caramel Cloud", price: 100, emoji: "🥛", bg: "#fde68a" },
-      { id: 504, group: "Group 5", stall: "Stall 5: Brew & Bite", name: "Noir Royale (100g)", price: 70, emoji: "🍫", bg: "#e2e8f0" },
-      { id: 505, group: "Group 5", stall: "Stall 5: Brew & Bite", name: "The Golden Crunch (100g)", price: 75, emoji: "🍪", bg: "#fef9c3" },
-      { id: 506, group: "Group 5", stall: "Stall 5: Brew & Bite", name: "Cocoa Royale (100g)", price: 82, emoji: "🍩", bg: "#fce7f3" },
-
-      // Group 6 (Stall 6: Crafted Treats)
-      { id: 601, group: "Group 6", stall: "Stall 6: Crafted Treats", name: "Brownies", price: 40, emoji: "🍫", bg: "#ffedd5" },
-      { id: 602, group: "Group 6", stall: "Stall 6: Crafted Treats", name: "Waffle Crisps", price: 65, emoji: "🧇", bg: "#fef3c7" },
-      { id: 603, group: "Group 6", stall: "Stall 6: Crafted Treats", name: "Mojito", price: 55, emoji: "🍹", bg: "#d1fae5" },
-      { id: 604, group: "Group 6", stall: "Stall 6: Crafted Treats", name: "Bandanas", price: 80, emoji: "🧣", bg: "#e0f2fe" },
-      { id: 605, group: "Group 6", stall: "Stall 6: Crafted Treats", name: "Bookmarks — Standard", price: 10, emoji: "🔖", bg: "#f1f5f9" },
-      { id: 606, group: "Group 6", stall: "Stall 6: Crafted Treats", name: "Bookmarks — Premium", price: 15, emoji: "🏷️", bg: "#fae8ff" },
-      { id: 607, group: "Group 6", stall: "Stall 6: Crafted Treats", name: "Mystery Jewellery Jar", price: 250, emoji: "💍", bg: "#fce7f3" },
-
-      // Group 7 (Stall 7: Refreshments & Attars)
-      { id: 701, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Kokum Juice", price: 35, emoji: "🧃", bg: "#ffe4e6" },
-      { id: 702, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Mukkallat 3ml", price: 150, emoji: "🫧", bg: "#fef3c7" },
-      { id: 703, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Mukkallat 6ml", price: 230, emoji: "✨", bg: "#fde68a" },
-      { id: 704, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Dunhill Desire 3ml", price: 150, emoji: "🌬️", bg: "#fee2e2" },
-      { id: 705, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Dunhill Desire 6ml", price: 230, emoji: "🔥", bg: "#fecaca" },
-      { id: 706, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Dior Sauvage 3ml", price: 150, emoji: "🌊", bg: "#e0f2fe" },
-      { id: 707, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Dior Sauvage 6ml", price: 230, emoji: "💧", bg: "#bae6fd" },
-      { id: 708, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Azzaro 3ml", price: 150, emoji: "🌿", bg: "#dcfce7" },
-      { id: 709, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Azzaro 6ml", price: 230, emoji: "🍃", bg: "#bbf7d0" }
+    const GROUPS = [
+      { id: "ALL", label: "All Products", stall: "All Stalls (Groups 1–7)", desc: "All 47 master products from Nirmaan Flea Market" },
+      { id: "G1", label: "Group 1", stall: "Stall 1: Bakery & Treats", desc: "Freshly baked treats & healthy bites" },
+      { id: "G2", label: "Group 2", stall: "Stall 2: Chocolates & Perfumes", desc: "Customisable chocolate boxes & fragrances" },
+      { id: "G3", label: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", desc: "Artisan candles, blooms, jewellery & tote bags" },
+      { id: "G4", label: "Group 4", stall: "Stall 4: Starter Catalog", desc: "Stall 4 showcase items" },
+      { id: "G5", label: "Group 5", stall: "Stall 5: Brew & Bite", desc: "Cold coffees & crunchy chocolate treats" },
+      { id: "G6", label: "Group 6", stall: "Stall 6: Crafted Treats", desc: "Brownies, waffles, mojitos, bookmarks & mystery jars" },
+      { id: "G7", label: "Group 7", stall: "Stall 7: Refreshments & Attars", desc: "Refreshing Kokum Juice & luxury 3ml/6ml attars" }
     ];
 
-    const GROUP_TABS = ["All", "Group 1", "Group 2", "Group 3", "Group 4", "Group 5", "Group 6", "Group 7"];
+    const PRODUCTS = [
+      { id: 101, group: "G1", name: "Walnut Balls", price: 70, emoji: "🍪" },
+      { id: 102, group: "G1", name: "Oats Honey Almond Muffin", price: 90, emoji: "🧁" },
+      { id: 103, group: "G1", name: "Ragi Walnut Brownie", price: 120, emoji: "🍫" },
+      { id: 104, group: "G1", name: "Almond Crumb", price: 100, emoji: "🥧" },
+      { id: 201, group: "G2", name: "6 Pieces Chocolate Box", price: 70, emoji: "🍫" },
+      { id: 202, group: "G2", name: "6 Pieces Chocolate Box Customisable", price: 80, emoji: "🎁" },
+      { id: 203, group: "G2", name: "10 Pieces Chocolate Box", price: 110, emoji: "🍫" },
+      { id: 204, group: "G2", name: "10 Pieces Customisable Chocolate Box", price: 120, emoji: "🎁" },
+      { id: 205, group: "G2", name: "12 Pieces Chocolate Box", price: 130, emoji: "🍫" },
+      { id: 206, group: "G2", name: "12 Pieces Customisable Chocolate Box", price: 140, emoji: "🎁" },
+      { id: 207, group: "G2", name: "Perfume 8ml", price: 80, emoji: "🧴" },
+      { id: 208, group: "G2", name: "Perfume 8ml Combo", price: 150, emoji: "✨" },
+      { id: 209, group: "G2", name: "Perfume 40ml", price: 500, emoji: "🧴" },
+      { id: 210, group: "G2", name: "Perfume 75ml", price: 750, emoji: "💎" },
+      { id: 301, group: "G3", name: "Triangular Candles", price: 60, emoji: "🕯️" },
+      { id: 302, group: "G3", name: "Pastry Candle", price: 60, emoji: "🧁" },
+      { id: 303, group: "G3", name: "Chota Bheem Jar Candle", price: 85, emoji: "🕯️" },
+      { id: 304, group: "G3", name: "Mini Diet Coke Candle", price: 60, emoji: "🥤" },
+      { id: 305, group: "G3", name: "Urli Candles", price: 85, emoji: "🪔" },
+      { id: 306, group: "G3", name: "Diet Coke Candle", price: 120, emoji: "🥤" },
+      { id: 307, group: "G3", name: "Monster Candle", price: 150, emoji: "🕯️" },
+      { id: 308, group: "G3", name: "Single Bloom Flower", price: 70, emoji: "🌷" },
+      { id: 309, group: "G3", name: "Flower Pot Bloom", price: 110, emoji: "🪴" },
+      { id: 310, group: "G3", name: "Flower Bouquet", price: 250, emoji: "💐" },
+      { id: 311, group: "G3", name: "Cute Keychains", price: 40, emoji: "🔑" },
+      { id: 312, group: "G3", name: "Stone Art Kits", price: 110, emoji: "🎨" },
+      { id: 313, group: "G3", name: "Charmed Bracelet", price: 60, emoji: "📿" },
+      { id: 314, group: "G3", name: "Bracelet Set", price: 55, emoji: "✨" },
+      { id: 315, group: "G3", name: "Necklace", price: 55, emoji: "📿" },
+      { id: 316, group: "G3", name: "Tote Bags", price: 110, emoji: "👜" },
+      { id: 401, group: "G4", name: "Stall Item 1", price: 50, emoji: "🛍️" },
+      { id: 402, group: "G4", name: "Stall Item 2", price: 80, emoji: "🛍️" },
+      { id: 403, group: "G4", name: "Stall Item 3", price: 100, emoji: "🛍️" },
+      { id: 404, group: "G4", name: "Stall Item 4", price: 150, emoji: "🛍️" },
+      { id: 501, group: "G5", name: "Classic Brew", price: 50, emoji: "☕" },
+      { id: 502, group: "G5", name: "Mocha Frappe", price: 70, emoji: "🥤" },
+      { id: 503, group: "G5", name: "Caramel Cloud", price: 100, emoji: "🧋" },
+      { id: 504, group: "G5", name: "Noir Royale (100g)", price: 70, emoji: "🍫" },
+      { id: 505, group: "G5", name: "The Golden Crunch (100g)", price: 75, emoji: "🍪" },
+      { id: 506, group: "G5", name: "Cocoa Royale (100g)", price: 82, emoji: "🍫" },
+      { id: 601, group: "G6", name: "Brownies", price: 40, emoji: "🟫" },
+      { id: 602, group: "G6", name: "Waffle Crisps", price: 65, emoji: "🧇" },
+      { id: 603, group: "G6", name: "Mojito", price: 55, emoji: "🍹" },
+      { id: 604, group: "G6", name: "Bandanas", price: 80, emoji: "🧣" },
+      { id: 605, group: "G6", name: "Bookmarks — Standard", price: 10, emoji: "🔖" },
+      { id: 606, group: "G6", name: "Bookmarks — Premium", price: 15, emoji: "✨" },
+      { id: 607, group: "G6", name: "Mystery Jewellery Jar", price: 250, emoji: "🏺" },
+      { id: 701, group: "G7", name: "Kokum Juice", price: 35, emoji: "🍷" },
+      { id: 702, group: "G7", name: "Mukkallat 3ml", price: 150, emoji: "🧴" },
+      { id: 703, group: "G7", name: "Mukkallat 6ml", price: 230, emoji: "🧴" },
+      { id: 704, group: "G7", name: "Dunhill Desire 3ml", price: 150, emoji: "🧴" },
+      { id: 705, group: "G7", name: "Dunhill Desire 6ml", price: 230, emoji: "🧴" },
+      { id: 706, group: "G7", name: "Dior Sauvage 3ml", price: 150, emoji: "🧴" },
+      { id: 707, group: "G7", name: "Dior Sauvage 6ml", price: 230, emoji: "🧴" },
+      { id: 708, group: "G7", name: "Azzaro 3ml", price: 150, emoji: "🧴" },
+      { id: 709, group: "G7", name: "Azzaro 6ml", price: 230, emoji: "🧴" }
+    ];
 
-    const state = {
-      customer: { name: "Guest Customer", email: "guest.nirmaan@gmail.com", phone: "9876543210", loggedIn: false },
-      products: MASTER_PRODUCTS,
-      selectedGroup: "All",
-      searchQuery: "",
-      cart: [],
-      checkoutItems: [],
-      deliveryType: "Home",
-      shippingAddress: null,
-      orders: [],
-      lastOrder: null
-    };
+    let customer = { name: "", email: "", phone: "" };
+    let activeGroup = "ALL";
+    let cart = [];
+    let checkoutItems = [];
+    let shipping = {};
 
-    function formatINR(num) {
-      return "₹" + Number(num).toLocaleString("en-IN");
+    function toast(msg) {
+      const el = document.getElementById("toast");
+      el.textContent = msg;
+      el.classList.remove("hidden");
+      clearTimeout(window._t);
+      window._t = setTimeout(() => el.classList.add("hidden"), 2600);
     }
 
-    // Safe Storage Helpers
-    function saveStateToStorage() {
-      try {
-        localStorage.setItem("nirmaan_customer_v3", JSON.stringify(state.customer));
-        localStorage.setItem("nirmaan_orders_v3", JSON.stringify(state.orders));
-      } catch (e) {}
-    }
-
-    function loadStateFromStorage() {
-      try {
-        const savedCust = localStorage.getItem("nirmaan_customer_v3");
-        if (savedCust) {
-          const parsed = JSON.parse(savedCust);
-          state.customer = { ...state.customer, ...parsed };
-          syncCustomerUI();
-          if (state.customer.loggedIn) {
-            document.getElementById("onboarding-screen").classList.add("hidden");
-          }
-        }
-        const savedOrders = localStorage.getItem("nirmaan_orders_v3");
-        if (savedOrders) {
-          state.orders = JSON.parse(savedOrders);
-        }
-      } catch (e) {}
-    }
-
-    // Boot Application
-    window.addEventListener("DOMContentLoaded", () => {
-      // Strip accidental '?' if present in URL without reloading
-      if (window.location.search === "?") {
-        try {
-          window.history.replaceState({}, document.title, window.location.pathname);
-        } catch (e) {}
-      }
-
-      loadStateFromStorage();
-      renderGroupPills();
-      renderProducts();
-      updateCartUI();
-      initAIChatWelcome();
-    });
-
-    // =====================================================================
-    // 1. ONBOARDING & LOGIN HANDLERS (NO <form> SUBMIT RELOADS)
-    // =====================================================================
     function enterStore() {
-      const nameInput = document.getElementById("cust-name");
-      const emailInput = document.getElementById("cust-email");
-      const phoneInput = document.getElementById("cust-phone");
-
-      let name = (nameInput.value || "").trim();
-      let email = (emailInput.value || "").trim().toLowerCase();
-      let phone = (phoneInput.value || "").trim().replace(/\D/g, "");
-
-      document.getElementById("err-name").classList.add("hidden");
-      document.getElementById("err-email").classList.add("hidden");
-      document.getElementById("err-phone").classList.add("hidden");
-
-      // Gentle validation & auto-completion so users are never stuck
-      if (!name && !email && !phone) {
-        document.getElementById("err-name").classList.remove("hidden");
-        nameInput.focus();
-        return;
-      }
-
-      if (!name) {
-        name = email ? email.split("@")[0] : "Nirmaan Shopper";
-      }
-
-      if (email && !email.includes("@")) {
-        email = email + "@gmail.com";
-      } else if (!email) {
-        email = name.toLowerCase().replace(/[^a-z0-9]/g, "") + "@gmail.com";
-      }
-
-      if (phone.length > 10) {
-        phone = phone.slice(-10);
-      }
-      if (phone.length > 0 && phone.length < 10) {
-        document.getElementById("err-phone").classList.remove("hidden");
-        phoneInput.focus();
-        return;
-      }
-      if (!phone) {
-        phone = "9876543210";
-      }
-
-      state.customer = { name, email, phone, loggedIn: true };
-      saveStateToStorage();
-      syncCustomerUI();
-
-      document.getElementById("onboarding-screen").classList.add("hidden");
-      navigateTo("store-screen");
-      showToast(`Welcome to Nirmaan Store, ${name}!`);
-      initAIChatWelcome();
+      const name = document.getElementById("cust-name").value.trim();
+      const email = document.getElementById("cust-email").value.trim();
+      const phone = document.getElementById("cust-phone").value.replace(/\D/g, "");
+      if (!name) return toast("Please enter your full name.");
+      if (!email.includes("@")) return toast("Please enter a valid Gmail address.");
+      if (phone.length < 10) return toast("Please enter a 10-digit phone number.");
+      customer = { name, email, phone };
+      openStoreUI();
     }
 
-    function quickDemoFillAndEnter() {
-      document.getElementById("cust-name").value = "Ananya Verma";
-      document.getElementById("cust-email").value = "ananya.nirmaan@gmail.com";
-      document.getElementById("cust-phone").value = "9820112233";
+    function quickDemoLogin() {
+      document.getElementById("cust-name").value = "Avyukt Rawat";
+      document.getElementById("cust-email").value = "avyukt.nirmaan@gmail.com";
+      document.getElementById("cust-phone").value = "9876543210";
       enterStore();
     }
 
-    function browseAsGuest() {
-      state.customer = {
-        name: "Guest Shopper",
-        email: "guest.nirmaan@gmail.com",
-        phone: "9876543210",
-        loggedIn: true
-      };
-      saveStateToStorage();
-      syncCustomerUI();
-      document.getElementById("onboarding-screen").classList.add("hidden");
-      navigateTo("store-screen");
-      showToast("Browsing Nirmaan Store as Guest");
-      initAIChatWelcome();
+    function guestLogin() {
+      customer = { name: "Nirmaan Guest", email: "guest@gmail.com", phone: "9999999999" };
+      openStoreUI();
     }
 
-    function openLoginScreen() {
-      document.getElementById("cust-name").value = state.customer.name !== "Guest Customer" ? state.customer.name : "";
-      document.getElementById("cust-email").value = state.customer.email !== "guest.nirmaan@gmail.com" ? state.customer.email : "";
-      document.getElementById("cust-phone").value = state.customer.phone || "";
-      document.getElementById("onboarding-screen").classList.remove("hidden");
+    function openStoreUI() {
+      document.getElementById("login-screen").classList.add("hidden");
+      document.getElementById("store-screen").classList.remove("hidden");
+      document.getElementById("header-user").textContent = `${customer.name} • ${customer.email}`;
+      renderTabs();
+      renderProducts();
+      toast(`Welcome, ${customer.name}!`);
     }
 
-    function syncCustomerUI() {
-      const { name, email, phone } = state.customer;
-      const initials = name.split(" ").map(p => p[0] || "").join("").substring(0, 2).toUpperCase() || "N";
-
-      document.getElementById("header-user-name").textContent = name.split(" ")[0] || "Guest";
-      document.getElementById("addr-name").value = name;
-      document.getElementById("addr-phone").value = phone;
-
-      document.getElementById("acc-initials").textContent = initials;
-      document.getElementById("acc-name").textContent = name;
-      document.getElementById("acc-email").textContent = email;
-      document.getElementById("acc-phone").textContent = "+91 " + phone;
-
-      document.getElementById("edit-acc-name").value = name;
-      document.getElementById("edit-acc-email").value = email;
-      document.getElementById("edit-acc-phone").value = phone;
+    function logoutToLogin() {
+      document.getElementById("store-screen").classList.add("hidden");
+      document.getElementById("login-screen").classList.remove("hidden");
     }
 
-    function saveProfileEdits() {
-      const name = document.getElementById("edit-acc-name").value.trim() || state.customer.name;
-      let email = document.getElementById("edit-acc-email").value.trim().toLowerCase() || state.customer.email;
-      if (!email.includes("@")) email += "@gmail.com";
-      const phone = document.getElementById("edit-acc-phone").value.trim().replace(/\D/g, "") || state.customer.phone;
-
-      state.customer = { name, email, phone, loggedIn: true };
-      saveStateToStorage();
-      syncCustomerUI();
-      initAIChatWelcome();
-      showToast("Profile updated successfully!");
-    }
-
-    // =====================================================================
-    // 2. STOREFRONT, GROUP TABS & SEARCH
-    // =====================================================================
-    function renderGroupPills() {
-      const container = document.getElementById("group-pills-container");
-      container.innerHTML = GROUP_TABS.map(tab => {
-        const isActive = state.selectedGroup === tab;
-        const label = tab === "All" ? `All (${state.products.length})` : tab;
-        return `
-          <button
-            type="button"
-            onclick="selectGroup('${tab}')"
-            class="px-4 py-2 rounded-full text-xs font-extrabold whitespace-nowrap transition cursor-pointer ${
-              isActive
-                ? "bg-nirmaan-green text-nirmaan-cream shadow-sm"
-                : "bg-white text-nirmaan-green border border-nirmaan-creamBorder hover:bg-nirmaan-creamDark"
-            }"
-          >
-            ${label}
-          </button>
-        `;
+    function renderTabs() {
+      const wrap = document.getElementById("group-tabs");
+      wrap.innerHTML = GROUPS.map(g => {
+        const active = g.id === activeGroup;
+        return `<button type="button" onclick="selectGroup('${g.id}')" class="px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap cursor-pointer ${active ? 'bg-nirmaan-cream text-nirmaan-green' : 'bg-nirmaan-light/70 text-nirmaan-cream hover:bg-nirmaan-light'}">${g.label}</button>`;
       }).join("");
     }
 
-    function selectGroup(tab) {
-      state.selectedGroup = tab;
-      renderGroupPills();
+    function selectGroup(gid) {
+      activeGroup = gid;
+      renderTabs();
       renderProducts();
-    }
-
-    function handleSearch(val) {
-      state.searchQuery = (val || "").trim().toLowerCase();
-      document.getElementById("clear-search-btn").classList.toggle("hidden", !state.searchQuery);
-      renderProducts();
-    }
-
-    function clearSearch() {
-      document.getElementById("search-input").value = "";
-      handleSearch("");
-    }
-
-    function resetStoreFilters() {
-      state.selectedGroup = "All";
-      clearSearch();
-      renderGroupPills();
-      renderProducts();
+      showSection("products-view");
     }
 
     function renderProducts() {
-      const matches = state.products.filter(p => {
-        const matchesGroup = state.selectedGroup === "All" || p.group === state.selectedGroup;
-        const matchesSearch =
-          !state.searchQuery ||
-          p.name.toLowerCase().includes(state.searchQuery) ||
-          p.group.toLowerCase().includes(state.searchQuery) ||
-          p.stall.toLowerCase().includes(state.searchQuery) ||
-          String(p.id).includes(state.searchQuery);
-        return matchesGroup && matchesSearch;
+      const q = document.getElementById("search-input").value.trim().toLowerCase();
+      const grpObj = GROUPS.find(g => g.id === activeGroup);
+      document.getElementById("stall-title").textContent = grpObj.stall;
+      document.getElementById("stall-sub").textContent = grpObj.desc;
+
+      const list = PRODUCTS.filter(p => {
+        const matchGrp = activeGroup === "ALL" || p.group === activeGroup;
+        const matchQ = !q || p.name.toLowerCase().includes(q) || String(p.id).includes(q) || p.group.toLowerCase().includes(q);
+        return matchGrp && matchQ;
       });
 
-      const tagEl = document.getElementById("banner-group-tag");
-      const titleEl = document.getElementById("banner-group-title");
-      const subEl = document.getElementById("banner-group-subtitle");
-      document.getElementById("banner-product-count").textContent = matches.length;
-
-      if (state.selectedGroup === "All") {
-        tagEl.textContent = "ALL PRODUCTS • GROUPS 1 TO 7";
-        titleEl.textContent = "All Nirmaan Flea Market Products";
-        subEl.textContent = "Combined catalog of all 47 products across Stalls 1–7.";
-      } else {
-        const sample = state.products.find(p => p.group === state.selectedGroup);
-        tagEl.textContent = state.selectedGroup.toUpperCase();
-        titleEl.textContent = sample ? `${sample.group} — ${sample.stall}` : state.selectedGroup;
-        subEl.textContent = `Showing products exclusively from ${sample ? sample.stall : state.selectedGroup}.`;
-      }
-
-      const grid = document.getElementById("products-grid");
-      const emptyBox = document.getElementById("empty-search-state");
-
-      if (matches.length === 0) {
-        grid.innerHTML = "";
-        emptyBox.classList.remove("hidden");
-        return;
-      }
-
-      emptyBox.classList.add("hidden");
-      grid.innerHTML = matches.map(p => `
-        <div class="bg-white border border-nirmaan-creamBorder rounded-3xl p-3.5 flex flex-col justify-between shadow-xs hover:shadow-md transition">
+      document.getElementById("product-count").textContent = `${list.length} Items`;
+      document.getElementById("products-grid").innerHTML = list.map(p => `
+        <div class="bg-white rounded-2xl p-3.5 shadow-sm border border-gray-200 flex flex-col justify-between">
           <div>
-            <div class="relative h-32 sm:h-36 rounded-2xl flex items-center justify-center mb-3" style="background-color: ${p.bg};">
-              <span class="text-5xl sm:text-6xl select-none">${p.emoji}</span>
-              <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-nirmaan-green text-nirmaan-cream text-[10px] font-extrabold">
-                ${p.group}
-              </span>
-              <span class="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-white/95 text-nirmaan-green font-mono text-[10px] font-bold border border-nirmaan-creamBorder">
-                #${p.id}
-              </span>
-              <div class="absolute bottom-2 right-2 w-6 h-6 rounded-lg bg-nirmaan-green flex items-center justify-center">
-                <svg viewBox="0 0 100 100" class="w-3.5 h-3.5" fill="none">
-                  <path d="M23 78C19 58 19 32 29 24C37 18 44 29 50 44C56 59 64 74 73 68C81 62 79 36 73 22H55C60 33 63 48 58 51C53 54 47 41 42 29C36 16 25 14 18 23C10 34 11 61 15 78H23Z" fill="#fdfbf5"/>
-                </svg>
-              </div>
+            <div class="flex items-center justify-between text-[10px] font-bold mb-2">
+              <span class="px-2 py-0.5 rounded-full bg-nirmaan-sand text-nirmaan-green">${p.group.replace('G','Group ')}</span>
+              <span class="text-gray-400">#${p.id}</span>
             </div>
-
-            <p class="text-[10px] font-bold text-nirmaan-green/60 truncate">${p.stall}</p>
-            <h3 class="font-bold text-xs sm:text-sm text-nirmaan-green line-clamp-2 leading-snug min-h-[34px] mt-0.5">
-              ${p.name}
-            </h3>
-            <p class="font-mono font-extrabold text-base sm:text-lg text-nirmaan-green mt-2">
-              ${formatINR(p.price)}
-            </p>
+            <div class="h-24 rounded-xl bg-nirmaan-cream flex items-center justify-center text-4xl mb-2.5">${p.emoji}</div>
+            <h3 class="font-bold text-xs sm:text-sm text-nirmaan-green leading-snug line-clamp-2">${p.name}</h3>
+            <div class="text-base font-extrabold text-nirmaan-green mt-1">₹${p.price}</div>
           </div>
-
           <div class="grid grid-cols-2 gap-1.5 mt-3">
-            <button
-              type="button"
-              onclick="addToCart(${p.id})"
-              class="py-2 px-2 rounded-xl border border-nirmaan-green text-nirmaan-green hover:bg-nirmaan-creamDark font-bold text-[11px] transition cursor-pointer"
-            >
-              Add to Cart
-            </button>
-            <button
-              type="button"
-              onclick="buyNow(${p.id})"
-              class="py-2 px-2 rounded-xl bg-nirmaan-green hover:bg-nirmaan-greenHover text-nirmaan-cream font-bold text-[11px] transition cursor-pointer"
-            >
-              Buy Now
-            </button>
+            <button type="button" onclick="addToCart(${p.id})" class="py-2 rounded-xl border border-nirmaan-green text-nirmaan-green font-bold text-[11px] hover:bg-nirmaan-sand cursor-pointer">Add to Cart</button>
+            <button type="button" onclick="buyNow(${p.id})" class="py-2 rounded-xl bg-nirmaan-green text-nirmaan-cream font-bold text-[11px] hover:bg-nirmaan-light cursor-pointer">Buy Now</button>
           </div>
         </div>
       `).join("");
     }
 
-    // =====================================================================
-    // 3. SLIDE-OUT CART SIDEBAR
-    // =====================================================================
-    function addToCart(productId) {
-      const prod = state.products.find(p => p.id === productId);
-      if (!prod) return;
-
-      const existing = state.cart.find(item => item.product.id === productId);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        state.cart.push({ product: prod, qty: 1 });
-      }
-
+    function addToCart(pid) {
+      const item = PRODUCTS.find(p => p.id === pid);
+      const found = cart.find(c => c.id === pid);
+      if (found) found.qty++;
+      else cart.push({ ...item, qty: 1 });
       updateCartUI();
-      toggleCartSidebar(true);
-      showToast(`Added ${prod.name} (${formatINR(prod.price)})`);
+      toggleCart(true);
     }
 
-    function updateCartQty(productId, delta) {
-      const idx = state.cart.findIndex(item => item.product.id === productId);
-      if (idx === -1) return;
-      state.cart[idx].qty += delta;
-      if (state.cart[idx].qty <= 0) {
-        state.cart.splice(idx, 1);
-      }
-      updateCartUI();
-    }
-
-    function removeFromCart(productId) {
-      state.cart = state.cart.filter(item => item.product.id !== productId);
-      updateCartUI();
+    function buyNow(pid) {
+      const item = PRODUCTS.find(p => p.id === pid);
+      checkoutItems = [{ ...item, qty: 1 }];
+      openAddressStep();
     }
 
     function updateCartUI() {
-      const totalCount = state.cart.reduce((sum, i) => sum + i.qty, 0);
-      const totalAmount = state.cart.reduce((sum, i) => sum + i.product.price * i.qty, 0);
-
-      document.getElementById("cart-badge-count").textContent = totalCount;
-      document.getElementById("sidebar-item-count").textContent = totalCount;
-      document.getElementById("cart-subtotal-text").textContent = formatINR(totalAmount);
-
-      const list = document.getElementById("cart-items-list");
-      const btn = document.getElementById("cart-buy-btn");
-
-      if (state.cart.length === 0) {
-        btn.disabled = true;
-        btn.classList.add("opacity-50", "cursor-not-allowed");
-        list.innerHTML = `
-          <div class="text-center py-16">
-            <i class="fa-solid fa-basket-shopping text-4xl text-nirmaan-green/25 mb-2"></i>
-            <p class="font-bold text-sm text-nirmaan-green/70">Your cart is empty</p>
-            <p class="text-xs text-nirmaan-green/50 mt-1">Click "Add to Cart" on any item from Groups 1–7.</p>
-          </div>
-        `;
+      const count = cart.reduce((s, i) => s + i.qty, 0);
+      const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      document.getElementById("cart-badge").textContent = count;
+      document.getElementById("cart-subtotal").textContent = `₹${total}`;
+      const wrap = document.getElementById("cart-items");
+      if (!cart.length) {
+        wrap.innerHTML = `<p class="text-xs text-gray-500 text-center py-10">Your cart is empty. Add items from Groups 1–7!</p>`;
         return;
       }
-
-      btn.disabled = false;
-      btn.classList.remove("opacity-50", "cursor-not-allowed");
-
-      list.innerHTML = state.cart.map(({ product, qty }) => `
-        <div class="bg-white border border-nirmaan-creamBorder rounded-2xl p-3 flex items-center justify-between gap-2.5">
-          <div class="flex items-center gap-3 min-w-0">
-            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0" style="background-color: ${product.bg};">
-              ${product.emoji}
-            </div>
-            <div class="min-w-0">
-              <span class="text-[10px] font-bold text-nirmaan-green/60">${product.group} • #${product.id}</span>
-              <h4 class="text-xs font-bold text-nirmaan-green truncate">${product.name}</h4>
-              <p class="text-xs font-mono font-extrabold text-nirmaan-green mt-0.5">${formatINR(product.price * qty)}</p>
-            </div>
+      wrap.innerHTML = cart.map(c => `
+        <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between gap-2">
+          <div>
+            <div class="font-bold text-xs text-nirmaan-green">${c.emoji} ${c.name}</div>
+            <div class="text-[11px] text-gray-500">₹${c.price} × ${c.qty} = <b>₹${c.price * c.qty}</b></div>
           </div>
-
-          <div class="flex items-center gap-1.5 shrink-0">
-            <div class="flex items-center bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl">
-              <button type="button" onclick="updateCartQty(${product.id}, -1)" class="w-7 h-7 font-bold cursor-pointer">-</button>
-              <span class="px-2 text-xs font-extrabold">${qty}</span>
-              <button type="button" onclick="updateCartQty(${product.id}, 1)" class="w-7 h-7 font-bold cursor-pointer">+</button>
-            </div>
-            <button type="button" onclick="removeFromCart(${product.id})" title="Remove" class="w-7 h-7 rounded-lg text-rose-600 hover:bg-rose-50 flex items-center justify-center cursor-pointer">
-              <i class="fa-regular fa-trash-can text-xs"></i>
-            </button>
+          <div class="flex items-center gap-1.5">
+            <button type="button" onclick="changeQty(${c.id}, -1)" class="w-6 h-6 rounded-lg bg-nirmaan-sand font-bold text-xs cursor-pointer">-</button>
+            <span class="text-xs font-bold w-4 text-center">${c.qty}</span>
+            <button type="button" onclick="changeQty(${c.id}, 1)" class="w-6 h-6 rounded-lg bg-nirmaan-sand font-bold text-xs cursor-pointer">+</button>
           </div>
         </div>
       `).join("");
     }
 
-    function toggleCartSidebar(open) {
-      const sb = document.getElementById("cart-sidebar");
-      const bd = document.getElementById("cart-backdrop");
-      if (open) {
-        bd.classList.remove("hidden");
-        sb.classList.remove("translate-x-full");
-      } else {
-        sb.classList.add("translate-x-full");
-        bd.classList.add("hidden");
-      }
+    function changeQty(pid, delta) {
+      const idx = cart.findIndex(c => c.id === pid);
+      if (idx === -1) return;
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) cart.splice(idx, 1);
+      updateCartUI();
     }
 
-    // =====================================================================
-    // 4. CHECKOUT, ADDRESS & 3-OPTION PAYMENT
-    // =====================================================================
-    function buyNow(productId) {
-      const prod = state.products.find(p => p.id === productId);
-      if (!prod) return;
-      state.checkoutItems = [{ product: prod, qty: 1 }];
-      toggleCartSidebar(false);
-      navigateTo("address-view");
+    function toggleCart(open) {
+      document.getElementById("cart-drawer").classList.toggle("hidden", !open);
     }
 
-    function proceedFromCartToCheckout() {
-      if (state.cart.length === 0) return;
-      state.checkoutItems = state.cart.map(c => ({ ...c }));
-      toggleCartSidebar(false);
-      navigateTo("address-view");
+    function checkoutFromCart() {
+      if (!cart.length) return toast("Add at least 1 item to cart first.");
+      checkoutItems = cart.map(c => ({ ...c }));
+      toggleCart(false);
+      openAddressStep();
     }
 
-    function getCheckoutTotal() {
-      return state.checkoutItems.reduce((sum, i) => sum + i.product.price * i.qty, 0);
-    }
-
-    function navigateTo(viewId) {
-      ["store-screen", "address-view", "payment-view", "confirmation-view", "orders-view", "account-view"].forEach(v => {
-        document.getElementById(v).classList.add("hidden");
+    function showSection(id) {
+      ["products-view", "address-view", "payment-view", "receipt-view"].forEach(sec => {
+        document.getElementById(sec).classList.toggle("hidden", sec !== id);
       });
-      document.getElementById(viewId).classList.remove("hidden");
-      document.getElementById("header-search-bar").classList.toggle("hidden", viewId !== "store-screen");
-
-      if (viewId === "address-view") {
-        const total = getCheckoutTotal();
-        document.getElementById("address-summary-box").innerHTML = `
-          <h3 class="text-sm font-extrabold text-nirmaan-green mb-3">Order Summary</h3>
-          <div class="space-y-2 text-xs border-b border-nirmaan-creamBorder pb-3 mb-3">
-            ${state.checkoutItems.map(i => `
-              <div class="flex justify-between gap-2">
-                <span class="truncate">${i.product.name} ×${i.qty}</span>
-                <span class="font-mono font-bold">${formatINR(i.product.price * i.qty)}</span>
-              </div>
-            `).join("")}
-          </div>
-          <div class="flex justify-between font-extrabold text-sm text-nirmaan-green">
-            <span>Total Payable</span>
-            <span class="font-mono">${formatINR(total)}</span>
-          </div>
-        `;
-      } else if (viewId === "payment-view") {
-        const total = getCheckoutTotal();
-        document.getElementById("pay-gmail-label").textContent = state.customer.email;
-        document.getElementById("qr-amount-text").textContent = formatINR(total);
-        document.getElementById("card-pay-amount").textContent = formatINR(total);
-        document.getElementById("cod-amount-text").textContent = formatINR(total);
-        selectPaymentTab("qr");
-        generateRandomQR();
-        updateCardPreview();
-      } else if (viewId === "orders-view") {
-        renderOrdersHistory();
-      }
-
-      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function selectDeliveryType(type) {
-      state.deliveryType = type;
-      document.querySelectorAll(".dtype-btn").forEach(btn => {
-        const isMatch = btn.id === `dtype-${type}`;
-        btn.className = isMatch
-          ? "dtype-btn py-2.5 px-2 rounded-xl bg-nirmaan-green text-nirmaan-cream text-xs font-bold border border-nirmaan-green transition cursor-pointer"
-          : "dtype-btn py-2.5 px-2 rounded-xl bg-white text-nirmaan-green text-xs font-bold border border-nirmaan-creamBorder transition cursor-pointer";
-      });
+    function openAddressStep() {
+      document.getElementById("addr-name").value = customer.name;
+      document.getElementById("addr-phone").value = customer.phone;
+      showSection("address-view");
     }
 
     function fillSampleAddress() {
-      document.getElementById("addr-name").value = state.customer.name || "Ananya Verma";
-      document.getElementById("addr-phone").value = state.customer.phone || "9820112233";
       document.getElementById("addr-line1").value = "Flat 402, Emerald Tower";
-      document.getElementById("addr-pincode").value = "401107";
       document.getElementById("addr-line2").value = "Kanakia Road, Mira Road East";
-      document.getElementById("addr-landmark").value = "Near Nirmaan Flea Market Main Gate";
       document.getElementById("addr-city").value = "Mira Bhayandar";
-      selectDeliveryType("Home");
-      showToast("Sample address filled!");
+      document.getElementById("addr-pin").value = "401107";
+      document.getElementById("addr-landmark").value = "Near Nirmaan Flea Market Gate";
     }
 
-    function submitAddressStep() {
-      const fullName = document.getElementById("addr-name").value.trim() || state.customer.name;
-      const phone = document.getElementById("addr-phone").value.trim().replace(/\D/g, "") || state.customer.phone;
+    function proceedToPayment() {
       const line1 = document.getElementById("addr-line1").value.trim();
-      const pincode = document.getElementById("addr-pincode").value.trim();
       const line2 = document.getElementById("addr-line2").value.trim();
-      const landmark = document.getElementById("addr-landmark").value.trim();
       const city = document.getElementById("addr-city").value.trim();
-
-      if (!line1 || !line2 || !city || !/^\d{6}$/.test(pincode)) {
-        showToast("Please fill Flat/House No., Area, City, and 6-digit Pincode (or tap Quick Fill).");
-        return;
-      }
-
-      state.shippingAddress = {
-        fullName,
-        phone,
-        line1,
-        pincode,
-        line2,
-        landmark,
-        city,
-        type: state.deliveryType
+      const pin = document.getElementById("addr-pin").value.trim();
+      if (!line1 || !line2 || !city || pin.length < 6) return toast("Please fill complete address & 6-digit pincode.");
+      shipping = {
+        name: document.getElementById("addr-name").value.trim() || customer.name,
+        phone: document.getElementById("addr-phone").value.trim() || customer.phone,
+        full: `${line1}, ${line2}, ${city} - ${pin}`
       };
-      navigateTo("payment-view");
+      const total = checkoutItems.reduce((s, i) => s + i.price * i.qty, 0);
+      document.getElementById("pay-total").textContent = `₹${total}`;
+      document.getElementById("pay-email-preview").textContent = customer.email;
+      generateQR();
+      selectPayMode("qr");
+      showSection("payment-view");
     }
 
-    function selectPaymentTab(mode) {
+    function selectPayMode(mode) {
       ["qr", "card", "cod"].forEach(m => {
-        const tab = document.getElementById(`pay-tab-${m}`);
-        const panel = document.getElementById(`pay-panel-${m}`);
-        if (m === mode) {
-          tab.className = "p-3.5 rounded-2xl border-2 border-nirmaan-green bg-nirmaan-green 
+        const active = m === mode;
+        document.getElementById(`tab-${m}`).className = active
+          ? "py-3 px-2 rounded-xl border-2 border-nirmaan-green bg-nirmaan-green text-nirmaan-cream font-bold text-xs cursor-pointer"
+          : "py-3 px-2 rounded-xl border-2 border-gray-200 bg-nirmaan-cream text-nirmaan-green font-bold text-xs cursor-pointer";
+        document.getElementById(`panel-${m}`).classList.toggle("hidden", !active);
+      });
+    }
+
+    function generateQR() {
+      const cells = Array.from({ length: 64 }, () => Math.random() > 0.45 ? "#08361c" : "#ffffff");
+      let rects = "";
+      cells.forEach((col, idx) => {
+        const x = (idx % 8) * 10;
+        const y = Math.floor(idx / 8) * 10;
+        rects += `<rect x="${x}" y="${y}" width="10" height="10" fill="${col}"/>`;
+      });
+      document.getElementById("qr-box").innerHTML = `<svg viewBox="0 0 80 80" class="w-36 h-36">${rects}</svg>`;
+      document.getElementById("qr-ref").textContent = `UPI Ref: NRM-${Math.floor(100000 + Math.random() * 900000)}`;
+    }
+
+    function payWithCard() {
+      const num = document.getElementById("card-num").value.replace(/\D/g, "");
+      const exp = document.getElementById("card-exp").value.trim();
+      const cvv = document.getElementById("card-cvv").value.trim();
+      const type = document.getElementById("card-type").value;
+      if (num.length < 12 || !exp || cvv.length < 3) return toast("Enter valid Card Number, Expiry, and CVV.");
+      completeOrder(`${type} Card (•••• ${num.slice(-4)})`);
+    }
+
+    function completeOrder(method) {
+      const orderId = `NRM-${Math.floor(10000 + Math.random() * 90000)}`;
+      const total = checkoutItems.reduce((s, i) => s + i.price * i.qty, 0);
+      document.getElementById("rcpt-email").textContent = customer.email;
+      document.getElementById("rcpt-details").innerHTML = `
+        <div><b>Order ID:</b> ${orderId}</div>
+        <div><b>Customer:</b> ${shipping.name} (+91 ${shipping.phone})</div>
+        <div><b>Address:</b> ${shipping.full}</div>
+        <div><b>Payment:</b> ${method}</div>
+        <div class="text-sm font-extrabold text-nirmaan-green pt-1">Total Paid: ₹${total}</div>
+      `;
+      document.getElementById("rcpt-items").innerHTML = checkoutItems.map(i => `
+        <div class="py-2 flex justify-between">
+          <span>${i.name} × ${i.qty}</span>
+          <b>₹${i.price * i.qty}</b>
+        </div>
+      `).join("");
+
+      const body = encodeURIComponent(
+        `Nirmaan Flea Market E-Bill\nOrder ID: ${orderId}\nCustomer: ${shipping.name}\nAddress: ${shipping.full}\nPayment: ${method}\n\nItems:\n` +
+        checkoutItems.map(i => `- ${i.name} x${i.qty}: Rs.${i.price * i.qty}`).join("\n") +
+        `\n\nTotal: Rs.${total}`
+      );
+      document.getElementById("gmail-compose-link").href = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(customer.email)}&su=${encodeURIComponent("Nirmaan Store E-Bill - " + orderId)}&body=${body}`;
+
+      cart = [];
+      updateCartUI();
+      showSection("receipt-view");
+      toast("Order Confirmed & E-Bill Ready!");
+    }
+
+    function startNewOrder() {
+      showSection("products-view");
+    }
+
+    function toggleAI() {
+      document.getElementById("ai-box").classList.toggle("hidden");
+    }
+
+    function sendAI() {
+      const input = document.getElementById("ai-input");
+      const q = input.value.trim();
+      if (!q) return;
+      input.value = "";
+      const box = document.getElementById("ai-messages");
+      box.innerHTML += `<div class="bg-nirmaan-green text-nirmaan-cream p-2.5 rounded-2xl ml-8">${q}</div>`;
+
+      const low = q.toLowerCase();
+      let reply = "You can filter stalls using the Group 1 to Group 7 tabs at the top, add items to your cart, and pay via QR, Card, or Cash on Delivery.";
+      if (low.includes("detail") || low.includes("login") || low.includes("account") || low.includes("email") || low.includes("phone")) {
+        reply = `Your active login details:<br>• <b>Name:</b> ${customer.name}<br>• <b>Gmail:</b> ${customer.email}<br>• <b>Phone:</b> +91 ${customer.phone}`;
+      } else {
+        const matches = PRODUCTS.filter(p => p.name.toLowerCase().includes(low) || low.includes(p.name.toLowerCase().split(" ")[0]));
+        if (matches.length) {
+          reply = "Here is what I found:<br>" + matches.slice(0, 5).map(m => `• <b>${m.name}</b> (${m.group.replace('G','Group ')}) — ₹${m.price}`).join("<br>");
+        }
+      }
+      box.innerHTML += `<div class="bg-white p-2.5 rounded-2xl border border-gray-200 mr-6">${reply}</div>`;
+      box.scrollTop = box.scrollHeight;
+    }
+
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./sw.js").catch(() => {});
+    }
+  </script>
+</body>
+</html>
