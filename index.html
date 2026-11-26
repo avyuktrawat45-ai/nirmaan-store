@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Nirmaan Store | Group 1–7 Marketplace</title>
+  <title>Nirmaan Store | Nirmaan Flea Market (Groups 1–7)</title>
 
   <!-- PWA Manifest & Theme Color -->
   <link rel="manifest" href="manifest.json" />
@@ -13,9 +13,9 @@
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome Icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <script>
@@ -49,7 +49,6 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Hide scrollbars on horizontal group pills */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -69,10 +68,9 @@
       }
     }
     .animate-in {
-      animation: slideUpFade 0.28s ease-out forwards;
+      animation: slideUpFade 0.25s ease-out forwards;
     }
 
-    /* Print E-Bill cleanly */
     @media print {
       body * {
         visibility: hidden;
@@ -93,35 +91,33 @@
 </head>
 <body class="min-h-screen flex flex-col pb-20 md:pb-8 selection:bg-nirmaan-green selection:text-nirmaan-cream">
 
-  <!-- ===================================================================== -->
-  <!-- TOAST NOTIFICATION CONTAINER (No alert/confirm used)                  -->
-  <!-- ===================================================================== -->
+  <!-- Toast Notification Container -->
   <div id="toast-container" class="fixed top-20 right-4 z-[100] flex flex-col gap-2 pointer-events-none max-w-xs w-full"></div>
 
   <!-- ===================================================================== -->
-  <!-- STEP 1: CUSTOMER GREETING & GMAIL/PHONE ONBOARDING SCREEN             -->
+  <!-- GREETING & ONBOARDING SCREEN (#onboarding-screen)                      -->
   <!-- ===================================================================== -->
   <div id="onboarding-screen" class="fixed inset-0 z-50 bg-nirmaan-green flex items-center justify-center p-4 overflow-y-auto">
     <div class="w-full max-w-md bg-nirmaan-cream text-nirmaan-green rounded-3xl p-6 sm:p-8 shadow-2xl border border-nirmaan-creamBorder animate-in">
-      <!-- Custom Curved 'N' Logo Mark -->
       <div class="flex flex-col items-center text-center mb-6">
         <div class="w-20 h-20 rounded-3xl bg-nirmaan-green flex items-center justify-center shadow-lg mb-3">
           <svg viewBox="0 0 100 100" class="w-12 h-12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24 78C20 62 20 34 31 25C39 18 47 28 53 43C59 58 66 72 74 66C81 61 78 36 72 22H56C61 32 63 45 59 48C55 51 49 39 44 28C38 15 26 14 19 23C11 33 12 61 16 78H24Z" fill="#fdfbf5"/>
             <path d="M23 78C19 58 19 32 29 24C37 18 44 29 50 44C56 59 64 74 73 68C81 62 79 36 73 22H55C60 33 63 48 58 51C53 54 47 41 42 29C36 16 25 14 18 23C10 34 11 61 15 78H23Z" fill="#fdfbf5"/>
           </svg>
         </div>
-        <h1 class="text-2xl font-extrabold tracking-tight text-nirmaan-green">Welcome to Nirmaan</h1>
+        <span class="px-3 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[10px] font-extrabold uppercase tracking-wider mb-1">
+          Nirmaan Flea Market
+        </span>
+        <h1 class="text-2xl font-extrabold tracking-tight text-nirmaan-green">Welcome to Nirmaan Store</h1>
         <p class="text-xs sm:text-sm text-nirmaan-green/75 mt-1">
-          Sign in with your Gmail & mobile number to explore Group 1–7 stores and get instant digital E-Bills.
+          Enter your name, Gmail address, and phone number to shop Groups 1–7 and receive your digital E-Bill.
         </p>
       </div>
 
-      <!-- Login Form -->
       <form id="onboarding-form" class="space-y-4" novalidate>
         <div>
           <label for="cust-name" class="block text-xs font-bold uppercase tracking-wider text-nirmaan-green/80 mb-1">
-            Customer Name <span class="text-rose-600">*</span>
+            Full Name <span class="text-rose-600">*</span>
           </label>
           <div class="relative">
             <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-nirmaan-green/50">
@@ -130,7 +126,7 @@
             <input
               type="text"
               id="cust-name"
-              placeholder="e.g. Riya Patel"
+              placeholder="e.g. Ananya Verma"
               class="w-full pl-10 pr-4 py-3 bg-white border border-nirmaan-creamBorder rounded-2xl text-sm font-medium text-nirmaan-green placeholder-nirmaan-green/40 focus:outline-none focus:border-nirmaan-green focus:ring-2 focus:ring-nirmaan-green/15"
               required
             />
@@ -140,7 +136,7 @@
 
         <div>
           <label for="cust-email" class="block text-xs font-bold uppercase tracking-wider text-nirmaan-green/80 mb-1">
-            Gmail Account (For E-Bill) <span class="text-rose-600">*</span>
+            Gmail Address <span class="text-rose-600">*</span>
           </label>
           <div class="relative">
             <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-nirmaan-green/50">
@@ -149,7 +145,7 @@
             <input
               type="email"
               id="cust-email"
-              placeholder="yourname@gmail.com"
+              placeholder="customer@gmail.com"
               class="w-full pl-10 pr-4 py-3 bg-white border border-nirmaan-creamBorder rounded-2xl text-sm font-medium text-nirmaan-green placeholder-nirmaan-green/40 focus:outline-none focus:border-nirmaan-green focus:ring-2 focus:ring-nirmaan-green/15"
               required
             />
@@ -159,7 +155,7 @@
 
         <div>
           <label for="cust-phone" class="block text-xs font-bold uppercase tracking-wider text-nirmaan-green/80 mb-1">
-            Phone Number <span class="text-rose-600">*</span>
+            Phone Number (10-digit) <span class="text-rose-600">*</span>
           </label>
           <div class="flex">
             <span class="inline-flex items-center px-3.5 rounded-l-2xl border border-r-0 border-nirmaan-creamBorder bg-nirmaan-creamDark text-nirmaan-green font-bold text-sm">
@@ -174,37 +170,44 @@
               required
             />
           </div>
-          <p id="err-phone" class="hidden text-xs text-rose-600 font-medium mt-1">Enter a valid 10-digit Indian mobile number.</p>
+          <p id="err-phone" class="hidden text-xs text-rose-600 font-medium mt-1">Enter a valid 10-digit mobile number (starts with 6–9).</p>
         </div>
 
         <button
           type="submit"
           class="w-full py-3.5 px-6 rounded-2xl bg-nirmaan-green hover:bg-nirmaan-greenHover text-nirmaan-cream font-bold text-sm shadow-lg flex items-center justify-center gap-2 transition active:scale-[0.99] cursor-pointer"
         >
-          <span>Start Shopping</span>
+          <span>Enter Nirmaan Store</span>
           <i class="fa-solid fa-arrow-right"></i>
         </button>
 
-        <button
-          type="button"
-          onclick="fillDemoCustomer()"
-          class="w-full py-2.5 px-4 rounded-xl bg-nirmaan-creamDark hover:bg-nirmaan-creamBorder/60 text-nirmaan-green text-xs font-bold transition cursor-pointer"
-        >
-          Quick Guest Demo Fill
-        </button>
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            onclick="fillDemoCustomer()"
+            class="flex-1 py-2.5 px-3 rounded-xl bg-nirmaan-creamDark hover:bg-nirmaan-creamBorder/70 text-nirmaan-green text-xs font-bold transition cursor-pointer"
+          >
+            Quick Demo Fill
+          </button>
+          <button
+            type="button"
+            onclick="skipAsGuest()"
+            class="flex-1 py-2.5 px-3 rounded-xl border border-nirmaan-creamBorder hover:bg-white text-nirmaan-green text-xs font-bold transition cursor-pointer"
+          >
+            Browse as Guest
+          </button>
+        </div>
       </form>
     </div>
   </div>
 
   <!-- ===================================================================== -->
-  <!-- TOP APP BAR (Deep Forest Green #08361c with Nirmaan 'N' Logo)         -->
+  <!-- TOP APP BAR                                                           -->
   <!-- ===================================================================== -->
   <header class="sticky top-0 z-30 bg-nirmaan-green text-nirmaan-cream shadow-md">
     <div class="max-w-6xl mx-auto px-4 pt-3 pb-3 space-y-2.5">
-      <!-- Top Row: Brand Logo + User Profile + Cart Button -->
       <div class="flex items-center justify-between gap-3">
-        <button onclick="navigateTo('store')" class="flex items-center gap-2.5 cursor-pointer text-left">
-          <!-- Custom Nirmaan Curved 'N' SVG Icon -->
+        <button onclick="navigateTo('store'); selectGroup('All');" class="flex items-center gap-2.5 cursor-pointer text-left">
           <div class="w-9 h-9 rounded-xl bg-nirmaan-cream flex items-center justify-center shadow-sm shrink-0">
             <svg viewBox="0 0 100 100" class="w-6 h-6" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M23 78C19 58 19 32 29 24C37 18 44 29 50 44C56 59 64 74 73 68C81 62 79 36 73 22H55C60 33 63 48 58 51C53 54 47 41 42 29C36 16 25 14 18 23C10 34 11 61 15 78H23Z" fill="#08361c"/>
@@ -212,18 +215,17 @@
           </div>
           <div>
             <span class="font-extrabold text-xl tracking-tight leading-none block text-nirmaan-cream">Nirmaan</span>
-            <span class="text-[10px] uppercase tracking-widest text-nirmaan-cream/70 font-semibold">Groups 1–7 Store</span>
+            <span class="text-[10px] uppercase tracking-widest text-nirmaan-cream/75 font-semibold">Flea Market • Groups 1–7</span>
           </div>
         </button>
 
-        <!-- Right Controls: Profile & Cart -->
-        <div class="flex items-center gap-2.5">
+        <div class="flex items-center gap-2">
           <button
             onclick="navigateTo('account')"
-            title="Account & Login Details"
-            class="flex items-center gap-2 bg-nirmaan-greenLight/80 hover:bg-nirmaan-greenLight border border-nirmaan-cream/15 rounded-full px-3 py-1.5 transition cursor-pointer"
+            title="Profile & Login Details"
+            class="flex items-center gap-2 bg-nirmaan-greenLight/90 hover:bg-nirmaan-greenLight border border-nirmaan-cream/15 rounded-full px-3 py-1.5 transition cursor-pointer"
           >
-            <i class="fa-regular fa-circle-user text-base text-nirmaan-cream"></i>
+            <i class="fa-regular fa-circle-user text-sm text-nirmaan-cream"></i>
             <span id="header-user-name" class="text-xs font-semibold max-w-[90px] truncate hidden sm:inline">Guest</span>
           </button>
 
@@ -235,7 +237,7 @@
             <span class="text-xs hidden sm:inline">Cart</span>
             <span
               id="cart-badge-count"
-              class="min-w-[20px] h-5 px-1.5 rounded-full bg-rose-600 text-white text-[11px] font-extrabold flex items-center justify-center"
+              class="min-w-[20px] h-5 px-1.5 rounded-full bg-amber-500 text-nirmaan-green text-[11px] font-extrabold flex items-center justify-center"
             >
               0
             </span>
@@ -243,7 +245,7 @@
         </div>
       </div>
 
-      <!-- Search Input Bar -->
+      <!-- Search Bar -->
       <div id="header-search-bar" class="relative">
         <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-nirmaan-green/50">
           <i class="fa-solid fa-magnifying-glass text-sm"></i>
@@ -252,8 +254,8 @@
           type="text"
           id="search-input"
           oninput="handleSearch(this.value)"
-          placeholder="Search products across Group 1 to Group 7..."
-          class="w-full pl-10 pr-9 py-2.5 bg-nirmaan-cream text-nirmaan-green placeholder-nirmaan-green/50 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-nirmaan-cream/40"
+          placeholder="Search 47 products across Groups 1–7 (Brownie, Perfume, Candle, Kokum...)"
+          class="w-full pl-10 pr-9 py-2.5 bg-nirmaan-cream text-nirmaan-green placeholder-nirmaan-green/50 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-400"
         />
         <button
           id="clear-search-btn"
@@ -267,65 +269,56 @@
   </header>
 
   <!-- ===================================================================== -->
-  <!-- MAIN CONTENT CONTAINER                                                -->
+  <!-- MAIN CONTENT                                                          -->
   <!-- ===================================================================== -->
   <main class="flex-1 max-w-6xl w-full mx-auto px-4 pt-4 pb-8">
 
-    <!-- =================================================================== -->
-    <!-- VIEW 1: STOREFRONT (ALL PRODUCTS + GROUP 1 TO GROUP 7 TABS)         -->
-    <!-- =================================================================== -->
+    <!-- VIEW 1: STOREFRONT -->
     <section id="view-store" class="space-y-4 animate-in">
-
-      <!-- Horizontal Group Pills: All (Outside Inbox) + Group 1 to Group 7 -->
+      <!-- Horizontal Group Pills -->
       <div class="sticky top-[106px] z-20 bg-nirmaan-cream/95 backdrop-blur-md py-2 -mx-4 px-4 border-b border-nirmaan-creamBorder">
-        <div id="group-pills-container" class="flex items-center gap-2 overflow-x-auto no-scrollbar">
-          <!-- Pills injected dynamically via JS -->
-        </div>
+        <div id="group-pills-container" class="flex items-center gap-2 overflow-x-auto no-scrollbar"></div>
       </div>
 
-      <!-- Active Group Header Banner -->
-      <div id="active-group-banner" class="bg-white border border-nirmaan-creamBorder rounded-2xl p-4 flex items-center justify-between gap-3 shadow-sm">
+      <!-- Active Group Banner -->
+      <div class="bg-white border border-nirmaan-creamBorder rounded-2xl p-4 flex items-center justify-between gap-3 shadow-sm">
         <div>
           <span id="banner-group-tag" class="inline-block text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-nirmaan-green text-nirmaan-cream mb-1">
             ALL GROUPS COMBINED
           </span>
           <h2 id="banner-group-title" class="text-base sm:text-lg font-extrabold text-nirmaan-green">
-            All Nirmaan Products (Groups 1–7)
+            All Nirmaan Flea Market Products (Groups 1–7)
           </h2>
           <p id="banner-group-subtitle" class="text-xs text-nirmaan-green/70">
-            Showing every product from Group 1 to Group 7 in one combined catalog.
+            Showing all 47 products from Stalls 1 to 7 together.
           </p>
         </div>
-        <div class="text-right shrink-0">
-          <span id="banner-product-count" class="text-lg font-extrabold text-nirmaan-green font-mono">0</span>
-          <span class="block text-[10px] uppercase tracking-wider text-nirmaan-green/60 font-bold">Items</span>
+        <div class="text-right shrink-0 bg-nirmaan-cream px-3 py-2 rounded-xl border border-nirmaan-creamBorder">
+          <span id="banner-product-count" class="text-lg font-extrabold text-nirmaan-green font-mono">47</span>
+          <span class="block text-[10px] uppercase tracking-wider text-nirmaan-green/65 font-bold">Products</span>
         </div>
       </div>
 
-      <!-- 2-Column Mobile / 4-Column Desktop Product Grid -->
-      <div id="products-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
-        <!-- Product cards injected dynamically -->
-      </div>
+      <!-- Product Grid -->
+      <div id="products-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5"></div>
 
-      <!-- Empty Search Result State -->
+      <!-- Empty State -->
       <div id="empty-search-state" class="hidden bg-white border border-nirmaan-creamBorder rounded-3xl p-10 text-center">
         <i class="fa-solid fa-box-open text-4xl text-nirmaan-green/30 mb-3"></i>
-        <h3 class="text-base font-extrabold text-nirmaan-green">No products matched your search</h3>
-        <p class="text-xs text-nirmaan-green/65 mt-1">Try searching for another product name or switch back to "All".</p>
+        <h3 class="text-base font-extrabold text-nirmaan-green">No matching products found</h3>
+        <p class="text-xs text-nirmaan-green/65 mt-1">Try another keyword or reset to All Products.</p>
         <button onclick="resetStoreFilters()" class="mt-4 px-4 py-2 rounded-xl bg-nirmaan-green text-nirmaan-cream text-xs font-bold cursor-pointer">
-          Show All Products
+          Reset to All Products
         </button>
       </div>
     </section>
 
-    <!-- =================================================================== -->
-    <!-- VIEW 2: DELIVERY ADDRESS FORM PAGE                                  -->
-    <!-- =================================================================== -->
+    <!-- VIEW 2: ADDRESS PAGE -->
     <section id="view-address" class="hidden animate-in max-w-3xl mx-auto space-y-5">
       <div class="flex items-center justify-between">
         <div>
           <h2 class="text-xl sm:text-2xl font-extrabold text-nirmaan-green">Delivery Address</h2>
-          <p class="text-xs sm:text-sm text-nirmaan-green/70">Step 1 of 2 • Where should we deliver your order?</p>
+          <p class="text-xs sm:text-sm text-nirmaan-green/70">Step 1 of 2 • Enter your delivery details</p>
         </div>
         <button onclick="navigateTo('store')" class="text-xs font-bold text-nirmaan-green hover:underline flex items-center gap-1 cursor-pointer">
           <i class="fa-solid fa-arrow-left"></i> Back to Store
@@ -333,7 +326,6 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <!-- Address Form -->
         <form id="address-form" class="md:col-span-2 bg-white border border-nirmaan-creamBorder rounded-3xl p-5 sm:p-6 space-y-4 shadow-sm" novalidate>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <div>
@@ -353,18 +345,18 @@
             </div>
             <div>
               <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Landmark (Optional)</label>
-              <input type="text" id="addr-landmark" placeholder="Near School / Metro Station" class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm focus:outline-none focus:border-nirmaan-green" />
+              <input type="text" id="addr-landmark" placeholder="Near Main Gate / Stall Zone" class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm focus:outline-none focus:border-nirmaan-green" />
             </div>
           </div>
 
           <div>
             <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Flat, House No., Building, Apartment *</label>
-            <input type="text" id="addr-line1" placeholder="Flat 302, Green Valley Residency" required class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm focus:outline-none focus:border-nirmaan-green" />
+            <input type="text" id="addr-line1" placeholder="Flat 204, Nirmaan Heights" required class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm focus:outline-none focus:border-nirmaan-green" />
           </div>
 
           <div>
-            <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Area, Street, Sector, Village *</label>
-            <input type="text" id="addr-line2" placeholder="Shanti Park, Mira Road East" required class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm focus:outline-none focus:border-nirmaan-green" />
+            <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Street, Area, Sector, Locality *</label>
+            <input type="text" id="addr-line2" placeholder="Flea Market Avenue, Sector 4" required class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm focus:outline-none focus:border-nirmaan-green" />
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
@@ -381,45 +373,47 @@
                 <option value="Gujarat">Gujarat</option>
                 <option value="Tamil Nadu">Tamil Nadu</option>
                 <option value="Telangana">Telangana</option>
-                <option value="West Bengal">West Bengal</option>
-                <option value="Uttar Pradesh">Uttar Pradesh</option>
                 <option value="Rajasthan">Rajasthan</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
               </select>
             </div>
           </div>
 
-          <div class="flex gap-3 pt-1">
-            <label class="cursor-pointer flex-1">
+          <div class="grid grid-cols-3 gap-2.5 pt-1">
+            <label class="cursor-pointer">
               <input type="radio" name="addr-type" value="Home" checked class="peer sr-only" />
-              <div class="py-2.5 px-3 rounded-xl border border-nirmaan-creamBorder text-center text-xs font-bold peer-checked:bg-nirmaan-green peer-checked:text-nirmaan-cream transition">
+              <div class="py-2.5 px-2 rounded-xl border border-nirmaan-creamBorder text-center text-xs font-bold peer-checked:bg-nirmaan-green peer-checked:text-nirmaan-cream transition">
                 <i class="fa-solid fa-house mr-1"></i> Home
               </div>
             </label>
-            <label class="cursor-pointer flex-1">
+            <label class="cursor-pointer">
+              <input type="radio" name="addr-type" value="Stall" class="peer sr-only" />
+              <div class="py-2.5 px-2 rounded-xl border border-nirmaan-creamBorder text-center text-xs font-bold peer-checked:bg-nirmaan-green peer-checked:text-nirmaan-cream transition">
+                <i class="fa-solid fa-store mr-1"></i> Stall
+              </div>
+            </label>
+            <label class="cursor-pointer">
               <input type="radio" name="addr-type" value="Office" class="peer sr-only" />
-              <div class="py-2.5 px-3 rounded-xl border border-nirmaan-creamBorder text-center text-xs font-bold peer-checked:bg-nirmaan-green peer-checked:text-nirmaan-cream transition">
-                <i class="fa-solid fa-building mr-1"></i> Office / Stall
+              <div class="py-2.5 px-2 rounded-xl border border-nirmaan-creamBorder text-center text-xs font-bold peer-checked:bg-nirmaan-green peer-checked:text-nirmaan-cream transition">
+                <i class="fa-solid fa-building mr-1"></i> Office
               </div>
             </label>
           </div>
 
           <button type="submit" class="w-full py-3.5 rounded-2xl bg-nirmaan-green hover:bg-nirmaan-greenHover text-nirmaan-cream font-extrabold text-sm shadow-md transition cursor-pointer">
-            Continue to Payment <i class="fa-solid fa-arrow-right ml-1"></i>
+            Proceed to Payment <i class="fa-solid fa-arrow-right ml-1"></i>
           </button>
         </form>
 
-        <!-- Order Summary Mini Box -->
         <div id="address-summary-box" class="bg-white border border-nirmaan-creamBorder rounded-3xl p-5 h-fit shadow-sm"></div>
       </div>
     </section>
 
-    <!-- =================================================================== -->
-    <!-- VIEW 3: PAYMENT GATEWAY (ONLINE QR / CARD / CASH ON DELIVERY)       -->
-    <!-- =================================================================== -->
+    <!-- VIEW 3: PAYMENT GATEWAY -->
     <section id="view-payment" class="hidden animate-in max-w-3xl mx-auto space-y-5">
       <div class="flex items-center justify-between">
         <div>
-          <h2 class="text-xl sm:text-2xl font-extrabold text-nirmaan-green">Payment Method</h2>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-nirmaan-green">Select Payment Option</h2>
           <p class="text-xs text-nirmaan-green/70">E-Bill will be sent to <strong id="pay-gmail-label"></strong></p>
         </div>
         <button onclick="navigateTo('address')" class="text-xs font-bold text-nirmaan-green hover:underline cursor-pointer">
@@ -427,7 +421,7 @@
         </button>
       </div>
 
-      <!-- Three Payment Mode Buttons -->
+      <!-- 3 Payment Mode Buttons -->
       <div class="grid grid-cols-3 gap-2.5 sm:gap-4">
         <button
           type="button"
@@ -459,28 +453,28 @@
         >
           <i class="fa-solid fa-hand-holding-dollar text-lg mb-1 block"></i>
           <span class="font-extrabold text-xs sm:text-sm block">Cash on Delivery</span>
-          <span class="text-[10px] opacity-70 block">Pay on Arrival</span>
+          <span class="text-[10px] opacity-70 block">Instant COD</span>
         </button>
       </div>
 
-      <!-- PANEL 1: RANDOM UPI QR CODE -->
+      <!-- Option 1: Random UPI QR -->
       <div id="pay-panel-qr" class="bg-white border border-nirmaan-creamBorder rounded-3xl p-6 shadow-sm flex flex-col sm:flex-row items-center gap-6">
         <div class="bg-nirmaan-cream p-4 rounded-2xl border border-nirmaan-creamBorder text-center shrink-0">
           <div id="qr-svg-box" class="w-44 h-44 mx-auto bg-white p-2 rounded-xl"></div>
           <p id="qr-ref-code" class="font-mono text-[11px] font-bold text-nirmaan-green mt-2">REF: NRM000000</p>
         </div>
         <div class="flex-1 text-center sm:text-left space-y-3">
-          <span class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-[11px] font-extrabold">
-            Dynamic UPI QR Generated
+          <span class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-[11px] font-extrabold">
+            Randomized UPI QR Code
           </span>
-          <h3 class="text-lg font-extrabold text-nirmaan-green">Scan & Pay <span id="qr-amount-text" class="font-mono">₹0</span></h3>
+          <h3 class="text-lg font-extrabold text-nirmaan-green">Pay <span id="qr-amount-text" class="font-mono">₹0</span> via UPI</h3>
           <p class="text-xs text-nirmaan-green/75">
-            Scan with GPay, PhonePe, Paytm, or any UPI app. Need a fresh code? Click regenerate below.
+            Scan the generated QR code or click Regenerate QR for a new code, then confirm to place your order and receive your Gmail E-Bill.
           </p>
           <div class="flex items-center justify-between bg-nirmaan-cream px-3 py-2 rounded-xl border border-nirmaan-creamBorder text-xs font-mono">
-            <span>UPI: <strong>nirmaan@upi</strong></span>
+            <span>UPI ID: <strong>nirmaanflea@upi</strong></span>
             <button type="button" onclick="generateRandomQR()" class="font-sans font-bold text-amber-700 hover:underline cursor-pointer">
-              <i class="fa-solid fa-rotate"></i> New QR
+              <i class="fa-solid fa-rotate"></i> Regenerate QR
             </button>
           </div>
           <button
@@ -488,21 +482,38 @@
             onclick="placeFinalOrder('Online Payment (UPI QR)')"
             class="w-full py-3.5 rounded-2xl bg-nirmaan-green hover:bg-nirmaan-greenHover text-nirmaan-cream font-extrabold text-sm shadow-md transition cursor-pointer"
           >
-            Confirm Payment & Place Order
+            Confirm UPI Payment & Place Order
           </button>
         </div>
       </div>
 
-      <!-- PANEL 2: CREDIT / DEBIT CARD FORM -->
-      <div id="pay-panel-card" class="hidden bg-white border border-nirmaan-creamBorder rounded-3xl p-6 shadow-sm">
+      <!-- Option 2: Card Payment -->
+      <div id="pay-panel-card" class="hidden bg-white border border-nirmaan-creamBorder rounded-3xl p-6 shadow-sm space-y-4">
+        <!-- Live Card Visual -->
+        <div class="bg-gradient-to-br from-nirmaan-green via-nirmaan-greenLight to-emerald-950 text-nirmaan-cream rounded-2xl p-4 shadow-md">
+          <div class="flex justify-between items-center text-xs">
+            <span class="uppercase tracking-widest text-nirmaan-cream/70 font-bold">Nirmaan Pay</span>
+            <span id="preview-card-type" class="px-2.5 py-0.5 rounded-full bg-amber-400 text-nirmaan-green font-extrabold text-[10px]">Visa</span>
+          </div>
+          <p id="preview-card-number" class="font-mono text-base sm:text-lg tracking-widest mt-5">•••• •••• •••• ••••</p>
+          <div class="flex justify-between items-end text-[11px] mt-4 text-nirmaan-cream/80 font-mono">
+            <span>EXP: <strong id="preview-card-expiry">MM/YY</strong></span>
+            <span>CVV: <strong id="preview-card-cvv">•••</strong></span>
+          </div>
+        </div>
+
         <form id="card-form" class="space-y-4" novalidate>
           <div>
             <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Card Type *</label>
-            <select id="card-type" class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm font-bold text-nirmaan-green focus:outline-none focus:border-nirmaan-green">
+            <select
+              id="card-type"
+              onchange="updateCardPreview()"
+              class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm font-bold text-nirmaan-green focus:outline-none focus:border-nirmaan-green"
+            >
               <option value="Visa">Visa</option>
               <option value="Mastercard">Mastercard</option>
               <option value="RuPay">RuPay</option>
-              <option value="American Express">American Express</option>
+              <option value="Amex">Amex</option>
             </select>
           </div>
 
@@ -512,8 +523,8 @@
               type="text"
               id="card-number"
               maxlength="19"
-              oninput="formatCardNumber(this)"
-              placeholder="4532 1234 5678 9010"
+              oninput="formatCardNumber(this); updateCardPreview();"
+              placeholder="4111 2222 3333 4444"
               class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm font-mono font-bold focus:outline-none focus:border-nirmaan-green"
               required
             />
@@ -521,13 +532,13 @@
 
           <div class="grid grid-cols-2 gap-3.5">
             <div>
-              <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Expiry Date (MM/YY) *</label>
+              <label class="block text-xs font-bold text-nirmaan-green/80 mb-1">Expiry (MM/YY) *</label>
               <input
                 type="text"
                 id="card-expiry"
                 maxlength="5"
-                oninput="formatCardExpiry(this)"
-                placeholder="08/29"
+                oninput="formatCardExpiry(this); updateCardPreview();"
+                placeholder="11/28"
                 class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm font-mono font-bold focus:outline-none focus:border-nirmaan-green"
                 required
               />
@@ -538,7 +549,8 @@
                 type="password"
                 id="card-cvv"
                 maxlength="4"
-                placeholder="•••"
+                oninput="updateCardPreview()"
+                placeholder="123"
                 class="w-full px-3.5 py-2.5 bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl text-sm font-mono font-bold focus:outline-none focus:border-nirmaan-green"
                 required
               />
@@ -551,47 +563,46 @@
         </form>
       </div>
 
-      <!-- PANEL 3: CASH ON DELIVERY (COD) -->
+      <!-- Option 3: Cash on Delivery -->
       <div id="pay-panel-cod" class="hidden bg-white border border-nirmaan-creamBorder rounded-3xl p-6 shadow-sm text-center sm:text-left">
         <div class="flex flex-col sm:flex-row items-center gap-5">
           <div class="w-16 h-16 rounded-2xl bg-nirmaan-creamDark flex items-center justify-center text-nirmaan-green text-2xl shrink-0">
             <i class="fa-solid fa-money-bill-wave"></i>
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-extrabold text-nirmaan-green">Cash on Delivery</h3>
+            <h3 class="text-lg font-extrabold text-nirmaan-green">Cash on Delivery (COD)</h3>
             <p class="text-xs sm:text-sm text-nirmaan-green/75 mt-1">
-              Pay <strong id="cod-amount-text" class="font-mono">₹0</strong> directly when your order is delivered. Your Gmail E-Bill will be generated immediately!
+              Order will be placed immediately with <strong id="cod-amount-text" class="font-mono">₹0</strong> payable upon delivery, and your E-Bill will be prepared for your Gmail.
             </p>
             <button
               type="button"
               onclick="placeFinalOrder('Cash on Delivery (COD)')"
               class="mt-4 w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-nirmaan-green hover:bg-nirmaan-greenHover text-nirmaan-cream font-extrabold text-sm shadow-md transition cursor-pointer"
             >
-              Place Order Now (COD)
+              Place Order (COD)
             </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- =================================================================== -->
-    <!-- VIEW 4: ORDER CONFIRMATION & GMAIL E-BILL                           -->
-    <!-- =================================================================== -->
+    <!-- VIEW 4: ORDER CONFIRMATION & GMAIL E-BILL -->
     <section id="view-confirmation" class="hidden animate-in max-w-3xl mx-auto space-y-5">
       <div class="bg-nirmaan-green text-nirmaan-cream rounded-3xl p-6 text-center shadow-lg">
-        <div class="w-14 h-14 rounded-full bg-nirmaan-cream text-nirmaan-green flex items-center justify-center text-2xl mx-auto mb-3 font-bold">
+        <div class="w-14 h-14 rounded-full bg-amber-400 text-nirmaan-green flex items-center justify-center text-2xl mx-auto mb-3 font-extrabold">
           <i class="fa-solid fa-check"></i>
         </div>
-        <h2 class="text-2xl font-extrabold">Order Placed!</h2>
+        <h2 class="text-2xl font-extrabold">Order Placed Successfully!</h2>
         <p class="text-xs sm:text-sm text-nirmaan-cream/85 mt-1">
-          E-Bill has been dispatched to your Gmail: <strong id="conf-gmail" class="underline"></strong>
+          Your E-Bill is ready for Gmail: <strong id="conf-gmail" class="underline"></strong>
         </p>
       </div>
 
-      <!-- Printable Gmail E-Bill Card -->
       <div id="printable-ebill" class="bg-white border border-nirmaan-creamBorder rounded-3xl overflow-hidden shadow-md">
         <div class="bg-nirmaan-creamDark px-5 py-3 border-b border-nirmaan-creamBorder flex items-center justify-between text-xs">
-          <span class="font-extrabold text-nirmaan-green"><i class="fa-solid fa-envelope-circle-check text-rose-600 mr-1.5"></i>GMAIL E-BILL RECEIPT</span>
+          <span class="font-extrabold text-nirmaan-green">
+            <i class="fa-solid fa-envelope-circle-check text-rose-600 mr-1.5"></i>NIRMAAN FLEA MARKET E-BILL
+          </span>
           <span id="ebill-date" class="font-mono text-nirmaan-green/70"></span>
         </div>
 
@@ -600,7 +611,7 @@
             <div>
               <h3 class="text-lg font-extrabold text-nirmaan-green">NIRMAAN STORE</h3>
               <p class="text-xs text-nirmaan-green/70">Order ID: <strong id="ebill-order-id" class="font-mono"></strong></p>
-              <p class="text-xs text-nirmaan-green/70">Payment: <strong id="ebill-pay-method"></strong></p>
+              <p class="text-xs text-nirmaan-green/70">Payment Mode: <strong id="ebill-pay-method"></strong></p>
             </div>
             <div class="text-left sm:text-right text-xs">
               <p class="font-bold text-nirmaan-green" id="ebill-cust-name"></p>
@@ -617,7 +628,7 @@
           <table class="w-full text-left text-xs border-collapse">
             <thead>
               <tr class="border-b border-nirmaan-creamBorder text-nirmaan-green/60 uppercase text-[10px]">
-                <th class="py-2">Product (Group)</th>
+                <th class="py-2">Item (#ID & Group)</th>
                 <th class="py-2 text-center">Qty</th>
                 <th class="py-2 text-right">Amount</th>
               </tr>
@@ -626,102 +637,86 @@
           </table>
 
           <div class="border-t border-nirmaan-creamBorder pt-3 flex justify-between items-center text-base font-extrabold text-nirmaan-green">
-            <span>Total Paid / Payable</span>
+            <span>Grand Total</span>
             <span id="ebill-total" class="font-mono text-lg">₹0</span>
           </div>
         </div>
       </div>
 
       <div class="flex flex-wrap gap-3 justify-center">
-        <button onclick="openGmailReceipt()" class="px-5 py-3 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-sm cursor-pointer">
-          <i class="fa-regular fa-envelope"></i> Open E-Bill in Gmail
-        </button>
+        <a id="gmail-mailto-link" href="#" class="px-5 py-3 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-sm">
+          <i class="fa-regular fa-envelope"></i> Send / Open Gmail E-Bill
+        </a>
         <button onclick="window.print()" class="px-5 py-3 rounded-2xl bg-white border border-nirmaan-creamBorder text-nirmaan-green font-bold text-xs sm:text-sm flex items-center gap-2 cursor-pointer">
-          <i class="fa-solid fa-print"></i> Save / Print PDF
+          <i class="fa-solid fa-print"></i> Print / Save PDF
         </button>
-        <button onclick="navigateTo('store')" class="px-5 py-3 rounded-2xl bg-nirmaan-green text-nirmaan-cream font-bold text-xs sm:text-sm flex items-center gap-2 cursor-pointer">
-          <i class="fa-solid fa-store"></i> Continue Shopping
+        <button onclick="navigateTo('store'); selectGroup('All');" class="px-5 py-3 rounded-2xl bg-nirmaan-green text-nirmaan-cream font-bold text-xs sm:text-sm flex items-center gap-2 cursor-pointer">
+          <i class="fa-solid fa-store"></i> Shop More
         </button>
       </div>
     </section>
 
-    <!-- =================================================================== -->
-    <!-- VIEW 5: MY ORDERS HISTORY TAB                                       -->
-    <!-- =================================================================== -->
+    <!-- VIEW 5: ORDERS HISTORY -->
     <section id="view-orders" class="hidden animate-in max-w-3xl mx-auto space-y-4">
       <h2 class="text-xl font-extrabold text-nirmaan-green">My Orders & E-Bills</h2>
       <div id="orders-history-list" class="space-y-3"></div>
     </section>
 
-    <!-- =================================================================== -->
-    <!-- VIEW 6: ACCOUNT & CATALOG SETTINGS TAB                              -->
-    <!-- =================================================================== -->
+    <!-- VIEW 6: ACCOUNT & PROFILE -->
     <section id="view-account" class="hidden animate-in max-w-2xl mx-auto space-y-5">
       <div class="bg-white border border-nirmaan-creamBorder rounded-3xl p-6 shadow-sm space-y-4">
         <div class="flex items-center gap-4">
           <div class="w-14 h-14 rounded-2xl bg-nirmaan-green text-nirmaan-cream flex items-center justify-center text-xl font-extrabold" id="acc-initials">
-            U
+            G
           </div>
           <div>
-            <h2 class="text-lg font-extrabold text-nirmaan-green" id="acc-name">Customer</h2>
-            <p class="text-xs text-nirmaan-green/75" id="acc-email">customer@gmail.com</p>
-            <p class="text-xs font-mono text-nirmaan-green/75" id="acc-phone">+91 0000000000</p>
+            <h2 class="text-lg font-extrabold text-nirmaan-green" id="acc-name">Guest Customer</h2>
+            <p class="text-xs text-nirmaan-green/75" id="acc-email">guest@gmail.com</p>
+            <p class="text-xs font-mono text-nirmaan-green/75" id="acc-phone">+91 9876543210</p>
           </div>
         </div>
 
         <div class="pt-3 border-t border-nirmaan-creamBorder flex flex-wrap gap-3">
-          <button onclick="switchAccount()" class="px-4 py-2.5 rounded-xl bg-nirmaan-green text-nirmaan-cream text-xs font-bold cursor-pointer">
-            <i class="fa-solid fa-user-pen mr-1.5"></i> Edit Login / Switch Gmail
+          <button onclick="openLoginScreen()" class="px-4 py-2.5 rounded-xl bg-nirmaan-green text-nirmaan-cream text-xs font-bold cursor-pointer">
+            <i class="fa-solid fa-user-pen mr-1.5"></i> Edit / Switch Login Details
           </button>
-          <button onclick="toggleCatalogEditor()" class="px-4 py-2.5 rounded-xl bg-nirmaan-creamDark text-nirmaan-green text-xs font-bold cursor-pointer">
-            <i class="fa-solid fa-pen-to-square mr-1.5"></i> Customize Group 1–7 Products
+          <button onclick="navigateTo('orders')" class="px-4 py-2.5 rounded-xl bg-nirmaan-creamDark text-nirmaan-green text-xs font-bold cursor-pointer">
+            <i class="fa-solid fa-receipt mr-1.5"></i> View Past E-Bills
           </button>
         </div>
-      </div>
-
-      <!-- Optional Quick Product Customizer for Exhibition Teams -->
-      <div id="catalog-editor-box" class="hidden bg-white border border-nirmaan-creamBorder rounded-3xl p-6 shadow-sm space-y-4">
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-base font-extrabold text-nirmaan-green">Customize Group 1–7 Products</h3>
-            <p class="text-xs text-nirmaan-green/70">Edit any product title or price live for your exhibition stall.</p>
-          </div>
-          <button onclick="resetDefaultCatalog()" class="text-xs text-rose-600 font-bold underline cursor-pointer">Reset Default</button>
-        </div>
-        <div id="catalog-editor-list" class="space-y-3 max-h-96 overflow-y-auto pr-1"></div>
       </div>
     </section>
 
   </main>
 
   <!-- ===================================================================== -->
-  <!-- MOBILE BOTTOM NAVIGATION BAR (Blinkit / App Style)                    -->
+  <!-- MOBILE BOTTOM NAV                                                     -->
   <!-- ===================================================================== -->
   <nav class="fixed bottom-0 inset-x-0 z-30 bg-nirmaan-green text-nirmaan-cream border-t border-nirmaan-cream/10 md:hidden">
     <div class="grid grid-cols-4 h-16">
-      <button onclick="navigateTo('store'); selectGroup('All')" id="bnav-home" class="flex flex-col items-center justify-center gap-1 text-nirmaan-cream cursor-pointer">
+      <button onclick="navigateTo('store'); selectGroup('All');" class="flex flex-col items-center justify-center gap-1 text-nirmaan-cream cursor-pointer">
         <i class="fa-solid fa-house text-base"></i>
-        <span class="text-[10px] font-bold">Home</span>
+        <span class="text-[10px] font-bold">All Items</span>
       </button>
-      <button onclick="navigateTo('store'); selectGroup('Group 1')" id="bnav-groups" class="flex flex-col items-center justify-center gap-1 text-nirmaan-cream/70 hover:text-nirmaan-cream cursor-pointer">
+      <button onclick="navigateTo('store'); selectGroup('Group 1');" class="flex flex-col items-center justify-center gap-1 text-nirmaan-cream/75 hover:text-nirmaan-cream cursor-pointer">
         <i class="fa-solid fa-layer-group text-base"></i>
         <span class="text-[10px] font-bold">Groups 1–7</span>
       </button>
-      <button onclick="navigateTo('orders')" id="bnav-orders" class="flex flex-col items-center justify-center gap-1 text-nirmaan-cream/70 hover:text-nirmaan-cream cursor-pointer">
+      <button onclick="navigateTo('orders')" class="flex flex-col items-center justify-center gap-1 text-nirmaan-cream/75 hover:text-nirmaan-cream cursor-pointer">
         <i class="fa-solid fa-receipt text-base"></i>
-        <span class="text-[10px] font-bold">My Orders</span>
+        <span class="text-[10px] font-bold">E-Bills</span>
       </button>
-      <button onclick="navigateTo('account')" id="bnav-account" class="flex flex-col items-center justify-center gap-1 text-nirmaan-cream/70 hover:text-nirmaan-cream cursor-pointer">
+      <button onclick="navigateTo('account')" class="flex flex-col items-center justify-center gap-1 text-nirmaan-cream/75 hover:text-nirmaan-cream cursor-pointer">
         <i class="fa-regular fa-user text-base"></i>
-        <span class="text-[10px] font-bold">Account</span>
+        <span class="text-[10px] font-bold">Login</span>
       </button>
     </div>
   </nav>
 
   <!-- ===================================================================== -->
-  <!-- SLIDE-OUT CART SIDEBAR (Opens Immediately When Adding to Cart)        -->
+  <!-- SLIDE-OUT CART SIDEBAR                                                -->
   <!-- ===================================================================== -->
-  <div id="cart-backdrop" onclick="toggleCartSidebar(false)" class="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs hidden"></div>
+  <div id="cart-backdrop" onclick="toggleCartSidebar(false)" class="fixed inset-0 z-40 bg-black/50 hidden"></div>
 
   <aside
     id="cart-sidebar"
@@ -731,7 +726,7 @@
       <div class="flex items-center gap-2">
         <i class="fa-solid fa-cart-shopping"></i>
         <h3 class="font-extrabold text-base">Your Cart</h3>
-        <span id="sidebar-item-count" class="text-xs bg-nirmaan-cream text-nirmaan-green font-extrabold px-2 py-0.5 rounded-full">0</span>
+        <span id="sidebar-item-count" class="text-xs bg-amber-400 text-nirmaan-green font-extrabold px-2 py-0.5 rounded-full">0</span>
       </div>
       <button onclick="toggleCartSidebar(false)" class="w-8 h-8 rounded-full bg-nirmaan-greenLight flex items-center justify-center cursor-pointer">
         <i class="fa-solid fa-xmark"></i>
@@ -742,7 +737,7 @@
 
     <div class="p-5 bg-white border-t border-nirmaan-creamBorder space-y-3">
       <div class="flex justify-between text-sm font-extrabold text-nirmaan-green">
-        <span>Cart Total</span>
+        <span>Subtotal</span>
         <span id="cart-subtotal-text" class="font-mono text-base">₹0</span>
       </div>
       <button
@@ -750,42 +745,39 @@
         onclick="proceedFromCartToCheckout()"
         class="w-full py-3.5 rounded-2xl bg-nirmaan-green hover:bg-nirmaan-greenHover text-nirmaan-cream font-extrabold text-sm shadow-md flex items-center justify-center gap-2 transition cursor-pointer"
       >
-        <span>Buy Now</span>
+        <span>Proceed to Buy</span>
         <i class="fa-solid fa-arrow-right"></i>
       </button>
     </div>
   </aside>
 
   <!-- ===================================================================== -->
-  <!-- BUILT-IN AI CUSTOMER ASSISTANT CHATBOT ('Nirmaan AI')                 -->
+  <!-- NIRMAAN AI CUSTOMER ASSISTANT CHATBOT                                 -->
   <!-- ===================================================================== -->
-  <!-- Floating 'N' Trigger Button -->
   <button
     onclick="toggleAIChat()"
     aria-label="Open Nirmaan AI Assistant"
-    class="fixed bottom-20 md:bottom-6 right-4 z-40 w-14 h-14 rounded-full bg-nirmaan-green text-nirmaan-cream shadow-2xl border-2 border-nirmaan-cream flex items-center justify-center hover:scale-105 transition cursor-pointer"
+    class="fixed bottom-20 md:bottom-6 right-4 z-40 w-14 h-14 rounded-full bg-nirmaan-green text-nirmaan-cream shadow-2xl border-2 border-amber-400 flex items-center justify-center hover:scale-105 transition cursor-pointer"
   >
     <svg viewBox="0 0 100 100" class="w-7 h-7" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M23 78C19 58 19 32 29 24C37 18 44 29 50 44C56 59 64 74 73 68C81 62 79 36 73 22H55C60 33 63 48 58 51C53 54 47 41 42 29C36 16 25 14 18 23C10 34 11 61 15 78H23Z" fill="#fdfbf5"/>
     </svg>
-    <span class="absolute -top-1 -right-1 px-1.5 py-0.5 rounded-full bg-amber-500 text-slate-950 text-[9px] font-extrabold">AI</span>
+    <span class="absolute -top-1 -right-1 px-1.5 py-0.5 rounded-full bg-amber-400 text-nirmaan-green text-[9px] font-extrabold">AI</span>
   </button>
 
-  <!-- AI Chat Drawer -->
   <div
     id="ai-chat-window"
     class="fixed bottom-36 md:bottom-24 right-4 z-50 w-[calc(100vw-2rem)] max-w-sm bg-white border border-nirmaan-creamBorder rounded-3xl shadow-2xl overflow-hidden hidden flex-col"
     style="height: 440px;"
   >
-    <!-- Chat Header -->
     <div class="bg-nirmaan-green text-nirmaan-cream px-4 py-3.5 flex items-center justify-between">
       <div class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-full bg-nirmaan-cream text-nirmaan-green flex items-center justify-center font-extrabold text-sm">
+        <div class="w-8 h-8 rounded-full bg-amber-400 text-nirmaan-green flex items-center justify-center font-extrabold text-sm">
           N
         </div>
         <div>
-          <h4 class="text-sm font-extrabold leading-none">Nirmaan AI Helper</h4>
-          <span class="text-[10px] text-emerald-300">● Online • Login, Groups 1–7 & Orders</span>
+          <h4 class="text-sm font-extrabold leading-none">Nirmaan AI Assistant</h4>
+          <span class="text-[10px] text-emerald-300">● Login help, Groups 1–7 & E-Bills</span>
         </div>
       </div>
       <button onclick="toggleAIChat()" class="text-nirmaan-cream/80 hover:text-white cursor-pointer">
@@ -793,31 +785,31 @@
       </button>
     </div>
 
-    <!-- Messages Area -->
     <div id="ai-chat-messages" class="flex-1 overflow-y-auto p-3.5 space-y-3 bg-nirmaan-cream/60 text-xs"></div>
 
-    <!-- Quick Prompt Chips -->
     <div class="px-3 py-2 bg-nirmaan-cream border-t border-nirmaan-creamBorder flex gap-1.5 overflow-x-auto no-scrollbar">
       <button onclick="sendQuickAIPrompt('Show my login details')" class="px-2.5 py-1 rounded-full bg-white border border-nirmaan-creamBorder text-[11px] font-bold text-nirmaan-green whitespace-nowrap cursor-pointer">
-        My Login Info
+        My Login
       </button>
-      <button onclick="sendQuickAIPrompt('List all 7 groups')" class="px-2.5 py-1 rounded-full bg-white border border-nirmaan-creamBorder text-[11px] font-bold text-nirmaan-green whitespace-nowrap cursor-pointer">
+      <button onclick="sendQuickAIPrompt('Open login screen')" class="px-2.5 py-1 rounded-full bg-white border border-nirmaan-creamBorder text-[11px] font-bold text-nirmaan-green whitespace-nowrap cursor-pointer">
+        Edit Login
+      </button>
+      <button onclick="sendQuickAIPrompt('Show Group 1 to Group 7')" class="px-2.5 py-1 rounded-full bg-white border border-nirmaan-creamBorder text-[11px] font-bold text-nirmaan-green whitespace-nowrap cursor-pointer">
         Groups 1–7
       </button>
-      <button onclick="sendQuickAIPrompt('Check my recent order')" class="px-2.5 py-1 rounded-full bg-white border border-nirmaan-creamBorder text-[11px] font-bold text-nirmaan-green whitespace-nowrap cursor-pointer">
-        My Orders
+      <button onclick="sendQuickAIPrompt('Budget under ₹100')" class="px-2.5 py-1 rounded-full bg-white border border-nirmaan-creamBorder text-[11px] font-bold text-nirmaan-green whitespace-nowrap cursor-pointer">
+        Under ₹100
       </button>
-      <button onclick="sendQuickAIPrompt('How do I switch account?')" class="px-2.5 py-1 rounded-full bg-white border border-nirmaan-creamBorder text-[11px] font-bold text-nirmaan-green whitespace-nowrap cursor-pointer">
-        Switch Login
+      <button onclick="sendQuickAIPrompt('Check latest order')" class="px-2.5 py-1 rounded-full bg-white border border-nirmaan-creamBorder text-[11px] font-bold text-nirmaan-green whitespace-nowrap cursor-pointer">
+        My E-Bill
       </button>
     </div>
 
-    <!-- Input Box -->
     <form id="ai-chat-form" class="p-2.5 bg-white border-t border-nirmaan-creamBorder flex items-center gap-2">
       <input
         type="text"
         id="ai-chat-input"
-        placeholder="Ask about your login, Group 1–7, or E-Bill..."
+        placeholder="Ask about your login, Group 1–7, prices, or E-Bill..."
         class="flex-1 px-3 py-2 bg-nirmaan-cream rounded-xl text-xs font-medium text-nirmaan-green focus:outline-none"
         autocomplete="off"
       />
@@ -828,50 +820,89 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- APPLICATION JAVASCRIPT                                                -->
+  <!-- JAVASCRIPT APPLICATION LOGIC                                          -->
   <!-- ===================================================================== -->
   <script>
-    // -----------------------------------------------------------------------
-    // 1. DEFAULT GROUP 1 TO GROUP 7 PRODUCT CATALOG
-    // -----------------------------------------------------------------------
-    const DEFAULT_PRODUCTS = [
-      // GROUP 1: Organic Snacks & Packaged Foods
-      { id: 101, group: "Group 1", groupTitle: "Organic Snacks & Foods", name: "Roasted Millet Namkeen Mix (250g)", price: 120, emoji: "🥨", bg: "#fef3c7", desc: "Crunchy multi-grain baked snack by Group 1." },
-      { id: 102, group: "Group 1", groupTitle: "Organic Snacks & Foods", name: "Farm Fresh Organic Ghee (500ml)", price: 450, emoji: "🍯", bg: "#fde68a", desc: "Pure A2 bilona cow ghee prepared fresh." },
+    // Exact 47 Master Products Across Groups 1–7
+    const MASTER_PRODUCTS = [
+      // Group 1 — Stall 1: Bakery & Treats
+      { id: 101, group: "Group 1", stall: "Stall 1: Bakery & Treats", name: "Walnut Balls", price: 70, emoji: "🥜", bg: "#fef3c7" },
+      { id: 102, group: "Group 1", stall: "Stall 1: Bakery & Treats", name: "Oats Honey Almond Muffin", price: 90, emoji: "🧁", bg: "#fde68a" },
+      { id: 103, group: "Group 1", stall: "Stall 1: Bakery & Treats", name: "Ragi Walnut Brownie", price: 120, emoji: "🟫", bg: "#ffedd5" },
+      { id: 104, group: "Group 1", stall: "Stall 1: Bakery & Treats", name: "Almond Crumb", price: 100, emoji: "🥐", bg: "#fef9c3" },
 
-      // GROUP 2: Artisanal Beverages & Chai
-      { id: 201, group: "Group 2", groupTitle: "Artisanal Chai & Drinks", name: "Royal Masala Chai Patti (250g)", price: 180, emoji: "🍵", bg: "#ffedd5", desc: "Aromatic cardamom & ginger Assam tea blend." },
-      { id: 202, group: "Group 2", groupTitle: "Artisanal Chai & Drinks", name: "Kokum & Mint Cooler Syrup (500ml)", price: 160, emoji: "🍹", bg: "#ffe4e6", desc: "Refreshing Konkan fruit concentrate." },
+      // Group 2 — Stall 2: Chocolates & Perfumes
+      { id: 201, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "6 Pieces Chocolate Box", price: 70, emoji: "🍫", bg: "#fce7f3" },
+      { id: 202, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "6 Pieces Chocolate Box Customisable", price: 80, emoji: "🎁", bg: "#fbcfe8" },
+      { id: 203, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "10 Pieces Chocolate Box", price: 110, emoji: "🍫", bg: "#fae8ff" },
+      { id: 204, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "10 Pieces Customisable Chocolate Box", price: 120, emoji: "🎀", bg: "#f3e8ff" },
+      { id: 205, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "12 Pieces Chocolate Box", price: 130, emoji: "🍫", bg: "#ffe4e6" },
+      { id: 206, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "12 Pieces Customisable Chocolate Box", price: 140, emoji: "💝", bg: "#fecdd3" },
+      { id: 207, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "Perfume 8ml", price: 80, emoji: "🧴", bg: "#e0f2fe" },
+      { id: 208, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "Perfume 8ml Combo", price: 150, emoji: "✨", bg: "#bae6fd" },
+      { id: 209, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "Perfume 40ml", price: 500, emoji: "🍾", bg: "#dbeafe" },
+      { id: 210, group: "Group 2", stall: "Stall 2: Chocolates & Perfumes", name: "Perfume 75ml", price: 750, emoji: "💎", bg: "#e0e7ff" },
 
-      // GROUP 3: Eco-Friendly Stationery & Crafts
-      { id: 301, group: "Group 3", groupTitle: "Eco Stationery & Crafts", name: "Seed-Paper Spiral Notebook", price: 140, emoji: "📓", bg: "#dcfce7", desc: "Plantable cover pages that grow into wildflowers." },
-      { id: 302, group: "Group 3", groupTitle: "Eco Stationery & Crafts", name: "Bamboo Desk Organizer & Pen Set", price: 299, emoji: "🎋", bg: "#d1fae5", desc: "Handcrafted sustainable bamboo desk kit." },
+      // Group 3 — Stall 3: Candles, Crafts & Accessories
+      { id: 301, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Triangular Candles", price: 60, emoji: "🕯️", bg: "#fef3c7" },
+      { id: 302, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Pastry Candle", price: 60, emoji: "🍰", bg: "#ffedd5" },
+      { id: 303, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Chota Bheem Jar Candle", price: 85, emoji: "🫙", bg: "#fde68a" },
+      { id: 304, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Mini Diet Coke Candle", price: 60, emoji: "🥤", bg: "#fee2e2" },
+      { id: 305, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Urli Candles", price: 85, emoji: "🪔", bg: "#fef9c3" },
+      { id: 306, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Diet Coke Candle", price: 120, emoji: "🥫", bg: "#fecaca" },
+      { id: 307, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Monster Candle", price: 150, emoji: "🔥", bg: "#dcfce7" },
+      { id: 308, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Single Bloom Flower", price: 70, emoji: "🌸", bg: "#fce7f3" },
+      { id: 309, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Flower Pot Bloom", price: 110, emoji: "🪴", bg: "#d1fae5" },
+      { id: 310, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Flower Bouquet", price: 250, emoji: "💐", bg: "#fae8ff" },
+      { id: 311, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Cute Keychains", price: 40, emoji: "🔑", bg: "#e0f2fe" },
+      { id: 312, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Stone Art Kits", price: 110, emoji: "🪨", bg: "#f1f5f9" },
+      { id: 313, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Charmed Bracelet", price: 60, emoji: "📿", bg: "#f3e8ff" },
+      { id: 314, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Bracelet Set", price: 55, emoji: "💫", bg: "#ffe4e6" },
+      { id: 315, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Necklace", price: 55, emoji: "👒", bg: "#fef3c7" },
+      { id: 316, group: "Group 3", stall: "Stall 3: Candles, Crafts & Accessories", name: "Tote Bags", price: 110, emoji: "👜", bg: "#dcfce7" },
 
-      // GROUP 4: Smart Accessories & Keychains
-      { id: 401, group: "Group 4", groupTitle: "Smart Tech & Keychains", name: "3D-Printed Nirmaan NFC Keychain", price: 150, emoji: "🔑", bg: "#e0f2fe", desc: "Custom green & cream monogram tag." },
-      { id: 402, group: "Group 4", groupTitle: "Smart Tech & Keychains", name: "Braided 3-in-1 Fast Charging Cable", price: 249, emoji: "🔌", bg: "#dbeafe", desc: "Type-C, Lightning & Micro-USB nylon cable." },
+      // Group 4 — Stall 4: Starter Catalog
+      { id: 401, group: "Group 4", stall: "Stall 4: Starter Catalog", name: "Stall Item 1", price: 50, emoji: "📦", bg: "#f1f5f9" },
+      { id: 402, group: "Group 4", stall: "Stall 4: Starter Catalog", name: "Stall Item 2", price: 80, emoji: "📦", bg: "#e2e8f0" },
+      { id: 403, group: "Group 4", stall: "Stall 4: Starter Catalog", name: "Stall Item 3", price: 100, emoji: "📦", bg: "#fef3c7" },
+      { id: 404, group: "Group 4", stall: "Stall 4: Starter Catalog", name: "Stall Item 4", price: 150, emoji: "📦", bg: "#dbeafe" },
 
-      // GROUP 5: Handmade Soaps & Wellness
-      { id: 501, group: "Group 5", groupTitle: "Soaps & Natural Wellness", name: "Sandalwood & Turmeric Soap Bar", price: 95, emoji: "🧼", bg: "#fef9c3", desc: "Cold-pressed herbal bathing bar by Group 5." },
-      { id: 502, group: "Group 5", groupTitle: "Soaps & Natural Wellness", name: "Lavender Soy Wax Aroma Candle", price: 220, emoji: "🕯️", bg: "#f3e8ff", desc: "25-hour clean burn calming essential oil candle." },
+      // Group 5 — Stall 5: Brew & Bite
+      { id: 501, group: "Group 5", stall: "Stall 5: Brew & Bite", name: "Classic Brew", price: 50, emoji: "☕", bg: "#ffedd5" },
+      { id: 502, group: "Group 5", stall: "Stall 5: Brew & Bite", name: "Mocha Frappe", price: 70, emoji: "🧋", bg: "#fef3c7" },
+      { id: 503, group: "Group 5", stall: "Stall 5: Brew & Bite", name: "Caramel Cloud", price: 100, emoji: "🥛", bg: "#fde68a" },
+      { id: 504, group: "Group 5", stall: "Stall 5: Brew & Bite", name: "Noir Royale (100g)", price: 70, emoji: "🍫", bg: "#e2e8f0" },
+      { id: 505, group: "Group 5", stall: "Stall 5: Brew & Bite", name: "The Golden Crunch (100g)", price: 75, emoji: "🍪", bg: "#fef9c3" },
+      { id: 506, group: "Group 5", stall: "Stall 5: Brew & Bite", name: "Cocoa Royale (100g)", price: 82, emoji: "🍩", bg: "#fce7f3" },
 
-      // GROUP 6: Canvas Tote Bags & Apparel
-      { id: 601, group: "Group 6", groupTitle: "Tote Bags & Apparel", name: "Nirmaan Heavy Canvas Tote Bag", price: 199, emoji: "👜", bg: "#f1f5f9", desc: "Reusable eco-cotton shopper with inner pocket." },
-      { id: 602, group: "Group 6", groupTitle: "Tote Bags & Apparel", name: "Hand-Painted Cotton Cap", price: 250, emoji: "🧢", bg: "#e2e8f0", desc: "Breathable custom-printed unisex cap." },
+      // Group 6 — Stall 6: Crafted Treats
+      { id: 601, group: "Group 6", stall: "Stall 6: Crafted Treats", name: "Brownies", price: 40, emoji: " brownie".trim() ? " brownie" : "🍫", bg: "#ffedd5" },
+      { id: 602, group: "Group 6", stall: "Stall 6: Crafted Treats", name: "Waffle Crisps", price: 65, emoji: "🧇", bg: "#fef3c7" },
+      { id: 603, group: "Group 6", stall: "Stall 6: Crafted Treats", name: "Mojito", price: 55, emoji: "🍹", bg: "#d1fae5" },
+      { id: 604, group: "Group 6", stall: "Stall 6: Crafted Treats", name: "Bandanas", price: 80, emoji: "🧣", bg: "#e0f2fe" },
+      { id: 605, group: "Group 6", stall: "Stall 6: Crafted Treats", name: "Bookmarks — Standard", price: 10, emoji: "🔖", bg: "#f1f5f9" },
+      { id: 606, group: "Group 6", stall: "Stall 6: Crafted Treats", name: "Bookmarks — Premium", price: 15, emoji: "🏷️", bg: "#fae8ff" },
+      { id: 607, group: "Group 6", stall: "Stall 6: Crafted Treats", name: "Mystery Jewellery Jar", price: 250, emoji: "💍", bg: "#fce7f3" },
 
-      // GROUP 7: Gourmet Desserts & Chocolates
-      { id: 701, group: "Group 7", groupTitle: "Desserts & Chocolates", name: "Dark Almond Sea-Salt Truffles (Box of 6)", price: 260, emoji: "🍫", bg: "#fae8ff", desc: "Artisanal 70% dark chocolate ganache box." },
-      { id: 702, group: "Group 7", groupTitle: "Desserts & Chocolates", name: "Baked Honey Oats Choco Cookies", price: 130, emoji: "🍪", bg: "#ffedd5", desc: "Freshly baked preservative-free cookie pack." }
+      // Group 7 — Stall 7: Refreshments & Attars
+      { id: 701, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Kokum Juice", price: 35, emoji: "🧃", bg: "#ffe4e6" },
+      { id: 702, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Mukkallat 3ml", price: 150, emoji: "🫧", bg: "#fef3c7" },
+      { id: 703, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Mukkallat 6ml", price: 230, emoji: "✨", bg: "#fde68a" },
+      { id: 704, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Dunhill Desire 3ml", price: 150, emoji: "🌬️", bg: "#fee2e2" },
+      { id: 705, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Dunhill Desire 6ml", price: 230, emoji: "🔥", bg: "#fecaca" },
+      { id: 706, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Dior Sauvage 3ml", price: 150, emoji: "🌊", bg: "#e0f2fe" },
+      { id: 707, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Dior Sauvage 6ml", price: 230, emoji: "💧", bg: "#bae6fd" },
+      { id: 708, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Azzaro 3ml", price: 150, emoji: "🌿", bg: "#dcfce7" },
+      { id: 709, group: "Group 7", stall: "Stall 7: Refreshments & Attars", name: "Azzaro 6ml", price: 230, emoji: "🍃", bg: "#bbf7d0" }
     ];
+    // Fix emoji for id 601 cleanly
+    MASTER_PRODUCTS.find(p => p.id === 601).emoji = "🍫";
 
-    const GROUPS_LIST = ["All", "Group 1", "Group 2", "Group 3", "Group 4", "Group 5", "Group 6", "Group 7"];
+    const GROUP_TABS = ["All", "Group 1", "Group 2", "Group 3", "Group 4", "Group 5", "Group 6", "Group 7"];
 
-    // -----------------------------------------------------------------------
-    // 2. APPLICATION STATE
-    // -----------------------------------------------------------------------
-    let state = {
-      customer: { name: "", email: "", phone: "" },
-      products: [],
+    const state = {
+      customer: { name: "Guest Customer", email: "guest.nirmaan@gmail.com", phone: "9876543210", loggedIn: false },
+      products: MASTER_PRODUCTS,
       selectedGroup: "All",
       searchQuery: "",
       cart: [],
@@ -881,30 +912,27 @@
       lastOrder: null
     };
 
-    function formatINR(val) {
-      return "₹" + Number(val).toLocaleString("en-IN");
+    function formatINR(num) {
+      return "₹" + Number(num).toLocaleString("en-IN");
     }
 
-    // -----------------------------------------------------------------------
-    // 3. INITIALIZATION
-    // -----------------------------------------------------------------------
     window.addEventListener("DOMContentLoaded", () => {
-      // Load custom or default products
-      const savedProducts = localStorage.getItem("nirmaan_products_v1");
-      state.products = savedProducts ? JSON.parse(savedProducts) : [...DEFAULT_PRODUCTS];
-
-      // Load saved orders
-      const savedOrders = localStorage.getItem("nirmaan_orders_v1");
-      state.orders = savedOrders ? JSON.parse(savedOrders) : [];
-
-      // Load saved customer login
-      const savedCust = localStorage.getItem("nirmaan_customer_v1");
-      if (savedCust) {
-        state.customer = JSON.parse(savedCust);
-        if (state.customer.name && state.customer.email && state.customer.phone) {
+      try {
+        const savedCust = localStorage.getItem("nirmaan_customer_v2");
+        if (savedCust) {
+          const parsed = JSON.parse(savedCust);
+          state.customer = { ...state.customer, ...parsed };
           syncCustomerUI();
-          document.getElementById("onboarding-screen").classList.add("hidden");
+          if (state.customer.loggedIn) {
+            document.getElementById("onboarding-screen").classList.add("hidden");
+          }
         }
+        const savedOrders = localStorage.getItem("nirmaan_orders_v2");
+        if (savedOrders) {
+          state.orders = JSON.parse(savedOrders);
+        }
+      } catch (err) {
+        console.warn("Storage access note:", err);
       }
 
       renderGroupPills();
@@ -913,57 +941,71 @@
       initAIChatWelcome();
     });
 
-    // -----------------------------------------------------------------------
-    // 4. LOGIN / ONBOARDING HANDLERS
-    // -----------------------------------------------------------------------
+    // Onboarding Handlers
     document.getElementById("onboarding-form").addEventListener("submit", (e) => {
       e.preventDefault();
       const name = document.getElementById("cust-name").value.trim();
       const email = document.getElementById("cust-email").value.trim().toLowerCase();
       const phone = document.getElementById("cust-phone").value.trim().replace(/\D/g, "");
 
-      let ok = true;
+      let valid = true;
       if (name.length < 2) {
         document.getElementById("err-name").classList.remove("hidden");
-        ok = false;
+        valid = false;
       } else {
         document.getElementById("err-name").classList.add("hidden");
       }
 
       if (!/^[a-z0-9._%+-]+@gmail\.com$/i.test(email)) {
         document.getElementById("err-email").classList.remove("hidden");
-        ok = false;
+        valid = false;
       } else {
         document.getElementById("err-email").classList.add("hidden");
       }
 
       if (!/^[6-9]\d{9}$/.test(phone)) {
         document.getElementById("err-phone").classList.remove("hidden");
-        ok = false;
+        valid = false;
       } else {
         document.getElementById("err-phone").classList.add("hidden");
       }
 
-      if (!ok) return;
+      if (!valid) return;
 
-      state.customer = { name, email, phone };
-      localStorage.setItem("nirmaan_customer_v1", JSON.stringify(state.customer));
+      state.customer = { name, email, phone, loggedIn: true };
+      try {
+        localStorage.setItem("nirmaan_customer_v2", JSON.stringify(state.customer));
+      } catch (err) {}
+
       syncCustomerUI();
       document.getElementById("onboarding-screen").classList.add("hidden");
-      showToast(`Welcome ${name}! Logged in.`);
+      showToast(`Welcome to Nirmaan Store, ${name}!`);
       initAIChatWelcome();
     });
 
     function fillDemoCustomer() {
-      document.getElementById("cust-name").value = "Aarav Sharma";
-      document.getElementById("cust-email").value = "aarav.nirmaan@gmail.com";
-      document.getElementById("cust-phone").value = "9876543210";
+      document.getElementById("cust-name").value = "Rohan Kulkarni";
+      document.getElementById("cust-email").value = "rohan.nirmaan@gmail.com";
+      document.getElementById("cust-phone").value = "9820112233";
+    }
+
+    function skipAsGuest() {
+      syncCustomerUI();
+      document.getElementById("onboarding-screen").classList.add("hidden");
+      showToast("Browsing Nirmaan Store as Guest");
+    }
+
+    function openLoginScreen() {
+      document.getElementById("cust-name").value = state.customer.loggedIn ? state.customer.name : "";
+      document.getElementById("cust-email").value = state.customer.loggedIn ? state.customer.email : "";
+      document.getElementById("cust-phone").value = state.customer.loggedIn ? state.customer.phone : "";
+      document.getElementById("onboarding-screen").classList.remove("hidden");
     }
 
     function syncCustomerUI() {
       const { name, email, phone } = state.customer;
-      const initials = name.split(" ").map((w) => w[0]).join("").substring(0, 2).toUpperCase() || "U";
-      document.getElementById("header-user-name").textContent = name.split(" ")[0];
+      const initials = name.split(" ").map(part => part[0] || "").join("").substring(0, 2).toUpperCase() || "N";
+      document.getElementById("header-user-name").textContent = name.split(" ")[0] || "Guest";
       document.getElementById("addr-name").value = name;
       document.getElementById("addr-phone").value = phone;
 
@@ -973,43 +1015,34 @@
       document.getElementById("acc-phone").textContent = "+91 " + phone;
     }
 
-    function switchAccount() {
-      document.getElementById("cust-name").value = state.customer.name;
-      document.getElementById("cust-email").value = state.customer.email;
-      document.getElementById("cust-phone").value = state.customer.phone;
-      document.getElementById("onboarding-screen").classList.remove("hidden");
-    }
-
-    // -----------------------------------------------------------------------
-    // 5. GROUP 1–7 TABS & PRODUCT RENDERING
-    // -----------------------------------------------------------------------
+    // Group Pills & Product Rendering
     function renderGroupPills() {
       const container = document.getElementById("group-pills-container");
-      container.innerHTML = GROUPS_LIST.map((grp) => {
-        const active = state.selectedGroup === grp;
+      container.innerHTML = GROUP_TABS.map(tab => {
+        const isActive = state.selectedGroup === tab;
         return `
           <button
-            onclick="selectGroup('${grp}')"
+            onclick="selectGroup('${tab}')"
             class="px-4 py-2 rounded-full text-xs font-extrabold whitespace-nowrap transition cursor-pointer ${
-              active
+              isActive
                 ? "bg-nirmaan-green text-nirmaan-cream shadow-sm"
                 : "bg-white text-nirmaan-green border border-nirmaan-creamBorder hover:bg-nirmaan-creamDark"
             }"
           >
-            ${grp}
+            ${tab}
           </button>
         `;
       }).join("");
     }
 
-    function selectGroup(grp) {
-      state.selectedGroup = grp;
+    function selectGroup(tab) {
+      state.selectedGroup = tab;
       renderGroupPills();
       renderProducts();
     }
 
     function handleSearch(val) {
-      state.searchQuery = val.toLowerCase().trim();
+      state.searchQuery = val.trim().toLowerCase();
       document.getElementById("clear-search-btn").classList.toggle("hidden", !state.searchQuery);
       renderProducts();
     }
@@ -1027,52 +1060,54 @@
     }
 
     function renderProducts() {
-      const filtered = state.products.filter((p) => {
-        const matchGroup = state.selectedGroup === "All" || p.group === state.selectedGroup;
-        const matchSearch =
+      const matches = state.products.filter(p => {
+        const matchesGroup = state.selectedGroup === "All" || p.group === state.selectedGroup;
+        const matchesSearch =
+          !state.searchQuery ||
           p.name.toLowerCase().includes(state.searchQuery) ||
           p.group.toLowerCase().includes(state.searchQuery) ||
-          p.desc.toLowerCase().includes(state.searchQuery);
-        return matchGroup && matchSearch;
+          p.stall.toLowerCase().includes(state.searchQuery) ||
+          String(p.id).includes(state.searchQuery);
+        return matchesGroup && matchesSearch;
       });
 
-      // Update Banner
-      const bannerTag = document.getElementById("banner-group-tag");
-      const bannerTitle = document.getElementById("banner-group-title");
-      const bannerSub = document.getElementById("banner-group-subtitle");
-      document.getElementById("banner-product-count").textContent = filtered.length;
+      const tagEl = document.getElementById("banner-group-tag");
+      const titleEl = document.getElementById("banner-group-title");
+      const subEl = document.getElementById("banner-group-subtitle");
+      document.getElementById("banner-product-count").textContent = matches.length;
 
       if (state.selectedGroup === "All") {
-        bannerTag.textContent = "OUTSIDE INBOX • ALL PRODUCTS";
-        bannerTitle.textContent = "All Products (Groups 1 to 7 Combined)";
-        bannerSub.textContent = "Browse items from all 7 Nirmaan groups together or tap a group pill above.";
+        tagEl.textContent = "ALL PRODUCTS • GROUPS 1 TO 7";
+        titleEl.textContent = "All Nirmaan Flea Market Products";
+        subEl.textContent = "Combined catalog of all 47 products across Stalls 1–7.";
       } else {
-        const sample = state.products.find((p) => p.group === state.selectedGroup);
-        bannerTag.textContent = state.selectedGroup.toUpperCase();
-        bannerTitle.textContent = `${state.selectedGroup} — ${sample ? sample.groupTitle : "Products"}`;
-        bannerSub.textContent = `Showing exclusive products created by ${state.selectedGroup}.`;
+        const sample = state.products.find(p => p.group === state.selectedGroup);
+        tagEl.textContent = state.selectedGroup.toUpperCase();
+        titleEl.textContent = sample ? `${sample.group} — ${sample.stall}` : state.selectedGroup;
+        subEl.textContent = `Showing products exclusively from ${sample ? sample.stall : state.selectedGroup}.`;
       }
 
       const grid = document.getElementById("products-grid");
-      const empty = document.getElementById("empty-search-state");
+      const emptyBox = document.getElementById("empty-search-state");
 
-      if (filtered.length === 0) {
+      if (matches.length === 0) {
         grid.innerHTML = "";
-        empty.classList.remove("hidden");
+        emptyBox.classList.remove("hidden");
         return;
       }
 
-      empty.classList.add("hidden");
-      grid.innerHTML = filtered.map((p) => `
+      emptyBox.classList.add("hidden");
+      grid.innerHTML = matches.map(p => `
         <div class="bg-white border border-nirmaan-creamBorder rounded-3xl p-3.5 flex flex-col justify-between shadow-xs hover:shadow-md transition">
           <div>
-            <!-- Artwork Box with Curved N Badge -->
             <div class="relative h-32 sm:h-36 rounded-2xl flex items-center justify-center mb-3" style="background-color: ${p.bg};">
               <span class="text-5xl sm:text-6xl select-none">${p.emoji}</span>
               <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-nirmaan-green text-nirmaan-cream text-[10px] font-extrabold">
                 ${p.group}
               </span>
-              <!-- Mini Nirmaan 'N' Stamp -->
+              <span class="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-white/90 text-nirmaan-green font-mono text-[10px] font-bold border border-nirmaan-creamBorder">
+                #${p.id}
+              </span>
               <div class="absolute bottom-2 right-2 w-6 h-6 rounded-lg bg-nirmaan-green flex items-center justify-center">
                 <svg viewBox="0 0 100 100" class="w-3.5 h-3.5" fill="none">
                   <path d="M23 78C19 58 19 32 29 24C37 18 44 29 50 44C56 59 64 74 73 68C81 62 79 36 73 22H55C60 33 63 48 58 51C53 54 47 41 42 29C36 16 25 14 18 23C10 34 11 61 15 78H23Z" fill="#fdfbf5"/>
@@ -1080,16 +1115,15 @@
               </div>
             </div>
 
-            <h3 class="font-bold text-xs sm:text-sm text-nirmaan-green line-clamp-2 leading-snug min-h-[34px]">
+            <p class="text-[10px] font-bold text-nirmaan-green/60 truncate">${p.stall}</p>
+            <h3 class="font-bold text-xs sm:text-sm text-nirmaan-green line-clamp-2 leading-snug min-h-[34px] mt-0.5">
               ${p.name}
             </h3>
-            <p class="text-[11px] text-nirmaan-green/65 line-clamp-1 mt-0.5">${p.desc}</p>
             <p class="font-mono font-extrabold text-base sm:text-lg text-nirmaan-green mt-2">
               ${formatINR(p.price)}
             </p>
           </div>
 
-          <!-- Two Action Buttons -->
           <div class="grid grid-cols-2 gap-1.5 mt-3">
             <button
               onclick="addToCart(${p.id})"
@@ -1098,7 +1132,7 @@
               Add to Cart
             </button>
             <button
-              onclick="buyNowSingle(${p.id})"
+              onclick="buyNow(${p.id})"
               class="py-2 px-2 rounded-xl bg-nirmaan-green hover:bg-nirmaan-greenHover text-nirmaan-cream font-bold text-[11px] transition cursor-pointer"
             >
               Buy Now
@@ -1108,85 +1142,96 @@
       `).join("");
     }
 
-    // -----------------------------------------------------------------------
-    // 6. CART SIDEBAR (OPENS IMMEDIATELY ON ADD TO CART)
-    // -----------------------------------------------------------------------
+    // Cart Sidebar
     function addToCart(productId) {
-      const product = state.products.find((p) => p.id === productId);
-      if (!product) return;
+      const prod = state.products.find(p => p.id === productId);
+      if (!prod) return;
 
-      const existing = state.cart.find((c) => c.product.id === productId);
+      const existing = state.cart.find(item => item.product.id === productId);
       if (existing) {
         existing.qty += 1;
       } else {
-        state.cart.push({ product, qty: 1 });
+        state.cart.push({ product: prod, qty: 1 });
       }
 
       updateCartUI();
       toggleCartSidebar(true);
-      showToast(`Added ${product.name} to cart`);
+      showToast(`Added ${prod.name} (${formatINR(prod.price)})`);
     }
 
     function updateCartQty(productId, delta) {
-      const idx = state.cart.findIndex((c) => c.product.id === productId);
+      const idx = state.cart.findIndex(item => item.product.id === productId);
       if (idx === -1) return;
       state.cart[idx].qty += delta;
-      if (state.cart[idx].qty <= 0) state.cart.splice(idx, 1);
+      if (state.cart[idx].qty <= 0) {
+        state.cart.splice(idx, 1);
+      }
+      updateCartUI();
+    }
+
+    function removeFromCart(productId) {
+      state.cart = state.cart.filter(item => item.product.id !== productId);
       updateCartUI();
     }
 
     function updateCartUI() {
-      const totalQty = state.cart.reduce((s, i) => s + i.qty, 0);
-      const totalAmt = state.cart.reduce((s, i) => s + i.product.price * i.qty, 0);
+      const totalCount = state.cart.reduce((sum, i) => sum + i.qty, 0);
+      const totalAmount = state.cart.reduce((sum, i) => sum + i.product.price * i.qty, 0);
 
-      document.getElementById("cart-badge-count").textContent = totalQty;
-      document.getElementById("sidebar-item-count").textContent = totalQty;
-      document.getElementById("cart-subtotal-text").textContent = formatINR(totalAmt);
+      document.getElementById("cart-badge-count").textContent = totalCount;
+      document.getElementById("sidebar-item-count").textContent = totalCount;
+      document.getElementById("cart-subtotal-text").textContent = formatINR(totalAmount);
 
       const list = document.getElementById("cart-items-list");
-      const buyBtn = document.getElementById("cart-buy-btn");
+      const btn = document.getElementById("cart-buy-btn");
 
       if (state.cart.length === 0) {
-        buyBtn.disabled = true;
-        buyBtn.classList.add("opacity-50", "cursor-not-allowed");
+        btn.disabled = true;
+        btn.classList.add("opacity-50", "cursor-not-allowed");
         list.innerHTML = `
           <div class="text-center py-16">
             <i class="fa-solid fa-basket-shopping text-4xl text-nirmaan-green/25 mb-2"></i>
             <p class="font-bold text-sm text-nirmaan-green/70">Your cart is empty</p>
-            <p class="text-xs text-nirmaan-green/50 mt-1">Tap "Add to Cart" on any Group 1–7 item.</p>
+            <p class="text-xs text-nirmaan-green/50 mt-1">Click "Add to Cart" on any item from Groups 1–7.</p>
           </div>
         `;
         return;
       }
 
-      buyBtn.disabled = false;
-      buyBtn.classList.remove("opacity-50", "cursor-not-allowed");
+      btn.disabled = false;
+      btn.classList.remove("opacity-50", "cursor-not-allowed");
 
       list.innerHTML = state.cart.map(({ product, qty }) => `
-        <div class="bg-white border border-nirmaan-creamBorder rounded-2xl p-3 flex items-center justify-between gap-3">
+        <div class="bg-white border border-nirmaan-creamBorder rounded-2xl p-3 flex items-center justify-between gap-2.5">
           <div class="flex items-center gap-3 min-w-0">
-            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0" style="background-color:${product.bg}">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0" style="background-color: ${product.bg};">
               ${product.emoji}
             </div>
             <div class="min-w-0">
-              <span class="text-[10px] font-bold text-nirmaan-green/60">${product.group}</span>
+              <span class="text-[10px] font-bold text-nirmaan-green/60">${product.group} • #${product.id}</span>
               <h4 class="text-xs font-bold text-nirmaan-green truncate">${product.name}</h4>
               <p class="text-xs font-mono font-extrabold text-nirmaan-green mt-0.5">${formatINR(product.price * qty)}</p>
             </div>
           </div>
-          <div class="flex items-center bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl shrink-0">
-            <button onclick="updateCartQty(${product.id}, -1)" class="w-7 h-7 font-bold cursor-pointer">-</button>
-            <span class="px-2 text-xs font-extrabold">${qty}</span>
-            <button onclick="updateCartQty(${product.id}, 1)" class="w-7 h-7 font-bold cursor-pointer">+</button>
+
+          <div class="flex items-center gap-1.5 shrink-0">
+            <div class="flex items-center bg-nirmaan-cream border border-nirmaan-creamBorder rounded-xl">
+              <button onclick="updateCartQty(${product.id}, -1)" class="w-7 h-7 font-bold cursor-pointer">-</button>
+              <span class="px-2 text-xs font-extrabold">${qty}</span>
+              <button onclick="updateCartQty(${product.id}, 1)" class="w-7 h-7 font-bold cursor-pointer">+</button>
+            </div>
+            <button onclick="removeFromCart(${product.id})" title="Remove" class="w-7 h-7 rounded-lg text-rose-600 hover:bg-rose-50 flex items-center justify-center cursor-pointer">
+              <i class="fa-regular fa-trash-can text-xs"></i>
+            </button>
           </div>
         </div>
       `).join("");
     }
 
-    function toggleCartSidebar(show) {
+    function toggleCartSidebar(open) {
       const sb = document.getElementById("cart-sidebar");
       const bd = document.getElementById("cart-backdrop");
-      if (show) {
+      if (open) {
         bd.classList.remove("hidden");
         sb.classList.remove("translate-x-full");
       } else {
@@ -1195,42 +1240,39 @@
       }
     }
 
-    // -----------------------------------------------------------------------
-    // 7. CHECKOUT, ADDRESS & 3-MODE PAYMENT (QR / CARD / COD)
-    // -----------------------------------------------------------------------
-    function buyNowSingle(productId) {
-      const product = state.products.find((p) => p.id === productId);
-      if (!product) return;
-      state.checkoutItems = [{ product, qty: 1 }];
+    // Checkout, Address & 3-Option Payment
+    function buyNow(productId) {
+      const prod = state.products.find(p => p.id === productId);
+      if (!prod) return;
+      state.checkoutItems = [{ product: prod, qty: 1 }];
+      toggleCartSidebar(false);
       navigateTo("address");
     }
 
     function proceedFromCartToCheckout() {
       if (state.cart.length === 0) return;
-      state.checkoutItems = state.cart.map((c) => ({ ...c }));
+      state.checkoutItems = state.cart.map(c => ({ ...c }));
       toggleCartSidebar(false);
       navigateTo("address");
     }
 
     function getCheckoutTotal() {
-      return state.checkoutItems.reduce((s, i) => s + i.product.price * i.qty, 0);
+      return state.checkoutItems.reduce((sum, i) => sum + i.product.price * i.qty, 0);
     }
 
     function navigateTo(view) {
-      ["store", "address", "payment", "confirmation", "orders", "account"].forEach((v) => {
+      ["store", "address", "payment", "confirmation", "orders", "account"].forEach(v => {
         document.getElementById(`view-${v}`).classList.add("hidden");
       });
       document.getElementById(`view-${view}`).classList.remove("hidden");
-
-      const searchBar = document.getElementById("header-search-bar");
-      searchBar.classList.toggle("hidden", view !== "store");
+      document.getElementById("header-search-bar").classList.toggle("hidden", view !== "store");
 
       if (view === "address") {
         const total = getCheckoutTotal();
         document.getElementById("address-summary-box").innerHTML = `
           <h3 class="text-sm font-extrabold text-nirmaan-green mb-3">Order Summary</h3>
           <div class="space-y-2 text-xs border-b border-nirmaan-creamBorder pb-3 mb-3">
-            ${state.checkoutItems.map((i) => `
+            ${state.checkoutItems.map(i => `
               <div class="flex justify-between gap-2">
                 <span class="truncate">${i.product.name} ×${i.qty}</span>
                 <span class="font-mono font-bold">${formatINR(i.product.price * i.qty)}</span>
@@ -1238,7 +1280,7 @@
             `).join("")}
           </div>
           <div class="flex justify-between font-extrabold text-sm text-nirmaan-green">
-            <span>Total</span>
+            <span>Total Payable</span>
             <span class="font-mono">${formatINR(total)}</span>
           </div>
         `;
@@ -1250,6 +1292,7 @@
         document.getElementById("cod-amount-text").textContent = formatINR(total);
         selectPaymentTab("qr");
         generateRandomQR();
+        updateCardPreview();
       } else if (view === "orders") {
         renderOrdersHistory();
       }
@@ -1270,7 +1313,7 @@
       const type = document.querySelector('input[name="addr-type"]:checked').value;
 
       if (!fullName || phone.length !== 10 || !/^\d{6}$/.test(pincode) || !line1 || !line2 || !city) {
-        showToast("Please fill all address fields & a valid 6-digit Pincode.");
+        showToast("Please complete all required address fields & 6-digit Pincode.");
         return;
       }
 
@@ -1278,15 +1321,15 @@
       navigateTo("payment");
     });
 
-    function selectPaymentTab(tab) {
-      ["qr", "card", "cod"].forEach((t) => {
-        const btn = document.getElementById(`pay-tab-${t}`);
-        const panel = document.getElementById(`pay-panel-${t}`);
-        if (t === tab) {
-          btn.className = "p-3.5 rounded-2xl border-2 border-nirmaan-green bg-nirmaan-green text-nirmaan-cream text-left transition cursor-pointer";
+    function selectPaymentTab(mode) {
+      ["qr", "card", "cod"].forEach(m => {
+        const tab = document.getElementById(`pay-tab-${m}`);
+        const panel = document.getElementById(`pay-panel-${m}`);
+        if (m === mode) {
+          tab.className = "p-3.5 rounded-2xl border-2 border-nirmaan-green bg-nirmaan-green text-nirmaan-cream text-left transition cursor-pointer";
           panel.classList.remove("hidden");
         } else {
-          btn.className = "p-3.5 rounded-2xl border border-nirmaan-creamBorder bg-white text-nirmaan-green text-left transition cursor-pointer";
+          tab.className = "p-3.5 rounded-2xl border border-nirmaan-creamBorder bg-white text-nirmaan-green text-left transition cursor-pointer";
           panel.classList.add("hidden");
         }
       });
@@ -1296,358 +1339,20 @@
       const size = 21;
       const cell = 8;
       const dim = size * cell;
-      const ref = "NRM" + Math.floor(100000 + Math.random() * 900000);
-      document.getElementById("qr-ref-code").textContent = "REF: " + ref;
+      const refCode = "NRM" + Math.floor(100000 + Math.random() * 900000);
+      document.getElementById("qr-ref-code").textContent = "REF: " + refCode;
 
       let rects = "";
       for (let r = 0; r < size; r++) {
         for (let c = 0; c < size; c++) {
-          const isCorner = (r < 7 && c < 7) || (r < 7 && c >= size - 7) || (r >= size - 7 && c < 7);
-          let fill = false;
-          if (isCorner) {
+          const isFinder = (r < 7 && c < 7) || (r < 7 && c >= size - 7) || (r >= size - 7 && c < 7);
+          let dark = false;
+          if (isFinder) {
             const lr = r >= size - 7 ? r - (size - 7) : r;
             const lc = c >= size - 7 ? c - (size - 7) : c;
-            fill = lr === 0 || lr === 6 || lc === 0 || lc === 6 || (lr >= 2 && lr <= 4 && lc >= 2 && lc <= 4);
+            dark = lr === 0 || lr === 6 || lc === 0 || lc === 6 || (lr >= 2 && lr <= 4 && lc >= 2 && lc <= 4);
           } else {
-            fill = Math.random() > 0.48;
+            dark = Math.random() > 0.48;
           }
-          if (fill) {
-            rects += `<rect x="${c * cell}" y="${r * cell}" width="${cell}" height="${cell}" fill="#08361c" rx="1"/>`;
-          }
-        }
-      }
-
-      document.getElementById("qr-svg-box").innerHTML = `
-        <svg viewBox="0 0 ${dim} ${dim}" class="w-full h-full">
-          <rect width="${dim}" height="${dim}" fill="#ffffff"/>
-          ${rects}
-        </svg>
-      `;
-    }
-
-    function formatCardNumber(el) {
-      const digits = el.value.replace(/\D/g, "").substring(0, 16);
-      el.value = digits.replace(/(.{4})/g, "$1 ").trim();
-    }
-
-    function formatCardExpiry(el) {
-      const d = el.value.replace(/\D/g, "").substring(0, 4);
-      el.value = d.length >= 3 ? d.slice(0, 2) + "/" + d.slice(2) : d;
-    }
-
-    document.getElementById("card-form").addEventListener("submit", (e) => {
-      e.preventDefault();
-      const type = document.getElementById("card-type").value;
-      const num = document.getElementById("card-number").value.replace(/\s/g, "");
-      const exp = document.getElementById("card-expiry").value.trim();
-      const cvv = document.getElementById("card-cvv").value.trim();
-
-      if (num.length < 15 || !/^(0[1-9]|1[0-2])\/\d{2}$/.test(exp) || !/^\d{3,4}$/.test(cvv)) {
-        showToast("Please enter valid Card Number, MM/YY Expiry & CVV.");
-        return;
-      }
-      placeFinalOrder(`${type} Card (•••• ${num.slice(-4)})`);
-    });
-
-    function placeFinalOrder(paymentMethod) {
-      const orderId = "NRM-" + Math.floor(100000 + Math.random() * 900000);
-      const total = getCheckoutTotal();
-      const dateStr = new Date().toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
-
-      const order = {
-        orderId,
-        date: dateStr,
-        paymentMethod,
-        customer: { ...state.customer },
-        address: { ...state.shippingAddress },
-        items: state.checkoutItems.map((i) => ({ ...i })),
-        total
-      };
-
-      state.lastOrder = order;
-      state.orders.unshift(order);
-      localStorage.setItem("nirmaan_orders_v1", JSON.stringify(state.orders));
-
-      // Clear cart
-      state.cart = [];
-      updateCartUI();
-
-      // Populate E-Bill
-      document.getElementById("conf-gmail").textContent = order.customer.email;
-      document.getElementById("ebill-date").textContent = order.date;
-      document.getElementById("ebill-order-id").textContent = "#" + order.orderId;
-      document.getElementById("ebill-pay-method").textContent = order.paymentMethod;
-      document.getElementById("ebill-cust-name").textContent = order.customer.name;
-      document.getElementById("ebill-cust-email").textContent = order.customer.email;
-      document.getElementById("ebill-cust-phone").textContent = "+91 " + order.customer.phone;
-
-      const a = order.address;
-      document.getElementById("ebill-address").textContent =
-        `${a.fullName} (${a.type}), ${a.line1}, ${a.line2}${a.landmark ? ", Near " + a.landmark : ""}, ${a.city}, ${a.state} - ${a.pincode}`;
-
-      document.getElementById("ebill-items").innerHTML = order.items.map((i) => `
-        <tr>
-          <td class="py-2 font-semibold">${i.product.name} <span class="text-[10px] text-nirmaan-green/60">(${i.product.group})</span></td>
-          <td class="py-2 text-center">${i.qty}</td>
-          <td class="py-2 text-right font-mono font-bold">${formatINR(i.product.price * i.qty)}</td>
-        </tr>
-      `).join("");
-
-      document.getElementById("ebill-total").textContent = formatINR(order.total);
-
-      navigateTo("confirmation");
-      showToast(`Order placed! E-Bill sent to ${order.customer.email}`);
-    }
-
-    function openGmailReceipt() {
-      if (!state.lastOrder) return;
-      const o = state.lastOrder;
-      const lines = o.items.map((i) => `- ${i.product.name} (${i.product.group}) x${i.qty}: ${formatINR(i.product.price * i.qty)}`).join("%0A");
-      const su = encodeURIComponent(`Nirmaan Store E-Bill - Order #${o.orderId}`);
-      const body = `Hello ${encodeURIComponent(o.customer.name)},%0A%0AThank you for shopping at Nirmaan Store!%0AOrder ID: %23${o.orderId}%0APayment: ${encodeURIComponent(o.paymentMethod)}%0A%0AItems:%0A${lines}%0A%0ATotal: ${encodeURIComponent(formatINR(o.total))}%0A%0ARegards,%0ANirmaan Store`;
-      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(o.customer.email)}&su=${su}&body=${body}`, "_blank");
-    }
-
-    function renderOrdersHistory() {
-      const container = document.getElementById("orders-history-list");
-      if (state.orders.length === 0) {
-        container.innerHTML = `<div class="bg-white border border-nirmaan-creamBorder rounded-3xl p-8 text-center text-xs text-nirmaan-green/70">No orders placed yet. Start shopping across Groups 1–7!</div>`;
-        return;
-      }
-      container.innerHTML = state.orders.map((o) => `
-        <div class="bg-white border border-nirmaan-creamBorder rounded-2xl p-4 space-y-2 shadow-xs">
-          <div class="flex justify-between items-center text-xs">
-            <span class="font-mono font-extrabold text-nirmaan-green">#${o.orderId}</span>
-            <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-bold text-[10px]">E-Bill Sent to Gmail</span>
-          </div>
-          <p class="text-xs text-nirmaan-green/75">${o.items.map((i) => `${i.product.name} (x${i.qty})`).join(", ")}</p>
-          <div class="flex justify-between items-center pt-2 border-t border-nirmaan-creamBorder text-xs">
-            <span class="text-nirmaan-green/60">${o.date} • ${o.paymentMethod}</span>
-            <span class="font-mono font-extrabold text-sm">${formatINR(o.total)}</span>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    // -----------------------------------------------------------------------
-    // 8. OPTIONAL EXHIBITION CATALOG EDITOR (IN ACCOUNT TAB)
-    // -----------------------------------------------------------------------
-    function toggleCatalogEditor() {
-      const box = document.getElementById("catalog-editor-box");
-      box.classList.toggle("hidden");
-      if (!box.classList.contains("hidden")) {
-        document.getElementById("catalog-editor-list").innerHTML = state.products.map((p, idx) => `
-          <div class="flex items-center gap-2 bg-nirmaan-cream p-2.5 rounded-xl border border-nirmaan-creamBorder text-xs">
-            <span class="font-bold w-16 shrink-0">${p.group}</span>
-            <input
-              type="text"
-              value="${p.name}"
-              onchange="updateCatalogItem(${idx}, 'name', this.value)"
-              class="flex-1 px-2.5 py-1.5 bg-white border border-nirmaan-creamBorder rounded-lg font-medium"
-            />
-            <input
-              type="number"
-              value="${p.price}"
-              onchange="updateCatalogItem(${idx}, 'price', Number(this.value))"
-              class="w-20 px-2.5 py-1.5 bg-white border border-nirmaan-creamBorder rounded-lg font-mono font-bold"
-            />
-          </div>
-        `).join("");
-      }
-    }
-
-    function updateCatalogItem(idx, field, value) {
-      if (!value) return;
-      state.products[idx][field] = value;
-      localStorage.setItem("nirmaan_products_v1", JSON.stringify(state.products));
-      renderProducts();
-      showToast("Product updated!");
-    }
-
-    function resetDefaultCatalog() {
-      state.products = [...DEFAULT_PRODUCTS];
-      localStorage.removeItem("nirmaan_products_v1");
-      renderProducts();
-      toggleCatalogEditor();
-      showToast("Catalog reset to default Group 1–7 items.");
-    }
-
-    // -----------------------------------------------------------------------
-    // 9. BUILT-IN AI CUSTOMER ASSISTANT ('Nirmaan AI')
-    // -----------------------------------------------------------------------
-    function toggleAIChat() {
-      const win = document.getElementById("ai-chat-window");
-      win.classList.toggle("hidden");
-      win.classList.toggle("flex");
-    }
-
-    function initAIChatWelcome() {
-      const box = document.getElementById("ai-chat-messages");
-      const userName = state.customer.name || "there";
-      box.innerHTML = `
-        <div class="bg-white border border-nirmaan-creamBorder rounded-2xl rounded-tl-none p-3 text-nirmaan-green shadow-2xs">
-          <p class="font-bold mb-1">Namaste ${userName}! 👋</p>
-          <p class="text-nirmaan-green/80 leading-relaxed">
-            I'm <strong>Nirmaan AI</strong>. Ask me anything—I can check your <strong>login details</strong>, help you switch your Gmail, find items in <strong>Group 1 to Group 7</strong>, or track your <strong>E-Bills</strong>!
-          </p>
-        </div>
-      `;
-    }
-
-    function sendQuickAIPrompt(text) {
-      document.getElementById("ai-chat-input").value = text;
-      handleAIChatSubmit(new Event("submit"));
-    }
-
-    document.getElementById("ai-chat-form").addEventListener("submit", handleAIChatSubmit);
-
-    function handleAIChatSubmit(e) {
-      e.preventDefault();
-      const input = document.getElementById("ai-chat-input");
-      const query = input.value.trim();
-      if (!query) return;
-
-      appendChatBubble(query, "user");
-      input.value = "";
-
-      setTimeout(() => {
-        const reply = generateNirmaanAIResponse(query);
-        appendChatBubble(reply, "ai");
-      }, 250);
-    }
-
-    function appendChatBubble(htmlContent, sender) {
-      const box = document.getElementById("ai-chat-messages");
-      const div = document.createElement("div");
-      if (sender === "user") {
-        div.className = "ml-auto max-w-[82%] bg-nirmaan-green text-nirmaan-cream rounded-2xl rounded-tr-none p-3 font-medium";
-        div.textContent = htmlContent;
-      } else {
-        div.className = "mr-auto max-w-[88%] bg-white border border-nirmaan-creamBorder text-nirmaan-green rounded-2xl rounded-tl-none p-3 shadow-2xs space-y-1.5";
-        div.innerHTML = htmlContent;
-      }
-      box.appendChild(div);
-      box.scrollTop = box.scrollHeight;
-    }
-
-    function generateNirmaanAIResponse(rawQuery) {
-      const q = rawQuery.toLowerCase();
-
-      // 1. Login / Profile / Gmail / Phone Lookup
-      if (q.includes("login") || q.includes("detail") || q.includes("account") || q.includes("gmail") || q.includes("phone") || q.includes("who am i")) {
-        if (q.includes("switch") || q.includes("change") || q.includes("edit") || q.includes("find login")) {
-          return `
-            <p>You can update or switch your Gmail and phone login anytime:</p>
-            <button onclick="toggleAIChat(); switchAccount();" class="mt-1 px-3 py-1.5 rounded-xl bg-nirmaan-green text-nirmaan-cream font-bold text-[11px] cursor-pointer">
-              Open Login / Switch Account
-            </button>
-          `;
-        }
-        return `
-          <p class="font-bold">Here are your active login details:</p>
-          <ul class="text-[11px] space-y-0.5 text-nirmaan-green/85">
-            <li>• <strong>Name:</strong> ${state.customer.name || "Not set"}</li>
-            <li>• <strong>Gmail (E-Bill):</strong> ${state.customer.email || "Not set"}</li>
-            <li>• <strong>Phone:</strong> +91 ${state.customer.phone || "Not set"}</li>
-          </ul>
-          <button onclick="toggleAIChat(); switchAccount();" class="mt-1.5 px-2.5 py-1 rounded-lg bg-nirmaan-creamDark text-nirmaan-green font-bold text-[10px] cursor-pointer">
-            Update Details
-          </button>
-        `;
-      }
-
-      // 2. Specific Group 1 to Group 7 Search
-      const groupMatch = q.match(/group\s*([1-7])/);
-      if (groupMatch) {
-        const grpName = "Group " + groupMatch[1];
-        const items = state.products.filter((p) => p.group === grpName);
-        return `
-          <p class="font-bold">${grpName} has ${items.length} products:</p>
-          <ul class="text-[11px] space-y-1">
-            ${items.map((i) => `<li>• ${i.emoji} <strong>${i.name}</strong> — ${formatINR(i.price)}</li>`).join("")}
-          </ul>
-          <button onclick="toggleAIChat(); navigateTo('store'); selectGroup('${grpName}');" class="mt-1.5 px-3 py-1.5 rounded-xl bg-nirmaan-green text-nirmaan-cream font-bold text-[11px] cursor-pointer">
-            Open ${grpName} Store
-          </button>
-        `;
-      }
-
-      // 3. List all 7 groups
-      if (q.includes("group") || q.includes("categor")) {
-        const summary = [1, 2, 3, 4, 5, 6, 7].map((num) => {
-          const g = `Group ${num}`;
-          const first = state.products.find((p) => p.group === g);
-          return `<li><strong>${g}:</strong> ${first ? first.groupTitle : ""}</li>`;
-        }).join("");
-        return `
-          <p class="font-bold">Nirmaan Store has 7 Groups + All Products view:</p>
-          <ul class="text-[11px] space-y-0.5">${summary}</ul>
-          <button onclick="toggleAIChat(); navigateTo('store'); selectGroup('All');" class="mt-1.5 px-3 py-1.5 rounded-xl bg-nirmaan-green text-nirmaan-cream font-bold text-[11px] cursor-pointer">
-            View All Products
-          </button>
-        `;
-      }
-
-      // 4. Orders & E-Bill Help
-      if (q.includes("order") || q.includes("bill") || q.includes("receipt") || q.includes("track")) {
-        if (state.orders.length === 0) {
-          return `<p>You haven't placed an order yet! Add any item from Group 1–7 to your cart and complete checkout to receive your Gmail E-Bill.</p>`;
-        }
-        const latest = state.orders[0];
-        return `
-          <p class="font-bold">Latest Order: #${latest.orderId}</p>
-          <p class="text-[11px]">Total: <strong>${formatINR(latest.total)}</strong> (${latest.paymentMethod})</p>
-          <p class="text-[11px]">E-Bill sent to: <strong>${latest.customer.email}</strong></p>
-          <button onclick="toggleAIChat(); navigateTo('orders');" class="mt-1.5 px-3 py-1.5 rounded-xl bg-nirmaan-green text-nirmaan-cream font-bold text-[11px] cursor-pointer">
-            View All Orders
-          </button>
-        `;
-      }
-
-      // 5. Product keyword match
-      const matchedProducts = state.products.filter(
-        (p) => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
-      );
-      if (matchedProducts.length > 0) {
-        return `
-          <p class="font-bold">Found ${matchedProducts.length} matching product(s):</p>
-          <ul class="text-[11px] space-y-1">
-            ${matchedProducts.slice(0, 3).map((p) => `<li>• ${p.emoji} <strong>${p.name}</strong> (${p.group}) — ${formatINR(p.price)}</li>`).join("")}
-          </ul>
-          <button onclick="toggleAIChat(); navigateTo('store'); document.getElementById('search-input').value='${rawQuery.replace(/'/g, "")}'; handleSearch('${rawQuery.replace(/'/g, "")}');" class="mt-1.5 px-3 py-1.5 rounded-xl bg-nirmaan-green text-nirmaan-cream font-bold text-[11px] cursor-pointer">
-            Show in Store
-          </button>
-        `;
-      }
-
-      // Default Fallback
-      return `
-        <p>I can help you with:</p>
-        <ul class="text-[11px] space-y-0.5">
-          <li>1. Checking or switching your <strong>Gmail & Phone login</strong></li>
-          <li>2. Filtering <strong>All Products</strong> or <strong>Group 1 to Group 7</strong></li>
-          <li>3. Payment options (<strong>UPI QR, Card, COD</strong>) & <strong>Gmail E-Bills</strong></li>
-        </ul>
-      `;
-    }
-
-    // -----------------------------------------------------------------------
-    // 10. TOAST NOTIFICATIONS & SERVICE WORKER REGISTRATION
-    // -----------------------------------------------------------------------
-    function showToast(msg) {
-      const container = document.getElementById("toast-container");
-      const el = document.createElement("div");
-      el.className = "pointer-events-auto bg-nirmaan-green text-nirmaan-cream border border-nirmaan-cream/20 px-4 py-3 rounded-2xl shadow-xl text-xs font-bold animate-in";
-      el.textContent = msg;
-      container.appendChild(el);
-      setTimeout(() => el.remove(), 2800);
-    }
-
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js").catch(() => {});
-      });
-    }
-  </script>
-</body>
-</html>
+          if (dark) {
+            rects += `<rect x="${c * cell}" y="${r * cell}" width="${cell}" height="${cell}" 
